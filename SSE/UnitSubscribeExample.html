@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<!--suppress JSUnresolvedVariable -->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>SSE Javascript Example</title>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+<script>
+  // Set the base url so we do not have to provide the full url for every request
+  axios.defaults.baseURL = 'http://www.dummydomain.net/'
+
+  // Provide your username and password here:
+  const USERNAME = 'demo'
+  const PASSWORD = 'demo'
+
+  // This is the id of the GPS unit we want to listen to
+  const UNIT_ID = 1
+
+  // The SSE server will send us a stream_id soon after our connection
+  // have been established, it essentially identifies our connection.
+  let stream_id
+
+  // This will contain our SSE / "EventSource" instance for SSE communications
+  let eventSource
+
+  //------------------------------------------------------------
+  // The code that kicks of things is at the bottom of this file
+  //------------------------------------------------------------
+
+  /**
+   * Update our authorization header if the API server sends
+   * a new bearer token.
+   *
+   * @param {Object} response
+   *
+   * @return {Object}
+   */
+  const updateBearerToken = (response) => {
+    if (response.headers.hasOwnProperty('authorization')) {
+      // Tell axios to automatically transmit the Authorization header the
+      // next time we send a request:
+      axios.defaults.headers.common['authorization'] = response.headers['authorization']
+    }
+
+    return response
+  }
+
+  /**
+   * Performs the login request and returns with a promise
+   *
+   * @param {String} username
+   * @param {String} password
+   *
+   * @return {Promise}
+   */
+  const login = (username, password) => {
+    console.log('HTTP POST: Logging in...')
+    return axios.post(`/api/v1/auth/login`, {
+      username: username,
+      password: password
+    })
+      .then(updateBearerToken)
+      .catch((error) => {
+        // Oops, our login request failed, perhaps incorrect username or password?
+        console.log(error)
+      })
+  }
+
+  /**
+   * Setup the event source (SSE connection) with all the callback
+   * functions provided in the options object.
+   */
+  const setupEventSource = (options = {}) => {
+    const sseOptions = {
+      eventSourceOnOpen: null,
+      eventSourceOnError: null,
+      eventSourceOnMessage: null,
+      onStreamId: null,
+      onPing: null,
+      onGps: null,
+      ...options
+    }
+
+    // Creates and returns instance of the EventSource, the URL
+    // at which the SSE server listens is passed through also.
+    // The connection will be established automatically.
+    console.info(`EventSource: Establishing EventSource connection...`)
+    let eventSource = new EventSource(
+      encodeURI(`${axios.defaults.baseURL}sse/telemetry/connect`)
+    )
+
+    // Setup the EventSource onopen event handler
+    if (sseOptions.eventSourceOnOpen instanceof Function) {
+      eventSource.onopen = sseOptions.eventSourceOnOpen
+    }
+
+    // Setup the EventSource onerror event handler
+    if (sseOptions.eventSourceOnError instanceof Function) {
+      eventSource.onerror = sseOptions.eventSourceOnError
+    }
+
+    // Setup the EventSource onmessage event handler
+    if (sseOptions.eventSourceOnMessage instanceof Function) {
+      eventSource.onmessage = (event) => {
+        // Convert the event data to JSON
+        const message = JSON.parse(event.data)
+        // We can receive 3 types of messages: 'stream_id', 'ping' or 'gps'
+        switch (message.type) {
+          case 'stream_id':
+            if (sseOptions.onStreamId instanceof Function) {
+              sseOptions.onStreamId(message.stream_id)
+            }
+            break
+
+          case 'ping':
+            if (sseOptions.onPing instanceof Function) {
+              sseOptions.onPing()
+            }
+            break
+
+          case 'gps':
+            if (sseOptions.onGps instanceof Function && message.data.message_type === 'gps') {
+              // We may also receive trips through the gps messages, so
+              // this check is to just make sure we have a gps message
+              // and not a trip message.
+              sseOptions.onGps(message.data)
+            }
+            break
+
+          default:
+            console.error('EventSource: Unknown SSE event type: ' + message.type)
+        }
+      }
+    }
+
+    return eventSource
+  }
+
+  /**
+   * Wait for the global stream_id to be provided by the server.
+   * A promise is returned which will supply the stream_id string once
+   * resolved.
+   */
+  const waitForStreamId = (timeout = 5000) => {
+    let time = timeout
+    let interval
+    return new Promise((resolve, reject) => {
+      interval = setInterval(() => {
+        if (stream_id !== undefined && stream_id !== null) {
+          resolve(stream_id)
+        }
+
+        time -= 50
+        if (time < 0) {
+          clearInterval(interval)
+          reject()
+        }
+      }, 50)
+    })
+  }
+
+  /**
+   * Requests a subscription token from the HTTP API and returns
+   * a promise. The promise, once resolved will return some
+   * of the unit's fields along with the token itself.
+   *
+   * @param {Number} unitId
+   *
+   * @return {Promise}
+   */
+  const requestUnitSubToken = (unitId) => {
+    console.log('HTTP GET: Requesting unit subscription token...')
+    return axios.get(`/api/v1/monitoring/unit/${unitId}`)
+      .then(response => response.data.data)
+  }
+
+  /**
+   * Subscribe to start receiving GPS messages from the unit.
+   *
+   * @param {String} stream_id
+   * @param {String} token
+   *
+   * @return {Promise}
+   */
+  const sseSubscribe = (stream_id, token) => {
+    console.log('HTTP POST: Subscribing unit...')
+    return axios.post(`/sse/telemetry/subscribe/${stream_id}/${token}`).then((response) => {
+      console.log('HTTP RESPONSE: Unit subscription successful, token received...')
+      return response
+    })
+  }
+
+  //-----------------------------------------
+  // Code execution starts here
+  //-----------------------------------------
+  ;(async () => {
+    // Login to the REST API...
+    await login(USERNAME, PASSWORD)
+
+    // Connect to the SSE server...
+    eventSource = setupEventSource({
+      // Native EventSource event handlers
+      eventSourceOnOpen: () => { console.info(`EventSource: connection successful.`) },
+      eventSourceOnError: (err) => { console.error(`EventSource: Error occurred!`, err) },
+      eventSourceOnMessage: (event) => { console.info(`EventSource: New Event received`, event) },
+
+      // Server-sent event handler for 'stream_id' events
+      onStreamId: (new_stream_id) => {
+        stream_id = new_stream_id // Update the global stream_id (declared at the top of the script)
+        console.info(`Event: [stream_id] event received, stream_id = ${stream_id}`)
+      },
+
+      // Server-sent event handler for 'ping' events
+      onPing: () => {
+        console.info(`Event: [ping] event received`)
+        // Send back a pong through the HTTP API, include our
+        // previously received stream_id
+        console.log('Sending pong...')
+        axios.post(`/sse/telemetry/pong/${stream_id}`)
+      },
+
+      // Server-sent event handler for 'gps' events
+      onGps: (gps) => {
+        console.info(`Event: [gps] event received`, gps)
+      }
+    })
+
+    // We are connected to the SSE server but we still need a
+    // stream_id which the server will automatically send shortly
+    // after we connected.
+    stream_id = await waitForStreamId()
+      .catch(() => { console.error(`Timeout reached while for stream_id`) })
+
+    if (stream_id) {
+      // Now get a subscription token for the unit
+      const subscription = await requestUnitSubToken(UNIT_ID)
+
+      // Now that we have a token for the unit we can finally subscribe
+      // to start receiving GPS messages for the unit.
+      await sseSubscribe(stream_id, subscription.token)
+
+      console.log('ALL IS READY: Waiting for incoming GPS data...')
+    }
+  })()
+</script>
+
+</body>
+</html>

@@ -1,0 +1,759 @@
+{
+	"info": {
+		"_postman_id": "c79f6df2-59cd-4177-9794-04657a4d094a",
+		"name": "Destiny API Quick Start Guide",
+		"description": "Welcome to the ACM Destiny Quick Start Guide. Here you will find a small overview along with some examples to quickly get you up and running with the API.\n\n> **Please Note:** This is not a comprehensive list of API calls, instead it merely provides examples to quickly get you up and running.\n\n# Authentication\nThe first step is to login using the username and password you have been supplied/registered with.\n\nFor these examples we will be using the extremely popular [Axios Javascript/Node.js](https://axios-http.com/) library. Please use the documentation on the Axios website for installation instructions or how to include it from a CDN.\n\nFirst, lets perform a login request:\n\n```javascript\naxios.post('http://www.dummydomain.net/api/v1/auth/login', {\n  username: 'your username',\n  password: 'your password'\n})\n.then((response) => {\n  // Success!!\n  // Tell axios to automatically transmit the Authorization header the\n  // next time we send a request:\n  axios.defaults.headers.common['authorization'] = \n    response.headers['authorization']\n})\n.catch((error) => {\n  // Oops, our login request failed, perhaps due to incorrect username or password?\n  console.log(error)\n})\n```\n\n# Subsequent Requests\n\nNext, lets see if there are any units / devices allocated to us, this time the Authorization token will automatically be transmitted along by Axios. However, whenever the server responds we need to check to see if it sent a new Bearer token, and if so we need to update our own local copy of the token.\n\n```javascript\naxios.get('http://www.dummydomain.net/api/v1/units')\n.then((response) => {\n  console.log(response)\n  // Success, but we need to update our \n  // authorization token if a new one was\n  // sent by the server\n  if (response.headers.hasOwnProperty('authorization')) {\n    axios.defaults.headers.common['authorization'] = \n      response.headers['authorization']\n  }\n})\n.catch((error) => {\n  // Oops, something went wrong\n  console.log(error)\n})\n```\n\n# What is Next?\n\nContinue and experiment with the requests below, once you have had some success you can dive into the rest of the documentation.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "User Login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const authorizationHeader = pm.response.headers.find((el) => {",
+							"    return el.key === 'Authorization'",
+							"})",
+							"",
+							"pm.environment.set(\"bearer\", authorizationHeader.value.replace(new RegExp('bearer ', 'gi'), ''))",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\": \"{{username}}\",\n    \"password\": \"{{password}}\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{http}}://{{domain}}/api/v1/auth/login",
+					"protocol": "{{http}}",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"auth",
+						"login"
+					]
+				},
+				"description": "Performs a user login request. If successful an HTTP code `200 OK` will be returned together with a new authorization token. Look at the `Authorization` header in the response, it will contain something like `bearer eyJ0eXAiOiJKV1...`. \n\n> **Important:** This token must be cached by you and supplied with each subsequent requests to the API through the `Authorization` HTTP header.\n\n> **Important:** The token is refreshed every few minutes by the API server. When any request is made by you and you receive the `Authorization` header, update your cache with the new token and then send the new token with each subsequent request. The old token does not immediately expire and is valid for 7 days."
+			},
+			"response": [
+				{
+					"name": "200 OK",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"{{username}}\",\n    \"password\": \"{{password}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{http}}://{{domain}}/api/v1/auth/login",
+							"protocol": "{{http}}",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "nginx/1.17.8"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept-Encoding"
+						},
+						{
+							"key": "Authorization",
+							"value": "bearer "
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, private"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 21 Apr 2021 08:57:10 GMT"
+						},
+						{
+							"key": "X-RateLimit-Limit",
+							"value": "60"
+						},
+						{
+							"key": "X-RateLimit-Remaining",
+							"value": "59"
+						},
+						{
+							"key": "X-RateLimit-Reset",
+							"value": "60"
+						},
+						{
+							"key": "X-Debug-Php",
+							"value": "yes"
+						},
+						{
+							"key": "Content-Encoding",
+							"value": "gzip"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"data\": {\n        \"id\": 654321,\n        \"account_type\": {\n            \"id\": 1000,\n            \"name\": \"Client: Demo Package\",\n            \"description\": null,\n            \"access_level\": {\n                \"level\": 7,\n                \"name\": \"Client\"\n            },\n            \"product_code\": \"PROD/DEMO\",\n            \"created_at\": \"2020-02-12T15:54:26+02:00\",\n            \"updated_at\": \"2020-10-29T13:35:12+02:00\"\n        },\n        \"username\": \"demo\",\n        \"email\": \"dummy@mail.com\",\n        \"title\": null,\n        \"first_name\": \"demo\",\n        \"last_name\": null,\n        \"full_name\": \"demo\",\n        \"position\": null,\n        \"employee_no\": null,\n        \"cellphone\": null,\n        \"national_id\": null,\n        \"timezone\": {\n            \"Africa/Johannesburg\": \"Africa/Johannesburg\"\n        },\n        \"country\": {\n            \"ZA\": \"South Africa\"\n        },\n        \"language\": {\n            \"EN\": \"English\"\n        },\n        \"logged_in\": true,\n        \"ip\": \"192.168.0.10\",\n        \"created_at\": \"2021-04-20T12:55:17+00:00\",\n        \"updated_at\": null,\n        \"accessed_at\": \"2021-04-21T08:57:10+00:00\",\n        \"accessed_route\": null,\n        \"pubsub\": {\n            \"enabled\": true,\n            \"publish_key\": \"\",\n            \"subscribe_key\": \"\",\n            \"sub_channels\": []\n        },\n        \"filestack\": {\n            \"url\": \"https://www.filestackapi.com/api/store/S3\",\n            \"api_key\": \"\"\n        },\n        \"google\": {\n            \"maps\": {\n                \"api_url\": \"https://maps.googleapis.com/maps/api/js\",\n                \"geocoding_url\": \"https://maps.googleapis.com/maps/api/geocode/json\",\n                \"api_key\": \"\",\n                \"client_id\": \"\"\n            }\n        },\n        \"sse\": {\n            \"url\": \"https://www.dummydomain.net/sse/telemetry/\",\n            \"telemetry_url\": \"https://www.dummdomain.net/sse/telemetry/\",\n            \"notify_url\": \"https://www.dummydomain.net/sse/notify/\"\n        },\n        \"user_photo_urls\": {\n            \"photo\": \"\",\n            \"profile_large\": \"\",\n            \"profile_medium\": \"\",\n            \"profile_small\": \"\"\n        },\n        \"partner\": {\n            \"id\": 1,\n            \"name\": \"ACMGroup (Pty) Ltd\"\n        },\n        \"agency\": {\n            \"id\": null,\n            \"name\": null\n        },\n        \"clients\": [\n            {\n                \"id\": 654321,\n                \"name\": \"demo\"\n            }\n        ],\n        \"settings\": {\n            \"default\": true\n        },\n        \"permissions\": {},\n        \"photos\": []\n    }\n}"
+				},
+				{
+					"name": "425 User Not Found",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"bad username\",\n    \"password\": \"bad password\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{http}}://{{domain}}/api/v1/auth/login",
+							"protocol": "{{http}}",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"status": "User Not Found",
+					"code": 425,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "nginx/1.17.8"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "WWW-Authenticate",
+							"value": "FormBased"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, private"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 21 Apr 2021 09:40:54 GMT"
+						},
+						{
+							"key": "X-RateLimit-Limit",
+							"value": "60"
+						},
+						{
+							"key": "X-RateLimit-Remaining",
+							"value": "59"
+						},
+						{
+							"key": "X-RateLimit-Reset",
+							"value": "60"
+						},
+						{
+							"key": "X-Debug-Php",
+							"value": "yes"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"warn_fields\": [\n        {\n            \"username\": \"The username or email address could not be found on the system.\"\n        }\n    ]\n}"
+				},
+				{
+					"name": "401 Unauthorized",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"{{username}}\",\n    \"password\": \"bad password\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{http}}://{{domain}}/api/v1/auth/login",
+							"protocol": "{{http}}",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"status": "Unauthorized",
+					"code": 401,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "nginx/1.17.8"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "WWW-Authenticate",
+							"value": "FormBased"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, private"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 21 Apr 2021 09:44:39 GMT"
+						},
+						{
+							"key": "X-RateLimit-Limit",
+							"value": "60"
+						},
+						{
+							"key": "X-RateLimit-Remaining",
+							"value": "59"
+						},
+						{
+							"key": "X-RateLimit-Reset",
+							"value": "60"
+						},
+						{
+							"key": "X-Debug-Php",
+							"value": "yes"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"warn_fields\": [\n        {\n            \"password\": \"An incorrect password was provided for the username: demo.\"\n        }\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "Query Available Units",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{http}}://{{domain}}/api/v1/units",
+					"protocol": "{{http}}",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"units"
+					]
+				},
+				"description": "This request returns details for all the units that are available to you in a paginated format.\n\n> **Important:** The unit details returned with this request does not include GPS tracking or other sensor data."
+			},
+			"response": [
+				{
+					"name": "200 OK",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{http}}://{{domain}}/api/v1/units",
+							"protocol": "{{http}}",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"units"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "nginx/1.17.8"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept-Encoding"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, private"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 21 Apr 2021 11:27:11 GMT"
+						},
+						{
+							"key": "X-RateLimit-Limit",
+							"value": "60"
+						},
+						{
+							"key": "X-RateLimit-Remaining",
+							"value": "59"
+						},
+						{
+							"key": "X-RateLimit-Reset",
+							"value": "60"
+						},
+						{
+							"key": "Content-Encoding",
+							"value": "gzip"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"data\": [\n        {\n            \"id\": 1,\n            \"partner_id\": 1,\n            \"partner\": {\n                \"id\": 1,\n                \"name\": \"Demo Partner\"\n            },\n            \"agency_id\": 1,\n            \"agency\": {\n                \"id\": 1,\n                \"name\": \"Demo Agency\"\n            },\n            \"client_id\": 1,\n            \"client\": {\n                \"id\": 1,\n                \"name\": \"Demo Client\"\n            },\n            \"imei\": \"5551234567890\",\n            \"serial_no\": \"65G4423\",\n            \"stock_no\": null,\n            \"name\": null,\n            \"unit_type_code\": \"teltonika\",\n            \"unit_type_name\": \"Teltonika\",\n            \"unit_model_code\": \"fmb920\",\n            \"unit_model_name\": \"FMB920\",\n            \"unit_status_code\": null,\n            \"unit_status_name\": null,\n            \"unit_group_id\": null,\n            \"unit_group\": null,\n            \"ignition\": \"independent\",\n            \"fixed_latitude\": null,\n            \"fixed_longitude\": null,\n            \"vehicle_id\": 1,\n            \"assigned_as\": \"primary\",\n            \"vehicle\": {\n                \"id\": 1,\n                \"reg_no\": \"ABC 123 GSP\",\n                \"fleet_no\": \"5551234\",\n                \"assigned_as\": \"primary\"\n            },\n            \"timezone\": \"UTC\",\n            \"op_timezone\": \"auto\",\n            \"user_full_name\": \"demo\",\n            \"user_id\": 1,\n            \"created_at\": \"2020-02-12T19:48:38+02:00\",\n            \"updated_at\": \"2020-04-22T14:35:38+02:00\",\n            \"sensors\": []\n        }\n    ],\n    \"pagination\": {\n        \"current_page\": 1,\n        \"per_page\": 30,\n        \"prev_page_url\": null,\n        \"next_page_url\": \"https://www.dummydomain.net/api/v1/units?page=2\",\n        \"first_item\": 1,\n        \"last_item\": 30\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Query Available Vehicles",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{http}}://{{domain}}/api/v1/vehicles",
+					"protocol": "{{http}}",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"vehicles"
+					]
+				},
+				"description": "This request returns details of all the vehicles that are available to you in a paginated format.\n\n> **Important:** The vehicle details returned with this request does not include GPS tracking or other sensor data."
+			},
+			"response": [
+				{
+					"name": "200 OK",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{http}}://{{domain}}/api/v1/vehicles",
+							"protocol": "{{http}}",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"vehicles"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "nginx/1.15.8"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, private"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 21 Apr 2021 12:00:28 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "{\n  \"data\": [\n    {\n      \"id\": 1,\n      \"partner_id\": 1,\n      \"partner\": {\n        \"id\": 1,\n        \"name\": \"Demo Partner\"\n      },\n      \"agency_id\": 1,\n      \"agency\": {\n        \"id\": 1,\n        \"name\": \"Demo Agency\"\n      },\n      \"client_id\": 1,\n      \"client\": {\n        \"id\": 1,\n        \"name\": \"Demo Client\"\n      },\n      \"driver_id\": null,\n      \"driver\": null,\n      \"vehicle_event_profile_id\": null,\n      \"vehicle_group_id\": null,\n      \"vehicle_group\": null,\n      \"reg_no\": \"ABC 123 GP\",\n      \"fleet_no\": \"5551234\",\n      \"icon_name\": \"pin-01-green.svg\",\n      \"vin\": null,\n      \"engine_no\": null,\n      \"vehicle_make\": null,\n      \"vehicle_model\": null,\n      \"vehicle_color\": null,\n      \"vehicle_year\": null,\n      \"odo_veh_km\": null,\n      \"odo_gps_km\": null,\n      \"service_interval_km\": null,\n      \"service_interval_month\": null,\n      \"prev_service_km\": null,\n      \"next_service_km\": null,\n      \"prev_service_date\": null,\n      \"next_service_date\": null,\n      \"prev_license_date\": null,\n      \"license_exp_date\": null,\n      \"prev_permit_date\": null,\n      \"permit_exp_date\": null,\n      \"created_at\": \"2020-10-01T09:38:27+02:00\",\n      \"updated_at\": null,\n      \"unit_id\": 341,\n      \"unit_assigned_as\": \"primary\",\n      \"unit_imei\": null,\n      \"unit_serial_no\": \"ABC123\",\n      \"unit_stock_no\": \"ABC123\",\n      \"unit_name\": null,\n      \"unit_type_code\": \"sigfox\",\n      \"unit_type_name\": \"SigFox\",\n      \"unit_model_code\": \"foxy\",\n      \"unit_model_name\": \"Foxy\"\n    }\n  ],\n  \"pagination\": {\n    \"current_page\": 1,\n    \"per_page\": 30,\n    \"prev_page_url\": null,\n    \"next_page_url\": \"http://www.dummydomain.com/api/v1/vehicles?page=2\",\n    \"first_item\": 1,\n    \"last_item\": 30\n  }\n}"
+				}
+			]
+		},
+		{
+			"name": "Get Latest Unit Telemetry",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{http}}://{{domain}}/api/v1/units/{{unit_id}}/telemetry",
+					"protocol": "{{http}}",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"units",
+						"{{unit_id}}",
+						"telemetry"
+					]
+				},
+				"description": "Requests a unit/device's last known location and sensor data. \n\n> **Tip:** Each unit that is returned when you request a list of units have a database id (simply called `id`). Use this id for the `{{unit_id}}` parameter when making the `monitoring/units/{{unit_id}}` request, for example `monitoring/units/1`.\n\nIf there are telemetry data available, all of it will be returned within the `telemetry` section of the result, if no telemetry data is available then the `telemetry` section will be `null`."
+			},
+			"response": [
+				{
+					"name": "200 OK",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{http}}://{{domain}}/api/v1/units/{{unit_id}}/telemetry",
+							"protocol": "{{http}}",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"units",
+								"{{unit_id}}",
+								"telemetry"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "nginx/1.15.8"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, private"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 22 Apr 2021 09:44:04 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"data\": {\n        \"telemetry\": {\n            \"gps\": {\n                \"fix\": [\n                    \"fixed\"\n                ],\n                \"gnss\": 1,\n                \"hdop\": 0,\n                \"pdop\": 0,\n                \"tdop\": null,\n                \"vdop\": null,\n                \"speed\": 0,\n                \"heading\": 24,\n                \"activity\": \"unknown\",\n                \"altitude\": 1667,\n                \"latitude\": -33.466490,\n                \"longitude\": 19.691637,\n                \"odometer\": null,\n                \"timezone\": \"Africa/Johannesburg\",\n                \"trip_odo\": 0,\n                \"timestamp\": \"2021-04-21T15:52:14+00:00\",\n                \"local_time\": \"2021-04-21T17:52:14+02:00\",\n                \"satellites\": 12,\n                \"distance_km\": 0\n            },\n            \"gsm\": [\n                {\n                    \"cid\": [],\n                    \"lac\": [],\n                    \"mcc\": [],\n                    \"mnc\": [],\n                    \"lcid\": [],\n                    \"rcpi\": [],\n                    \"rssi\": [],\n                    \"status\": [\n                        \"engine\",\n                        \"network\",\n                        \"data\",\n                        \"connected\"\n                    ],\n                    \"carrier\": null,\n                    \"data_mode\": \"home_stop\",\n                    \"signal_lvl\": 4,\n                    \"signal_str\": 80\n                }\n            ],\n            \"ldps\": {\n                \"name\": \"\",\n                \"error\": null,\n                \"timestamp\": \"2021-04-21T15:52:51+00:00\",\n                \"error_code\": null\n            },\n            \"port\": 5027,\n            \"sims\": [],\n            \"valid\": true,\n            \"device\": {\n                \"id\": 1,\n                \"identifier\": \"imei\",\n                \"imei\": \"5551234567890\",\n                \"serial_no\": \"65G4423\",\n                \"name\": null,\n                \"type\": \"teltonika\",\n                \"model\": \"fmb920\",\n                \"status\": null,\n                \"firm_ver\": null,\n                \"stock_no\": null,\n                \"assigned_as\": \"primary\"\n            },\n            \"driver\": null,\n            \"events\": [],\n            \"inputs\": \"000\",\n            \"obd_ii\": {\n                \"mode_01\": []\n            },\n            \"seq_no\": 1,\n            \"source\": \"device\",\n            \"can_bus\": [],\n            \"gateway\": \"\",\n            \"network\": {\n                \"mac\": null,\n                \"remote_ipv4\": \"192.168.0.10\",\n                \"remote_ipv6\": null,\n                \"remote_port\": 56917\n            },\n            \"outputs\": \"00\",\n            \"sensors\": [\n                [\n                    \"eco_score\",\n                    10\n                ],\n                [\n                    \"speed\",\n                    0\n                ],\n                [\n                    \"ebat_volts\",\n                    12.105\n                ],\n                [\n                    \"ibat_volts\",\n                    4.048\n                ],\n                [\n                    \"ibat_amps\",\n                    0\n                ],\n                [\n                    \"trip_odo\",\n                    0\n                ],\n                [\n                    \"movement\",\n                    false\n                ],\n                [\n                    \"ignition\",\n                    \"off\"\n                ],\n                [\n                    \"sleep_mode\",\n                    \"no_sleep\"\n                ]\n            ],\n            \"vehicle\": {\n                \"id\": 1,\n                \"reg_no\": \"ABC 123 GP\",\n                \"fleet_no\": \"5551234\",\n                \"client_id\": 1\n            },\n            \"buffered\": false,\n            \"an_inputs\": [\n                0.131\n            ],\n            \"timestamp\": \"2021-04-21T15:52:50+00:00\",\n            \"aux_inputs\": [],\n            \"message_ver\": 1,\n            \"message_type\": \"gps\",\n            \"transmission\": \"tcp\"\n        }\n    }\n}"
+				},
+				{
+					"name": "200 OK With no Telemetry",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{http}}://{{domain}}/api/v1/units/67/telemetry",
+							"protocol": "{{http}}",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"units",
+								"67",
+								"telemetry"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "nginx/1.15.8"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, private"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 22 Apr 2021 09:48:48 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"data\": {\n        \"telemetry\": null\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Get Latest Vehicle Telemetry",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{http}}://{{domain}}/api/v1/vehicles/{{vehicle_id}}/primary/telemetry",
+					"protocol": "{{http}}",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"vehicles",
+						"{{vehicle_id}}",
+						"primary",
+						"telemetry"
+					]
+				},
+				"description": "Requests a vehicle's last known location and sensor data.\n\n> **Important:** Since a vehicle may have more than one GPS device installed you have to specify which device's telemetry data to return. Notice the `/primary/` section after the `vehicle_id`, you can specify `/backup_1/` and `/backup_2/` as alternatives to `/primary/`.\n\nIf there are telemetry data available, all of it will be returned within the `telemetry` section of the result, if no telemetry data is available then the `telemetry` section will be `null`."
+			},
+			"response": [
+				{
+					"name": "200 OK",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{http}}://{{domain}}/api/v1/vehicles/{{vehicle_id}}/primary/telemetry",
+							"protocol": "{{http}}",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"vehicles",
+								"{{vehicle_id}}",
+								"primary",
+								"telemetry"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "nginx/1.15.8"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, private"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 21 Apr 2021 15:48:00 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"data\": {\n        \"gps\": {\n            \"fix\": [\n                \"fixed\"\n            ],\n            \"gnss\": 1,\n            \"hdop\": 0,\n            \"pdop\": 0,\n            \"tdop\": null,\n            \"vdop\": null,\n            \"speed\": 0,\n            \"heading\": 24,\n            \"activity\": \"unknown\",\n            \"altitude\": 1667,\n            \"latitude\": -33.466490,\n            \"longitude\": 19.691637,\n            \"odometer\": null,\n            \"timezone\": \"Africa/Johannesburg\",\n            \"trip_odo\": 0,\n            \"timestamp\": \"2021-04-21T15:46:14+00:00\",\n            \"local_time\": \"2021-04-21T17:46:14+02:00\",\n            \"satellites\": 14,\n            \"distance_km\": 0\n        },\n        \"gsm\": [\n            {\n                \"cid\": [],\n                \"lac\": [],\n                \"mcc\": [],\n                \"mnc\": [],\n                \"lcid\": [],\n                \"rcpi\": [],\n                \"rssi\": [],\n                \"status\": [\n                    \"engine\",\n                    \"network\",\n                    \"data\",\n                    \"connected\"\n                ],\n                \"carrier\": null,\n                \"data_mode\": \"home_stop\",\n                \"signal_lvl\": 4,\n                \"signal_str\": 80\n            }\n        ],\n        \"ldps\": {\n            \"name\": \"\",\n            \"error\": null,\n            \"timestamp\": \"2021-04-21T15:47:24+00:00\",\n            \"error_code\": null\n        },\n        \"port\": 5027,\n        \"sims\": [],\n        \"valid\": true,\n        \"device\": {\n            \"id\": 1,\n            \"identifier\": \"imei\",\n            \"imei\": \"5551234567890\",\n            \"serial_no\": \"65G4423\",\n            \"name\": null,\n            \"type\": \"teltonika\",\n            \"model\": \"fmb920\",\n            \"status\": null,\n            \"firm_ver\": null,\n            \"stock_no\": null,\n            \"assigned_as\": \"primary\"\n        },\n        \"driver\": null,\n        \"events\": [],\n        \"inputs\": \"000\",\n        \"obd_ii\": {\n            \"mode_01\": []\n        },\n        \"seq_no\": 1,\n        \"source\": \"device\",\n        \"can_bus\": [],\n        \"gateway\": \"\",\n        \"network\": {\n            \"mac\": null,\n            \"remote_ipv4\": \"192.168.0.10\",\n            \"remote_ipv6\": null,\n            \"remote_port\": 51748\n        },\n        \"outputs\": \"00\",\n        \"sensors\": [\n            [\n                \"eco_score\",\n                10\n            ],\n            [\n                \"speed\",\n                0\n            ],\n            [\n                \"ebat_volts\",\n                12.105\n            ],\n            [\n                \"ibat_volts\",\n                4.048\n            ],\n            [\n                \"ibat_amps\",\n                0\n            ],\n            [\n                \"trip_odo\",\n                0\n            ],\n            [\n                \"movement\",\n                false\n            ],\n            [\n                \"ignition\",\n                \"off\"\n            ],\n            [\n                \"sleep_mode\",\n                \"no_sleep\"\n            ]\n        ],\n        \"vehicle\": {\n            \"id\": 1,\n            \"reg_no\": \"ABC 123 GP\",\n            \"fleet_no\": \"5551234\",\n            \"client_id\": 1\n        },\n        \"buffered\": false,\n        \"an_inputs\": [\n            0.131\n        ],\n        \"timestamp\": \"2021-04-21T15:47:24+00:00\",\n        \"aux_inputs\": [],\n        \"message_ver\": 1,\n        \"message_type\": \"gps\",\n        \"transmission\": \"tcp\"\n    }\n}"
+				},
+				{
+					"name": "200 OK With no Telemetry",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{http}}://{{domain}}/api/v1/vehicles/{{vehicle_id}}/primary/telemetry",
+							"protocol": "{{http}}",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"vehicles",
+								"{{vehicle_id}}",
+								"primary",
+								"telemetry"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "nginx/1.15.8"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, private"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 22 Apr 2021 10:43:01 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"data\": {\n        \"telemetry\": null\n    }\n}"
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{bearer}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
