@@ -1,0 +1,253 @@
+{
+	"info": {
+		"_postman_id": "35842110-1d28-4fdb-a141-772cac4b883d",
+		"name": "Live Telemetry through SSE",
+		"description": "# Welcome to this guide!\n\nThe purpose of the guide is to instruct you on how to receive live telemetry messages in near-real time via server push technology, saving you from having to poll for the latest data.\n\nOne way to receive live messages from units/vehicles is through using SSE (Server-sent Events).\n\nHere is a small extract from [Wikipedia](https://en.wikipedia.org/wiki/Server-sent_events):\n\n> Server-Sent Events is a standard describing how servers can initiate data transmission towards clients once an initial client connection has been established. They are commonly used to send message updates or continuous data streams to a browser client and designed to enhance native, cross-browser streaming through a JavaScript API called EventSource, through which a client requests a particular URL in order to receive an event stream.\n\nPlease read the [MDN Web Docs on SSE](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events), it supplies valuable information you need to know.\n\n# Q & A\n\nBefore we kick of things lets answer some common questions:\n\n1. What happens if the connection closes due to technical issues?\n\nWhen using a browser the connection is restarted automatically. If you are not using the API through a browser but through a 3'rd party client please make sure it does the same.\n\n2. How many connections can be made? Do I need to make a connection for every unit/vehicle I want to monitor?\n\nSSE browser clients can only make 6 connections in total (and the limitation is shared across tabs), however, you only need one connection as you can monitor multiple units and vehicles over a single connection.\n\n3. Does this work like Websockets?\n\nUnlike Websockets, SSE is uni-directional, meaning that you can only receive data from it. However, subscriptions to monitor specific units/vehicles are done through our standard HTTP API.\n\n4. Why can't I use Websockets instead?\n\nWebsocket integration will be coming in the future.\n\n5. Will the connection remain active automatically?\n\nThe SSE server will send 'ping' events which you must answer back with a 'pong' through our HTTP API. This is explained further down in the guide.\n\n6. How many units / vehicles can I monitor like this at the same time?\n\nYou can potentially monitor 100's of units / vehicles using SSE. That being said, the use case for this leans towards front-end live monitoring by individual users on their web browsers, phones or tablets, where a user selects a vehicle or unit to view, and the subscription is then made. For high volume traffic and data recording please contact ACMGroup for further details.\n\n# Other SSE 3'rd Party Clients\n\nAlthough SSE is mostly used between web browsers and servers, most programming languages have SSE clients with which you can implement the same functionality. See some of the reference materials below:\n\n- [Javascript / Web API's](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events)\n- [Java Spring 5 WebFlux](https://www.baeldung.com/spring-server-sent-events)\n- [C# Server Events Clients](https://docs.servicestack.net/csharp-server-events-client)\n- [Python Flask-SSE](https://pypi.org/project/Flask-SSE/)\n- [PHP php-sse-react](https://github.com/clue/php-sse-react)\n\n...and many more, see the above linked Wikipedia page for more languages/libraries.\n\n# Before You Continue\n\nMake sure that you understand how to login to our HTTP API using the Login requests. Read our Destiny API Quick Start Guide for more information. This section assumes you have already logged in to the system.\n\nThe examples shown below uses Javascript and the popular [Axios Javascript/Node.js](https://axios-http.com/) library along with the standard Javascript SSE (EventSource) API.\n\n# Step 1: Make an SSE Connection\n\nTo start, we need to make an SSE connection to handle data events for all units/vehicles we will subscribe to.\n\n```javascript\n\n// Create a constant of the domain we'll be using\nconst url = `https://www.dummydomain.net`\n\n// The SSE server will send us a stream_id soon after our connection\n// have been established. We will need this before we can start \n// subscribing to specific units/vehicles, to answer ping requests and\n// to unsubscribe from specific units/vehicles.\nlet stream_id\n\n// Make the initial connection\n// IMPORTANT: Your SSE client will automatically try and reconnect if \n// the connection drops at some point in the future.\nlet eventSource = new EventSource(\n  encodeURI(`${url}/sse/telemetry/connect`)\n)\n\n// The onopen event will be called if the connection was successful.\neventSource.onopen = () => {\n  console.log(`SSE: EventSource connection successful!`)\n}\n\n// The onerror event will be called if the connection was unsuccesful\n// or some other error occured.\neventSource.onerror = (err) => {\n  console.log(err)\n}\n\n// This is where we handle events\neventSource.onmessage = (event) => {\n  // Convert the event data to JSON\n  const data = JSON.parse(event.data)\n\n  switch (data.type) {\n    case 'stream_id':\n      console.log(`SSE Event: stream_id received: ${stream_id}`)\n      // Keep our stream_id for later use\n      stream_id = data.stream_id\n      break\n\n    case 'ping':\n      console.log('SSE Event: ping received')\n      // Send back a pong through the HTTP API, include our\n      // previously received stream_id\n      axios.post(`${url}/sse/telemetry/pong/${stream_id}`)\n      break\n\n    case 'gps':\n      console.log('SSE Event: gps or trip message received')\n      \n      const message = event.data\n      if (message.message_type === 'gps') {\n        // Log out the latitude and longitude\n        console.log(`lat: ${message.telemetry.gps.latitude}, lng: ${message.telemetry.gps.longitude}`)\n        \n        // Or log out the full message\n        // console.log(message)\n      }\n      break\n\n    default:\n      console.error('SSE: Unknown SSE event type: ' + data.type)\n  }\n}\n```\n\n# Step 2: Subscribe to a Unit\n\nNow that we have an SSE connection, we have to request a subscription token for the unit we want to subscribe to from the HTTP API, once we have that we can finally subscribe to a specific unit. As soon as a unit transmits a new message, we will receive it here. \n\n```javascript\nconst unitId = 1 // Change this to the id of the unit you want to monitor.\n\n// First request a token for the subscription from the HTTP API\naxios.get(`${url}/api/v1/monitoring/unit/${unitId}`)\n  .then((response) => {\n    // Tip: You may want to keep the token for each unit you \n    // have subscribed to as each token is unique to the unit \n    // you have subscribed to.\n    const subscription = response.data.data\n    \n    // Now that we have a token for the unit, we can subscribe to it\n    axios.post(`${url}/sse/telemetry/subscribe/${stream_id}/${subscription.token}`)\n})\n```\n\n# Step 3: And/Or Subscribe to a Vehicle\n\nSubscribing to a vehicle is functionally the same as subscribing to a unit.\n\n```javascript\nconst vehicleId = 1 // Change this to the id of the vehicle you want to monitor.\nconst unit = 'primary' // Can also be backup_1 or backup_2\n\n// First request a token for the subscription from the HTTP API\naxios.get(`${url}/api/v1/monitoring/vehicle/${vehicleId}/${unit}`)\n  .then((response) => {\n    // Tip: You may want to keep the token for each vehicle you \n    // have subscribed to as each token is unique to the vehicle \n    // you have subscribed to.\n    const subscription = response.data.data\n    \n    // Now that we have a token for the vehicle, we can subscribe to it:\n    axios.post(`${url}/sse/telemetry/subscribe/${stream_id}/${subscription.token}`)\n})\n```\n\n# Quick Tips\n\nTo unsubscribe from a unit/vehicle do the following:\n\n```javascript\naxios.post(`${url}/sse/telemetry/unsubscribe/${stream_id}/${subscription.token}`)\n```\n\nTo disconnect from the SSE server do the following:\n\n```javascript\neventSource.close()\n```\n\n# What is Next?\n\nAs this guide demonstrated, you can easily establish an SSE connection, then through executing steps 2 and/or 3 you can subscribe to a number of units and vehicles using the same steps over and over.\n\nYou may want to take a look at our History / Telemetry Query API next.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Request a Unit Subscription Token",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{http}}://{{domain}}/api/v1/monitoring/unit/{{unit_id}}",
+					"protocol": "{{http}}",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"monitoring",
+						"unit",
+						"{{unit_id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "200 OK",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{http}}://{{domain}}/api/v1/monitoring/unit/{{unit_id}}",
+							"protocol": "{{http}}",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"monitoring",
+								"unit",
+								"{{unit_id}}"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "nginx/1.17.8"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept-Encoding"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, private"
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 23 Apr 2021 13:04:45 GMT"
+						},
+						{
+							"key": "X-RateLimit-Limit",
+							"value": "60"
+						},
+						{
+							"key": "X-RateLimit-Remaining",
+							"value": "59"
+						},
+						{
+							"key": "X-RateLimit-Reset",
+							"value": "60"
+						},
+						{
+							"key": "Content-Encoding",
+							"value": "gzip"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"data\": {\n        \"uid\": \"5551234567890\",\n        \"unit_id\": 1,\n        \"unit_name\": null,\n        \"vehicle_id\": 1,\n        \"vehicle_reg_no\": \"ABC 123 GP\",\n        \"vehicle_fleet_no\": \"5551234\",\n        \"vehicle_icon_name\": null,\n        \"vehicle_group_name\": null,\n        \"driver_id\": null,\n        \"token\": \"eyJ0eXAiOiJKV1...\",\n        \"telemetry\": {\n            \"gps\": {\n                \"fix\": [\n                    \"fixed\"\n                ],\n                \"gnss\": 1,\n                \"hdop\": 0,\n                \"pdop\": 0,\n                \"tdop\": null,\n                \"vdop\": null,\n                \"speed\": 0,\n                \"heading\": 24,\n                \"activity\": \"unknown\",\n                \"altitude\": 1667,\n                \"latitude\": -33.466490,\n                \"longitude\": 19.691637,\n                \"odometer\": null,\n                \"timezone\": \"Africa/Johannesburg\",\n                \"trip_odo\": 0,\n                \"timestamp\": \"2021-04-21T15:52:14+00:00\",\n                \"local_time\": \"2021-04-21T17:52:14+02:00\",\n                \"satellites\": 12,\n                \"distance_km\": 0\n            },\n            \"gsm\": [\n                {\n                    \"cid\": [],\n                    \"lac\": [],\n                    \"mcc\": [],\n                    \"mnc\": [],\n                    \"lcid\": [],\n                    \"rcpi\": [],\n                    \"rssi\": [],\n                    \"status\": [\n                        \"engine\",\n                        \"network\",\n                        \"data\",\n                        \"connected\"\n                    ],\n                    \"carrier\": null,\n                    \"data_mode\": \"home_stop\",\n                    \"signal_lvl\": 4,\n                    \"signal_str\": 80\n                }\n            ],\n            \"ldps\": {\n                \"name\": \"\",\n                \"error\": null,\n                \"timestamp\": \"2021-04-21T15:52:51+00:00\",\n                \"error_code\": null\n            },\n            \"port\": 5027,\n            \"sims\": [],\n            \"valid\": true,\n            \"device\": {\n                \"id\": 1,\n                \"identifier\": \"imei\",\n                \"imei\": \"5551234567890\",\n                \"serial_no\": \"65G4423\",\n                \"name\": null,\n                \"type\": \"teltonika\",\n                \"model\": \"fmb920\",\n                \"status\": null,\n                \"firm_ver\": null,\n                \"stock_no\": null,\n                \"assigned_as\": \"primary\"\n            },\n            \"driver\": null,\n            \"events\": [],\n            \"inputs\": \"000\",\n            \"obd_ii\": {\n                \"mode_01\": []\n            },\n            \"seq_no\": 1,\n            \"source\": \"device\",\n            \"can_bus\": [],\n            \"gateway\": \"\",\n            \"network\": {\n                \"mac\": null,\n                \"remote_ipv4\": \"192.168.0.10\",\n                \"remote_ipv6\": null,\n                \"remote_port\": 56917\n            },\n            \"outputs\": \"00\",\n            \"sensors\": [\n                [\n                    \"eco_score\",\n                    10\n                ],\n                [\n                    \"speed\",\n                    0\n                ],\n                [\n                    \"ebat_volts\",\n                    12.105\n                ],\n                [\n                    \"ibat_volts\",\n                    4.048\n                ],\n                [\n                    \"ibat_amps\",\n                    0\n                ],\n                [\n                    \"trip_odo\",\n                    0\n                ],\n                [\n                    \"movement\",\n                    false\n                ],\n                [\n                    \"ignition\",\n                    \"off\"\n                ],\n                [\n                    \"sleep_mode\",\n                    \"no_sleep\"\n                ]\n            ],\n            \"vehicle\": {\n                \"id\": 1,\n                \"reg_no\": \"ABC 123 GP\",\n                \"fleet_no\": \"5551234\",\n                \"client_id\": 1\n            },\n            \"buffered\": false,\n            \"an_inputs\": [\n                0.131\n            ],\n            \"timestamp\": \"2021-04-21T15:52:50+00:00\",\n            \"aux_inputs\": [],\n            \"message_ver\": 1,\n            \"message_type\": \"gps\",\n            \"transmission\": \"tcp\"\n        }\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Request a Vehicle Subscription Token Copy",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{http}}://{{domain}}/api/v1/monitoring/vehicle/{{vehicle_id}}/primary",
+					"protocol": "{{http}}",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"monitoring",
+						"vehicle",
+						"{{vehicle_id}}",
+						"primary"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "200 OK",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{http}}://{{domain}}/api/v1/monitoring/unit/{{unit_id}}",
+							"protocol": "{{http}}",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"monitoring",
+								"unit",
+								"{{unit_id}}"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "nginx/1.17.8"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept-Encoding"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, private"
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 23 Apr 2021 13:04:45 GMT"
+						},
+						{
+							"key": "X-RateLimit-Limit",
+							"value": "60"
+						},
+						{
+							"key": "X-RateLimit-Remaining",
+							"value": "59"
+						},
+						{
+							"key": "X-RateLimit-Reset",
+							"value": "60"
+						},
+						{
+							"key": "Content-Encoding",
+							"value": "gzip"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"data\": {\n        \"uid\": \"5551234567890\",\n        \"unit_id\": 1,\n        \"unit_name\": null,\n        \"vehicle_id\": 1,\n        \"vehicle_reg_no\": \"ABC 123 GP\",\n        \"vehicle_fleet_no\": \"5551234\",\n        \"vehicle_icon_name\": \"mini-bus-white.svg\",\n        \"vehicle_group_name\": null,\n        \"driver_id\": null,\n        \"token\": \"eyJ0eXAiOiJKV1...\",\n        \"telemetry\": {\n            \"gps\": {\n                \"fix\": [\n                    \"fixed\"\n                ],\n                \"gnss\": 1,\n                \"hdop\": 0,\n                \"pdop\": 0,\n                \"tdop\": null,\n                \"vdop\": null,\n                \"speed\": 0,\n                \"heading\": 24,\n                \"activity\": \"unknown\",\n                \"altitude\": 1667,\n                \"latitude\": -33.466490,\n                \"longitude\": 19.691637,\n                \"odometer\": null,\n                \"timezone\": \"Africa/Johannesburg\",\n                \"trip_odo\": 0,\n                \"timestamp\": \"2021-04-21T15:52:14+00:00\",\n                \"local_time\": \"2021-04-21T17:52:14+02:00\",\n                \"satellites\": 12,\n                \"distance_km\": 0\n            },\n            \"gsm\": [\n                {\n                    \"cid\": [],\n                    \"lac\": [],\n                    \"mcc\": [],\n                    \"mnc\": [],\n                    \"lcid\": [],\n                    \"rcpi\": [],\n                    \"rssi\": [],\n                    \"status\": [\n                        \"engine\",\n                        \"network\",\n                        \"data\",\n                        \"connected\"\n                    ],\n                    \"carrier\": null,\n                    \"data_mode\": \"home_stop\",\n                    \"signal_lvl\": 4,\n                    \"signal_str\": 80\n                }\n            ],\n            \"ldps\": {\n                \"name\": \"\",\n                \"error\": null,\n                \"timestamp\": \"2021-04-21T15:52:51+00:00\",\n                \"error_code\": null\n            },\n            \"port\": 5027,\n            \"sims\": [],\n            \"valid\": true,\n            \"device\": {\n                \"id\": 1,\n                \"identifier\": \"imei\",\n                \"imei\": \"5551234567890\",\n                \"serial_no\": \"65G4423\",\n                \"name\": null,\n                \"type\": \"teltonika\",\n                \"model\": \"fmb920\",\n                \"status\": null,\n                \"firm_ver\": null,\n                \"stock_no\": null,\n                \"assigned_as\": \"primary\"\n            },\n            \"driver\": null,\n            \"events\": [],\n            \"inputs\": \"000\",\n            \"obd_ii\": {\n                \"mode_01\": []\n            },\n            \"seq_no\": 1,\n            \"source\": \"device\",\n            \"can_bus\": [],\n            \"gateway\": \"\",\n            \"network\": {\n                \"mac\": null,\n                \"remote_ipv4\": \"192.168.0.10\",\n                \"remote_ipv6\": null,\n                \"remote_port\": 56917\n            },\n            \"outputs\": \"00\",\n            \"sensors\": [\n                [\n                    \"eco_score\",\n                    10\n                ],\n                [\n                    \"speed\",\n                    0\n                ],\n                [\n                    \"ebat_volts\",\n                    12.105\n                ],\n                [\n                    \"ibat_volts\",\n                    4.048\n                ],\n                [\n                    \"ibat_amps\",\n                    0\n                ],\n                [\n                    \"trip_odo\",\n                    0\n                ],\n                [\n                    \"movement\",\n                    false\n                ],\n                [\n                    \"ignition\",\n                    \"off\"\n                ],\n                [\n                    \"sleep_mode\",\n                    \"no_sleep\"\n                ]\n            ],\n            \"vehicle\": {\n                \"id\": 1,\n                \"reg_no\": \"ABC 123 GP\",\n                \"fleet_no\": \"5551234\",\n                \"client_id\": 1\n            },\n            \"buffered\": false,\n            \"an_inputs\": [\n                0.131\n            ],\n            \"timestamp\": \"2021-04-21T15:52:50+00:00\",\n            \"aux_inputs\": [],\n            \"message_ver\": 1,\n            \"message_type\": \"gps\",\n            \"transmission\": \"tcp\"\n        }\n    }\n}"
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{bearer}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
