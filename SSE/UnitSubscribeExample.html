@@ -8,6 +8,9 @@
 </head>
 <body>
 <script>
+  // IMPORTANT: This demonstration does not show anything on the browser window,
+  // instead, everything is logged to the browser's console.
+
   // Set the base url so we do not have to provide the full url for every request
   axios.defaults.baseURL = 'http://www.dummydomain.net/'
 
@@ -231,7 +234,7 @@
     // stream_id which the server will automatically send shortly
     // after we connected.
     stream_id = await waitForStreamId()
-      .catch(() => { console.error(`Timeout reached while for stream_id`) })
+      .catch(() => { console.error(`Timeout reached while waiting for stream_id`) })
 
     if (stream_id) {
       // Now get a subscription token for the unit

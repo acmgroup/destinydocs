@@ -56,6 +56,12 @@ Make sure that you understand how to login to our HTTP API using the Login reque
 
 The examples shown below uses Javascript and the popular [Axios Javascript/Node.js](https://axios-http.com/) library along with the standard Javascript SSE (EventSource) API.
 
+# SSE Flow Diagram
+
+This diagram shows the typical process of making a connection, getting a stream_id and then subscribing to units.
+
+![](SSE_EventSource_Unit_Subscription.png)
+
 # Step 1: Make an SSE Connection
 
 To start, we need to make an SSE connection to handle data events for all units/vehicles we will subscribe to.
@@ -67,8 +73,7 @@ const url = `https://www.dummydomain.net`
 
 // The SSE server will send us a stream_id soon after our connection
 // have been established. We will need this before we can start 
-// subscribing to specific units/vehicles, to answer ping requests and
-// to unsubscribe from specific units/vehicles.
+// subscribing to specific units/vehicles.
 let stream_id
 
 // Make the initial connection
@@ -83,8 +88,8 @@ eventSource.onopen = () => {
   console.log(`SSE: EventSource connection successful!`)
 }
 
-// The onerror event will be called if the connection was unsuccesful
-// or some other error occured.
+// The onerror event will be called if the connection was unsuccessful
+// or some other error occurred.
 eventSource.onerror = (err) => {
   console.log(err)
 }
@@ -96,7 +101,7 @@ eventSource.onmessage = (event) => {
 
   switch (data.type) {
     case 'stream_id':
-      console.log(`SSE Event: stream_id received: ${stream_id}`)
+      console.log(`SSE Event: stream_id received: ${data.stream_id}`)
       // Keep our stream_id for later use
       stream_id = data.stream_id
       break
@@ -127,9 +132,30 @@ eventSource.onmessage = (event) => {
 }
 ```
 
-# Step 2: Subscribe to a Unit
+# Step 2: Wait for the stream_id to be set
+
+```javascript
+  // One of the EventSource events is a 'stream_id' that the
+  // server sends us, we set it above the moment we receive it.
+  // Here we wait for the stream_id to be set...
+  let time = 5000
+  let interval = setInterval(() => {
+  if (stream_id !== undefined && stream_id !== null) {
+    // ... [STEP 3 CODE WILL GO HERE]
+  }
+
+  time -= 50
+  if (time < 0) {
+    clearInterval(interval)
+  }
+}, 50)
+```
+
+# Step 3: Subscribe to a Unit
 
 Now that we have an SSE connection, we have to request a subscription token for the unit we want to subscribe to from the HTTP API, once we have that we can finally subscribe to a specific unit. As soon as a unit transmits a new message, we will receive it here.
+
+Note that the code below must go into the part that says `... [STEP 3 CODE WILL GO HERE]` above...
 
 ```javascript
 const unitId = 1 // Change this to the id of the unit you want to monitor.
@@ -147,26 +173,9 @@ axios.get(`${url}/api/v1/monitoring/unit/${unitId}`)
 })
 ```
 
-# Step 3: And/Or Subscribe to a Vehicle
-
-Subscribing to a vehicle is functionally the same as subscribing to a unit.
-
-```javascript
-const vehicleId = 1 // Change this to the id of the vehicle you want to monitor.
-const unit = 'primary' // Can also be backup_1 or backup_2
-
-// First request a token for the subscription from the HTTP API
-axios.get(`${url}/api/v1/monitoring/vehicle/${vehicleId}/${unit}`)
-  .then((response) => {
-    // Tip: You may want to keep the token for each vehicle you 
-    // have subscribed to as each token is unique to the vehicle 
-    // you have subscribed to.
-    const subscription = response.data.data
-    
-    // Now that we have a token for the vehicle, we can subscribe to it:
-    axios.post(`${url}/sse/telemetry/subscribe/${stream_id}/${subscription.token}`)
-})
-```
+In order to request a subscription token for a vehicle instead of a unit, use
+`/api/v1/monitoring/vehicle/${vehicleId}/primary` instead of
+`/api/v1/monitoring/unit/${unitId}`
 
 # Quick Tips
 
@@ -184,12 +193,12 @@ eventSource.close()
 
 # Full Example
 
-View a full [HTML/Javascript example here](SSE/Example.html). This example shows
-how you can access our SSE service using a combination of the popular
+View a more modern [HTML/Javascript example here](SSE/UnitSubscribeExample.html). The example shows how you can access our SSE service using a combination of the popular 
 [Axios Javascript/Node.js](https://axios-http.com/) library together with the 
-browser's built-in SSE support called EventSource. 
+browser's built-in SSE support called EventSource.
 
-> Please note that this example used the latest ES6 techniques at time of writing.
+> IMPORTANT: The example page does not show anything on the browser window, 
+> instead, everything is logged to the browser's console.
 
 # What is Next?
 
