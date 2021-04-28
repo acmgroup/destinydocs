@@ -46,7 +46,7 @@ to look at one of our Message Queuing solutions.
    route to the devices you want to monitor. We also refer to this as
    *Stage 1* in our backend services. Stage 1 converts the raw data 
    from various types of devices and protocols to our own 
-   **Universal GPS JSON Message Data Structure**.
+   [Universal GPS JSON Message Data Structure](Telemetry/Universal%20JSON%20Message%20Data%20Structure%20v1.md).
    
 2. **LDPS:** LDPS, or Live Date Processing Services is our **Stage 2** system, 
    here we process the newly received data and add additional information 

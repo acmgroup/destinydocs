@@ -1,0 +1,117 @@
+Category,Code,Code Notes,Device Notes
+Panic,PANIC,Panic button pressed,
+,PANIC:EMERGENCY,Emergency Behaviour,GoSafe Only
+Speeding,SPEEDING,,
+,SPEEDING:START,,
+,SPEEDING:END,,
+,SPEEDING:START:ZONE,,
+,SPEEDING:GRACE,Speeding but in grace period,
+,SPEEDING:END:ZONE,,
+Zones,ZONE:ENTER,,
+,ZONE:EXIT,,
+,ZONE:ENTER:x,x = A zone number,
+,ZONE:EXIT:x,x = A zone number,
+,ZONE:UNKNOWN_EVENT,,
+Idling,IDLING:START,,
+,IDLING:END,,
+Towing,TOWING:START,,
+,TOWING:END,,
+Parking,PARKING:START,,GoSafe Only
+,PARKING:END,,GoSafe Only
+Trips,TRIP:START,,
+,TRIP:END,,
+,TRIP:TYPE:BUSINESS,,
+,TRIP:TYPE:PRIVATE,,
+,TRIP:TYPE:CUSTOM,A custom value is supplied with the event code.,
+,TRIP:UNKNOWN,Unknown trip status,
+ACC,ACC:ON,Ignition turned to ACC,
+,ACC:OFF,Ignition turned off,
+Battery,BATTERY:CONNECTED,Normally refers to external battery,
+,BATTERY:DISCONNECTED,Normally refers to external battery,
+,BATTERY:LOW,Normally refers to internal battery,LKGps and Foxy Only
+,BATTERY:ABNORMAL:EXT,EXT = External Battery,GoSafe Only
+,BATTERY:OK:EXT,EXT = External Battery,GoSafe Only
+,BATTERY:ABNORMAL:INT,INT = Internal Battery,GoSafe Only
+,BATTERY:OK:INT,INT = Internal Battery,GoSafe Only
+,BATTERY:CHARGING:INT,INT = Internal Battery,GoSafe Only
+,BATTERY:DISCHARGING:INT,INT = Internal Battery,GoSafe Only
+Accidents,COLLISION,,
+,COLLISION:DETECTED,,Teltonika Only
+,COLLISION:LIMITED_NOCALIB,Limited crash trace (device not calibrated),Teltonika Only
+,COLLISION:LIMITED_CALIB,Limited crash trace (device is calibrated),Teltonika Only
+,COLLISION:FULL_NOCALIB,Full crash trace (device not calibrated),Teltonika Only
+,COLLISION:FULL_CALIB,Full crash trace (device is calibrated),Teltonika Only
+,COLLISION:NOCALIB,Device not calibrated,Teltonika Only
+,COLLISION:FRONT,,GoSafe Only
+,COLLISION:REAR,,GoSafe Only
+,COLLISION:TURN_OVER,,GoSafe Only
+Harsh Driving,HARSH:BRAKING,,
+,HARSH:ACCELERATION,,
+,HARSH:CORNERING,,
+,HARSH:DRIVING,,
+Imobilizer,IMMOBILIZER:CONNECTED,,
+,IMMOBILIZER:DISCONNECTED,,
+,IMMOBILIZER:AUTHORIZED,,Teltonika Only
+Jamming,JAMMING,Single Jamming Indicator,
+,JAMMING:START,,
+,JAMMING:END,,
+Alarms,ALARM,A programmable generic alarm event occurred.,
+,ALARM:ZONE,,
+,ALARM:DOOR_OPEN,,C-Obd Only
+,ALARM:SHOCK,,C-Obd Only
+,ALARM:ACC,,C-Obd Only
+,ALARM:BONNET,,C-Obd Only
+,ALARM:FOOTBRAKE,,C-Obd Only
+,ALARM:DEVICE:REMOVED,,GoSafe Only
+,ALARM:VIBRATION,,LKGps Only
+,ALARM:MOVEMENT:NONE,,Foxy Only
+,ALARM:HARDWARE:FAULT,,
+Tags,TAG:ENTERING,,GoSafe Only
+,TAG:LEAVING,,GoSafe Only
+,TAG:RF_PAIRED,Tag is RF paired,GoSafe Only
+,TAG:RF_PAIRED:NO,Tag is not RF paired,GoSafe Only
+,TAG:BATTERY:LOW,Tag battery voltage low,GoSafe Only
+,TAG:BATTERY:OK,Tag battery voltage ok,GoSafe Only
+OBD II,OBDII:DTC:YES,,GoSafe Only
+,OBDII:DTC:NO,,GoSafe Only
+Engine,ENGINE:RPM:HIGH,Engine overrevving.,
+,ENGINE:RPM:OK,,
+,ENGINE:TEMP:HIGH,,
+,ENGINE:TEMP:OK,,
+,ENGINE:OIL:CHANGE,,
+,ENGINE:OIL:OK,,
+,ENGINE:ON,,
+,ENGINE:OFF,,
+Tires,TIRES:CHANGE,,
+,TIRES:OK,,
+Service,SERVICE:DUE,,
+,SERVICE:OK,,
+GPS,GPS:LOCKED,,
+,GPS:TIMEOUT,GPS Lock could not be found,
+,GPS:FAULT,,
+Cigar Lighter,CIGAR_LIGHTER:PLUGGED_OUT,,
+,CIGAR_LIGHTER:PLUGGED_IN,,
+A/D Converters,AD:OK:x,"Analog/Digital Input Ok: x = number, e.g. 1,2,3...",
+,AD:ABNORMAL:x,"Analog/Digital Input Abnormal: x = number, e.g. 1,2,3...",
+Digital Inputs,INPUT:ON:x,"Digital Input: x = number, e.g. 1,2,3,4",
+,INPUT:OFF:X,"Digital Input: x = number, e.g. 1,2,3,4",
+Temperature Sensor,TEMP:LOW,,
+,TEMP:HIGH,,
+Other,DIN2_AIN2,Generates after spec DIN2/AIN2 scenario,Teltonika Only
+,MANDOWN:ACTIVE,Unknown use,Teltonika Only
+,MANDOWN:INACTIVE,Unknown use,Teltonika Only
+,INSTANT_MOVE:START,Flag that indicates movement,Teltonika Only
+,INSTANT_MOVE:END,Flag that indicates movement,Teltonika Only
+,FIRST_POSITION,,GoSafe Only
+,HEALTH_CHECK,,GoSafe Only
+,1WIRE,Usually comes with additional data,GoSafe Only
+,BALANCE:LOW,,GoSafe Only
+,SLEEP,Unit in sleep mode,GoSafe Only
+,COMBO,Usually have a code that is supplied,GoSafe Only
+,ACCELEROMETER:CALIBRATED,,GoSafe Only
+,DEVICE:REMOVED,,GoSafe Only
+,DEVICE:INSTALLED,,GoSafe Only
+,ARMED:YES,,Teltonika Only
+,GYRO_AXIS,,Teltonika Only
+,RS232,,Teltonika Only
+,MOVEMENT:DETECTED,,C-Obd Only
