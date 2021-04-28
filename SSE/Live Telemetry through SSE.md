@@ -195,7 +195,8 @@ eventSource.close()
 
 # Full Example
 
-View a more modern [HTML/Javascript example here](UnitSubscribeExample.html). The example shows how you can access our SSE service using a combination of the popular 
+View a full [HTML/Javascript Unit Subscription example here](UnitSubscribeExample.html)
+or a [Vehicle Subscription here](VehicleSubscribeExample.html). The example shows how you can access our SSE service using a combination of the popular 
 [Axios Javascript/Node.js](https://axios-http.com/) library together with the 
 browser's built-in SSE support called EventSource.
 
