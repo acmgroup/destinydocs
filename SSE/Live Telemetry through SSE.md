@@ -56,7 +56,7 @@ Make sure that you understand how to login to our HTTP API using the Login reque
 
 The example steps shown below uses Javascript and the popular [Axios Javascript/Node.js](https://axios-http.com/) library along with the standard Javascript SSE (EventSource) API.
 
-You can also view a full example [HTML/Javascript example here](SSE/UnitSubscribeExample.html).
+You can also view a full example [HTML/Javascript example here](UnitSubscribeExample.html).
 
 # SSE Flow Diagram
 
@@ -195,7 +195,7 @@ eventSource.close()
 
 # Full Example
 
-View a more modern [HTML/Javascript example here](SSE/UnitSubscribeExample.html). The example shows how you can access our SSE service using a combination of the popular 
+View a more modern [HTML/Javascript example here](UnitSubscribeExample.html). The example shows how you can access our SSE service using a combination of the popular 
 [Axios Javascript/Node.js](https://axios-http.com/) library together with the 
 browser's built-in SSE support called EventSource.
 
