@@ -23,7 +23,8 @@ We have 4 APIs with which you can access and manage data.
    Publisher/Subscriber WebSocket solutions out there and can be
    used to receive messages live from our backend. SSE is built
    into most modern browsers. Most popular programming languages also
-   have one or more SSE client/server libraries available.
+   have one or more SSE client/server libraries available. See our
+   [guide here](SSE/Live%20Telemetry%20through%20SSE.md).
 
 3. **HTTP History Query API**: Provides the ability to query previously
    captured historical telemetry data. Since we capture a lot of data from
@@ -72,7 +73,7 @@ To interact with our REST API, start by reading our
 Our full API Reference is currently only available as a Postman collection which
 you can access [here]()
 
-## Live Telemetry through SSE Guide
+## HTTP SSE: Live Telemetry through SSE Guide
 
 See our guide on [Live Telemetry through SSE](SSE/Live%20Telemetry%20through%20SSE.md) or
 download the [Postman collection](SSE/Live%20Telemetry%20through%20SSE.postman_collection.json).
