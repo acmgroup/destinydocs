@@ -14,29 +14,29 @@ Please read the [MDN Web Docs on SSE](https://developer.mozilla.org/en-US/docs/W
 
 Before we kick of things lets answer some common questions:
 
-1. What happens if the connection closes due to technical issues?
+1. Q: What happens if the connection closes due to technical issues?
 
-When using a browser the connection is restarted automatically. If you are not using the API through a browser but through a 3'rd party client please make sure it does the same.
+A: When using a browser the connection is restarted automatically. If you are not using the API through a browser but through a 3'rd party client please make sure it does the same.
 
-2. How many connections can be made? Do I need to make a connection for every unit/vehicle I want to monitor?
+2. Q: How many connections can be made? Do I need to make a connection for every unit/vehicle I want to monitor?
 
-SSE browser clients can only make 6 connections in total (and the limitation is shared across tabs), however, you only need one connection as you can monitor multiple units and vehicles over a single connection.
+A: SSE browser clients can only make 6 connections in total (and the limitation is shared across tabs), however, you only need one connection as you can monitor multiple units and vehicles over a single connection.
 
-3. Does this work like Websockets?
+3. Q: Does this work like Websockets?
 
-Unlike Websockets, SSE is uni-directional, meaning that you can only receive data from it. However, subscriptions to monitor specific units/vehicles are done through our standard HTTP API.
+A: Unlike Websockets, SSE is uni-directional, meaning that you can only receive data from it. However, subscriptions to monitor specific units/vehicles are done through our standard HTTP API.
 
-4. Why can't I use Websockets instead?
+4. Q: Why can't I use Websockets instead?
 
-Websocket integration will be coming in the future.
+A: Websocket integration will be coming in the future.
 
-5. Will the connection remain active automatically?
+5. Q: Will the connection remain active automatically?
 
-The SSE server will send 'ping' events which you must answer back with a 'pong' through our HTTP API. This is explained further down in the guide.
+A: The SSE server will send 'ping' events which you must answer back with a 'pong' through our HTTP API. This is explained further down in the guide.
 
-6. How many units / vehicles can I monitor like this at the same time?
+6. Q: How many units / vehicles can I monitor like this at the same time?
 
-You can potentially monitor 100's of units / vehicles using SSE. That being said, the use case for this leans towards front-end live monitoring by individual users on their web browsers, phones or tablets, where a user selects a vehicle or unit to view, and the subscription is then made. For high volume traffic and data recording please contact ACMGroup for further details.
+A: You can potentially monitor 100's of units / vehicles using SSE. That being said, the use case for this leans towards front-end live monitoring by individual users on their web browsers, phones or tablets, where a user selects a vehicle or unit to view, and the subscription is then made. For high volume traffic and data recording please contact ACMGroup for further details.
 
 # Other SSE 3'rd Party Clients
 
@@ -54,7 +54,9 @@ Although SSE is mostly used between web browsers and servers, most programming l
 
 Make sure that you understand how to login to our HTTP API using the Login requests. Read our Destiny API Quick Start Guide for more information. This section assumes you have already logged in to the system.
 
-The examples shown below uses Javascript and the popular [Axios Javascript/Node.js](https://axios-http.com/) library along with the standard Javascript SSE (EventSource) API.
+The example steps shown below uses Javascript and the popular [Axios Javascript/Node.js](https://axios-http.com/) library along with the standard Javascript SSE (EventSource) API.
+
+You can also view a full example [HTML/Javascript example here](SSE/UnitSubscribeExample.html).
 
 # SSE Flow Diagram
 
