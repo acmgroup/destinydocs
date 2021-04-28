@@ -67,7 +67,7 @@ You will require a username, password as well as the domain details from us.
 
 To interact with our REST API, start by reading our 
 [Quick Start Guide](API/Quick%20Start%20Guide.md) and try out the accompanying
-Postman collection.
+[Postman collection](API/Destiny%20API%20Quick%20Start%20Guide.postman_collection.json).
 
 Our full API Reference is currently only available as a Postman collection which
 you can access [here]()
