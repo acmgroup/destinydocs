@@ -72,4 +72,7 @@ Postman collection.
 Our full API Reference is currently only available as a Postman collection which
 you can access [here]()
 
-## 
+## Live Telemetry through SSE Guide
+
+See our guide on [Live Telemetry through SSE](SSE/Live%20Telemetry%20through%20SSE.md) or
+download the [Postman collection](SSE/Live%20Telemetry%20through%20SSE.postman_collection.json).
