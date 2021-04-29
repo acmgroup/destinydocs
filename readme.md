@@ -68,7 +68,7 @@ You will require a username, password as well as the domain details from us.
 
 To interact with our REST API, start by reading our 
 [Quick Start Guide](API/Quick%20Start%20Guide.md) and try out the accompanying
-[Postman collection](API/Destiny%20API%20Quick%20Start%20Guide.postman_collection.json).
+[Postman collection](API/Destiny%20API%20Quick%20Start%20Guide.postman_collection.zip).
 
 Our full API Reference is currently only available as a Postman collection which
 you can access [here]()
@@ -76,4 +76,4 @@ you can access [here]()
 ## HTTP SSE: Live Telemetry through SSE Guide
 
 See our guide on [Live Telemetry through SSE](SSE/Live%20Telemetry%20through%20SSE.md) or
-download the [Postman collection](SSE/Live%20Telemetry%20through%20SSE.postman_collection.json).
+download the [Postman collection](SSE/Live%20Telemetry%20through%20SSE.postman_collection.zip).
