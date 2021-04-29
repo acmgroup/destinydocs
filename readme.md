@@ -73,6 +73,10 @@ To interact with our REST API, start by reading our
 Our full API Reference is currently only available as a Postman collection which
 you can access [here](API/Destiny%20HTTP%20API.postman_collection.zip).
 
+For the technical specifications of our API and its data Search/Query capabilities
+please read our [Destiny HTTP Technical Specifications](API/Destiny%20HTTP%20Technical%20Specifications.md)
+document.
+
 ## HTTP SSE: Live Telemetry through SSE Guide
 
 See our guide on [Live Telemetry through SSE](SSE/Live%20Telemetry%20through%20SSE.md) or
@@ -82,9 +86,10 @@ download the [Postman collection](SSE/Live%20Telemetry%20through%20SSE.postman_c
 
 **API:**
 - [Destiny API Quick Start Guide](API/Quick%20Start%20Guide.md)
-- [Github API Directory](API)
 - [Destiny API Quick Start Guide Postman Collection](API/Destiny%20API%20Quick%20Start%20Guide.postman_collection.zip)
+- [Destiny HTTP Technical Specifications](API/Destiny%20HTTP%20Technical%20Specifications.md)
 - [Destiny API Full Postman Collection](API/Destiny%20HTTP%20API.postman_collection.zip)
+- [Github API Directory](API)
 
 **SSE:**
 - [Live Telemetry through SSE](SSE/Live%20Telemetry%20through%20SSE.md)
