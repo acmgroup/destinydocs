@@ -77,3 +77,25 @@ you can access [here]()
 
 See our guide on [Live Telemetry through SSE](SSE/Live%20Telemetry%20through%20SSE.md) or
 download the [Postman collection](SSE/Live%20Telemetry%20through%20SSE.postman_collection.zip).
+
+# Documentation Index
+
+**API:**
+- [Destiny API Quick Start Guide](API/Quick%20Start%20Guide.md)
+- [Github API Directory](API)
+- [Destiny API Postman Collection](API/Destiny%20API%20Quick%20Start%20Guide.postman_collection.zip)
+
+**SSE:**
+- [Live Telemetry through SSE](SSE/Live%20Telemetry%20through%20SSE.md)
+- [Github SSE Directory](SSE)
+- [Live Telemetry through SSE Postman Collection](SSE/Live%20Telemetry%20through%20SSE.postman_collection.zip)
+- [SSE Unit Subscription Diagram](SSE/SSE_EventSource_Unit_Subscription.png)
+- [SSE Unit Subscription HTML Example](SSE/UnitSubscribeExample.html)
+- [SSE Vehicle Subscription HTML Example](SSE/VehicleSubscribeExample.html)
+
+**Telemetry Data:**
+- [Universal JSON Message Data Structure v1](Telemetry/Universal%20JSON%20Message%20Data%20Structure%20v1.md)
+- [Standard Event Codes.csv](Telemetry/Standard%20Event%20Codes.csv)
+- [Standard Event Codes.xlsx](Telemetry/Standard%20Event%20Codes.xlsx)
+- [Standard Event Codes.ods](Telemetry/Standard%20Event%20Codes.ods)
+- [Unit Sensor Javascript Example](Telemetry/unitSensors.js)
