@@ -1,4 +1,4 @@
-# Universal JSON Message Data Structure v1
+# Universal JSON Message Data Structures v1
 
 **Message Types:**
 
@@ -15,9 +15,9 @@ data.
 
 ## Message Type: register
 
-Some units performs a "login" or "registration" when it first starts
+Some units perform a "login" or "registration" when it first starts
 communicating with the server. This is typically done by TCP units
-which maintains a TCP connection and it will usually transmit its
+which maintains a TCP connection, and it will usually transmit its
 identification (e.g. IMEI) along with the message.
 
 ```json
@@ -70,6 +70,10 @@ A GPS message mostly contains GPS data transmitted from a device
 but also a whole host of other data relevant to the position and the
 device's status.
 
+Please see this diagram to help you identify where these JSON messages
+are generated:
+
+![](GPS%20JSON%20Message%20Flow%20A.png)
 
 ```json
 {
@@ -156,9 +160,8 @@ device's status.
         ]
     },
     "events": [
-        ["ZONE:1:ENTER"],
-        ["GEOFENCE:ENTER"],
-        ["HARSH_DRIVING:BRAKING", [
+        ["ZONE:ENTER:1"],
+        ["HARSH:BRAKING", [
             ["X", -0.4531],
             ["Y", 0.00312]
         ]]
@@ -481,7 +484,7 @@ The field consists of an array of floating point numbers.
 ## OBD II Field: (obd_ii)
 
 May contain OBD II data, usually for mode 01 which will be an array of
-PID's and their values or it will be null if OBD II is not supported or
+PID's and their values, or it will be null if OBD II is not supported or
 supplied by the device.
 
 Please see the [OBD-II](https://en.wikipedia.org/wiki/On-board_diagnostics#OBD-II)
