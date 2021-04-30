@@ -102,6 +102,7 @@ download the [Postman collection](SSE/Live%20Telemetry%20through%20SSE.postman_c
 **Telemetry Data:**
 - [Universal JSON Message Data Structures v1](Telemetry/Universal%20JSON%20Message%20Data%20Structure%20v1.md)
 - [Universal JSON GPS Message (Extended)](Telemetry/Universal%20JSON%20GPS%20Message%20Extended.md)
+- [Trip Telemetry Data Structures](Telemetry/Trip%20Telemetry%20Data%20Structures.md)
 - [Standard Event Codes.csv](Telemetry/Standard%20Event%20Codes.csv)
 - [Standard Event Codes.xlsx](Telemetry/Standard%20Event%20Codes.xlsx)
 - [Standard Event Codes.ods](Telemetry/Standard%20Event%20Codes.ods)
