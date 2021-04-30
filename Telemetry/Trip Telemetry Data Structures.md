@@ -206,7 +206,7 @@ Below is an extraction of a single trip's data:
 
 ## Primary Fields
 
-* message_type (string): trip
+* message_type (string): `trip`
 * message_ver (int): The JSON message structure version
 * driver (object|null): The primary driver for this trip, 
   `null` if no driver detected, typical structure looks like this:
@@ -223,10 +223,10 @@ Below is an extraction of a single trip's data:
 
 * stationary_from (string|null): Internally used to determine how long a vehicle
   /unit have been stationary for.
-* from (object): An [Extended Universal JSON GPS Message](Universal%20JSON%20GPS%20Message%20Extended.md) and
-  contains all the telemetry data as the trip started.
-* to (object): An [Extended Universal JSON GPS Message](Universal%20JSON%20GPS%20Message%20Extended.md) and
-  contains all the telemetry data as the trip stopped. If a trip is still in process then most of the
+* from (object): An [Extended Universal JSON GPS Message](Universal%20JSON%20GPS%20Message%20Extended.md) that
+  contains the telemetry record as the trip started.
+* to (object): An [Extended Universal JSON GPS Message](Universal%20JSON%20GPS%20Message%20Extended.md) that
+  contains the telemetry record as the trip stopped. If a trip is still in process then most of the
   fields may be null within this object. See the `active` property below.
 * summary (object): A summary about the trip, see the `summary` property below.
 * active (boolean): If true, the trip is still active and most of the `to` properties may be null.
