@@ -71,7 +71,9 @@ To interact with our REST API, start by reading our
 [Postman collection](API/Destiny%20API%20Quick%20Start%20Guide.postman_collection.zip).
 
 Our full API Reference is currently only available as a Postman collection which
-you can access [here](API/Destiny%20HTTP%20API.postman_collection.zip).
+you can access [here](API/Destiny%20HTTP%20API.postman_collection.zip) but you can
+read the [Technical Specifications Document](API/Destiny%20HTTP%20Technical%20Specifications.md)
+which will give you a very good reference on how to interact with the API in general.
 
 For the technical specifications of our API and its data Search/Query capabilities
 please read our [Destiny HTTP Technical Specifications](API/Destiny%20HTTP%20Technical%20Specifications.md)
@@ -85,8 +87,8 @@ download the [Postman collection](SSE/Live%20Telemetry%20through%20SSE.postman_c
 # Documentation Index
 
 **API:**
-- [Destiny API Quick Start Guide](API/Quick%20Start%20Guide.md)
-- [Destiny API Quick Start Guide Postman Collection](API/Destiny%20API%20Quick%20Start%20Guide.postman_collection.zip)
+- [Destiny HTTP API Quick Start Guide](API/Quick%20Start%20Guide.md)
+- [Destiny HTTP API Quick Start Guide Postman Collection](API/Destiny%20HTTP%20API%20Quick%20Start%20Guide.postman_collection.json)
 - [Destiny HTTP Technical Specifications](API/Destiny%20HTTP%20Technical%20Specifications.md)
 - [Destiny API Full Postman Collection](API/Destiny%20HTTP%20API.postman_collection.zip)
 - [Github API Directory](API)
@@ -100,7 +102,7 @@ download the [Postman collection](SSE/Live%20Telemetry%20through%20SSE.postman_c
 - [SSE Vehicle Subscription HTML Example](SSE/VehicleSubscribeExample.html)
 
 **History Query API:**
-- [History Query API](History/History%20Query%20API.md)
+- [History Query API](History/Destiny%20HTTP%20History%20Query%20API.md)
 
 **Telemetry Data:**
 - [Universal JSON Message Data Structures v1](Telemetry/Universal%20JSON%20Message%20Data%20Structures%20v1.md)
