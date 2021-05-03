@@ -17,19 +17,20 @@ We have 4 APIs with which you can access and manage data.
 
 1. **HTTP REST API v1:** Our REST API provides functionality to
    manage and access the data such as Users, Clients, Vehicles, 
-   Drivers, Units (GPS and other devices) and more.
+   Drivers, Units (GPS and other devices) and more. See more below.
 
 2. **HTTP SSE**: SSE (Server-sent Events) is similar to other
    Publisher/Subscriber WebSocket solutions out there and can be
    used to receive messages live from our backend. SSE is built
    into most modern browsers. Most popular programming languages also
-   have one or more SSE client/server libraries available. See our
-   [guide here](SSE/Destiny%20SSE%20Guide.md).
+   have one or more SSE client/server libraries available. See more
+   below.
 
 3. **HTTP History Query API**: Provides the ability to query previously
    captured historical telemetry data. Since we capture a lot of data from
    devices on a daily basis, we also need to be able to easily extract the
-   exact data we require for our needs. This API allows for just that.
+   exact data we require for our needs. This API allows for just that. See
+   more below.
 
 4. **HTTP Reporting API**: Provides the ability to run pre-made reports 
    asynchronously with progress feedback.
