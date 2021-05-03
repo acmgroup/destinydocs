@@ -17,10 +17,6 @@
 							{
 								"key": "Content-Type",
 								"value": "application/json"
-							},
-							{
-								"key": "Authorization",
-								"value": "{{bearer}}"
 							}
 						],
 						"body": {
@@ -133,10 +129,6 @@
 							{
 								"key": "Content-Type",
 								"value": "application/json"
-							},
-							{
-								"key": "Authorization",
-								"value": "{{bearer}}"
 							}
 						],
 						"body": {
@@ -249,10 +241,6 @@
 							{
 								"key": "Content-Type",
 								"value": "application/json"
-							},
-							{
-								"key": "Authorization",
-								"value": "{{bearer}}"
 							}
 						],
 						"body": {
@@ -399,10 +387,6 @@
 							{
 								"key": "Content-Type",
 								"value": "application/json"
-							},
-							{
-								"key": "Authorization",
-								"value": "{{bearer}}"
 							}
 						],
 						"url": {
@@ -727,10 +711,6 @@
 							{
 								"key": "Content-Type",
 								"value": "application/json"
-							},
-							{
-								"key": "Authorization",
-								"value": "{{bearer}}"
 							}
 						],
 						"body": {
@@ -843,10 +823,6 @@
 							{
 								"key": "Content-Type",
 								"value": "application/json"
-							},
-							{
-								"key": "Authorization",
-								"value": "{{bearer}}"
 							}
 						],
 						"body": {
@@ -878,10 +854,6 @@
 							{
 								"key": "Content-Type",
 								"value": "application/json"
-							},
-							{
-								"key": "Authorization",
-								"value": "{{bearer}}"
 							}
 						],
 						"body": {
@@ -913,10 +885,6 @@
 							{
 								"key": "Content-Type",
 								"value": "application/json"
-							},
-							{
-								"key": "Authorization",
-								"value": "{{bearer}}"
 							}
 						],
 						"body": {
@@ -954,10 +922,6 @@
 							{
 								"key": "Content-Type",
 								"value": "application/json"
-							},
-							{
-								"key": "Authorization",
-								"value": "{{bearer}}"
 							}
 						],
 						"url": {
@@ -1064,10 +1028,6 @@
 							{
 								"key": "Content-Type",
 								"value": "application/json"
-							},
-							{
-								"key": "Authorization",
-								"value": "{{bearer}}"
 							}
 						],
 						"url": {
@@ -1172,10 +1132,6 @@
 							{
 								"key": "Content-Type",
 								"value": "application/json"
-							},
-							{
-								"key": "Authorization",
-								"value": "{{bearer}}"
 							}
 						],
 						"url": {
@@ -1278,10 +1234,6 @@
 							{
 								"key": "Content-Type",
 								"value": "application/json"
-							},
-							{
-								"key": "Authorization",
-								"value": "{{bearer}}"
 							}
 						],
 						"url": {
@@ -1382,10 +1334,6 @@
 							{
 								"key": "Content-Type",
 								"value": "application/json"
-							},
-							{
-								"key": "Authorization",
-								"value": "{{bearer}}"
 							}
 						],
 						"url": {
@@ -1685,7 +1633,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"id\": 17,\n    \"title\": null,\n    \"first_name\": \"User\",\n    \"last_name\": null,\n    \"username\": \"user\",\n    \"email\": \"user@user.com\",\n    \"account_type_id\": 13,\n    \"partner_id\": 1,\n    \"agency_id\": null,\n    \"client_ids\": [\n        1\n    ],\n    \"position\": null,\n    \"employee_no\": null,\n    \"cellphone\": null,\n    \"national_id\": null,\n    \"timezone\": \"Africa/Johannesburg\",\n    \"language\": \"EN\",\n    \"country\": \"ZA\",\n    \"photos\": [\n        {\n            \"id\": null,\n            \"type\": \"photo\",\n            \"url\": \"https://cdn.filestackcontent.com/WMhxnfNPRWoUpjBtc1wQ\",\n            \"filename\": \"generic-user-photo.png\",\n            \"size_bytes\": 12376,\n            \"created_at\": \"2017-02-02T20:14:42+02:00\"\n        },\n        {\n            \"id\": null,\n            \"type\": \"profile_large\",\n            \"url\": \"https://cdn.filestackcontent.com/resize=width:400,height:400,fit:crop/WMhxnfNPRWoUpjBtc1wQ\",\n            \"filename\": \"user-profile-large.png\",\n            \"size_bytes\": 12376,\n            \"created_at\": \"2017-02-02T20:14:42+02:00\"\n        },\n        {\n            \"id\": null,\n            \"type\": \"profile_medium\",\n            \"url\": \"https://cdn.filestackcontent.com/resize=width:250,height:250,fit:crop/WMhxnfNPRWoUpjBtc1wQ\",\n            \"filename\": \"user-profile-medium.png\",\n            \"size_bytes\": 7951,\n            \"created_at\": \"2017-02-02T20:14:42+02:00\"\n        },\n        {\n            \"id\": null,\n            \"type\": \"profile_small\",\n            \"url\": \"https://cdn.filestackcontent.com/resize=width:150,height:150,fit:crop/WMhxnfNPRWoUpjBtc1wQ\",\n            \"filename\": \"user-profile-small.png\",\n            \"size_bytes\": 4432,\n            \"created_at\": \"2017-02-02T20:14:42+02:00\"\n        }\n    ],\n    \"token\": null\n}",
+							"raw": "{\n    \"id\": 17,\n    \"title\": null,\n    \"first_name\": \"User\",\n    \"last_name\": null,\n    \"username\": \"user\",\n    \"email\": \"user@user.com\",\n    \"account_type_id\": 13,\n    \"partner_id\": 1,\n    \"agency_id\": null,\n    \"client_ids\": [\n        1\n    ],\n    \"position\": null,\n    \"employee_no\": null,\n    \"cellphone\": null,\n    \"national_id\": null,\n    \"timezone\": \"Africa/Johannesburg\",\n    \"language\": \"EN\",\n    \"country\": \"ZA\",\n    \"photos\": [\n        {\n            \"id\": null,\n            \"type\": \"photo\",\n            \"url\": \"https://cdn.filestackcontent.com/GAGFqKhNSYaa49NFiF3P\",\n            \"filename\": \"generic-user-photo.png\",\n            \"size_bytes\": 12376,\n            \"created_at\": \"2017-02-02T20:14:42+02:00\"\n        },\n        {\n            \"id\": null,\n            \"type\": \"profile_large\",\n            \"url\": \"https://cdn.filestackcontent.com/resize=width:400,height:400,fit:crop/GAGFqKhNSYaa49NFiF3P\",\n            \"filename\": \"user-profile-large.png\",\n            \"size_bytes\": 12376,\n            \"created_at\": \"2017-02-02T20:14:42+02:00\"\n        },\n        {\n            \"id\": null,\n            \"type\": \"profile_medium\",\n            \"url\": \"https://cdn.filestackcontent.com/resize=width:250,height:250,fit:crop/GAGFqKhNSYaa49NFiF3P\",\n            \"filename\": \"user-profile-medium.png\",\n            \"size_bytes\": 7951,\n            \"created_at\": \"2017-02-02T20:14:42+02:00\"\n        },\n        {\n            \"id\": null,\n            \"type\": \"profile_small\",\n            \"url\": \"https://cdn.filestackcontent.com/resize=width:150,height:150,fit:crop/GAGFqKhNSYaa49NFiF3P\",\n            \"filename\": \"user-profile-small.png\",\n            \"size_bytes\": 4432,\n            \"created_at\": \"2017-02-02T20:14:42+02:00\"\n        }\n    ],\n    \"token\": null\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1714,7 +1662,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"id\": 17,\n    \"title\": null,\n    \"first_name\": \"User\",\n    \"last_name\": null,\n    \"username\": \"user.1\",\n    \"email\": \"user.1@user.com\",\n    \"account_type_id\": 13,\n    \"partner_id\": 1,\n    \"agency_id\": null,\n    \"client_ids\": [\n        1\n    ],\n    \"position\": null,\n    \"employee_no\": null,\n    \"cellphone\": null,\n    \"national_id\": null,\n    \"timezone\": \"Africa/Johannesburg\",\n    \"language\": \"EN\",\n    \"country\": \"ZA\",\n    \"photos\": [\n        {\n            \"id\": null,\n            \"type\": \"photo\",\n            \"url\": \"https://cdn.filestackcontent.com/WMhxnfNPRWoUpjBtc1wQ\",\n            \"filename\": \"generic-user-photo.png\",\n            \"size_bytes\": 12376,\n            \"created_at\": \"2017-02-02T20:14:42+02:00\"\n        },\n        {\n            \"id\": null,\n            \"type\": \"profile_large\",\n            \"url\": \"https://cdn.filestackcontent.com/resize=width:400,height:400,fit:crop/WMhxnfNPRWoUpjBtc1wQ\",\n            \"filename\": \"user-profile-large.png\",\n            \"size_bytes\": 12376,\n            \"created_at\": \"2017-02-02T20:14:42+02:00\"\n        },\n        {\n            \"id\": null,\n            \"type\": \"profile_medium\",\n            \"url\": \"https://cdn.filestackcontent.com/resize=width:250,height:250,fit:crop/WMhxnfNPRWoUpjBtc1wQ\",\n            \"filename\": \"user-profile-medium.png\",\n            \"size_bytes\": 7951,\n            \"created_at\": \"2017-02-02T20:14:42+02:00\"\n        },\n        {\n            \"id\": null,\n            \"type\": \"profile_small\",\n            \"url\": \"https://cdn.filestackcontent.com/resize=width:150,height:150,fit:crop/WMhxnfNPRWoUpjBtc1wQ\",\n            \"filename\": \"user-profile-small.png\",\n            \"size_bytes\": 4432,\n            \"created_at\": \"2017-02-02T20:14:42+02:00\"\n        }\n    ],\n    \"token\": null\n}",
+									"raw": "{\n    \"id\": 17,\n    \"title\": null,\n    \"first_name\": \"User\",\n    \"last_name\": null,\n    \"username\": \"user.1\",\n    \"email\": \"user.1@user.com\",\n    \"account_type_id\": 13,\n    \"partner_id\": 1,\n    \"agency_id\": null,\n    \"client_ids\": [\n        1\n    ],\n    \"position\": null,\n    \"employee_no\": null,\n    \"cellphone\": null,\n    \"national_id\": null,\n    \"timezone\": \"Africa/Johannesburg\",\n    \"language\": \"EN\",\n    \"country\": \"ZA\",\n    \"photos\": [\n        {\n            \"id\": null,\n            \"type\": \"photo\",\n            \"url\": \"https://cdn.filestackcontent.com/GAGFqKhNSYaa49NFiF3P\",\n            \"filename\": \"generic-user-photo.png\",\n            \"size_bytes\": 12376,\n            \"created_at\": \"2017-02-02T20:14:42+02:00\"\n        },\n        {\n            \"id\": null,\n            \"type\": \"profile_large\",\n            \"url\": \"https://cdn.filestackcontent.com/resize=width:400,height:400,fit:crop/GAGFqKhNSYaa49NFiF3P\",\n            \"filename\": \"user-profile-large.png\",\n            \"size_bytes\": 12376,\n            \"created_at\": \"2017-02-02T20:14:42+02:00\"\n        },\n        {\n            \"id\": null,\n            \"type\": \"profile_medium\",\n            \"url\": \"https://cdn.filestackcontent.com/resize=width:250,height:250,fit:crop/GAGFqKhNSYaa49NFiF3P\",\n            \"filename\": \"user-profile-medium.png\",\n            \"size_bytes\": 7951,\n            \"created_at\": \"2017-02-02T20:14:42+02:00\"\n        },\n        {\n            \"id\": null,\n            \"type\": \"profile_small\",\n            \"url\": \"https://cdn.filestackcontent.com/resize=width:150,height:150,fit:crop/GAGFqKhNSYaa49NFiF3P\",\n            \"filename\": \"user-profile-small.png\",\n            \"size_bytes\": 4432,\n            \"created_at\": \"2017-02-02T20:14:42+02:00\"\n        }\n    ],\n    \"token\": null\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -1793,10 +1741,6 @@
 							{
 								"key": "Content-Type",
 								"value": "application/json"
-							},
-							{
-								"key": "Authorization",
-								"value": "{{bearer}}"
 							}
 						],
 						"body": {
@@ -1909,10 +1853,6 @@
 							{
 								"key": "Content-Type",
 								"value": "application/json"
-							},
-							{
-								"key": "Authorization",
-								"value": "{{bearer}}"
 							}
 						],
 						"body": {
@@ -2517,10 +2457,6 @@
 							{
 								"key": "Content-Type",
 								"value": "application/json"
-							},
-							{
-								"key": "Authorization",
-								"value": "{{bearer}}"
 							}
 						],
 						"url": {
@@ -2549,10 +2485,6 @@
 							{
 								"key": "Content-Type",
 								"value": "application/json"
-							},
-							{
-								"key": "Authorization",
-								"value": "{{bearer}}"
 							}
 						],
 						"url": {
@@ -2587,10 +2519,6 @@
 							{
 								"key": "Content-Type",
 								"value": "application/json"
-							},
-							{
-								"key": "Authorization",
-								"value": "{{bearer}}"
 							}
 						],
 						"url": {
@@ -2695,10 +2623,6 @@
 							{
 								"key": "Content-Type",
 								"value": "application/json"
-							},
-							{
-								"key": "Authorization",
-								"value": "{{bearer}}"
 							}
 						],
 						"url": {
@@ -2900,10 +2824,6 @@
 							{
 								"key": "Content-Type",
 								"value": "application/json"
-							},
-							{
-								"key": "Authorization",
-								"value": "{{bearer}}"
 							}
 						],
 						"url": {
@@ -3010,10 +2930,6 @@
 							{
 								"key": "Content-Type",
 								"value": "application/json"
-							},
-							{
-								"key": "Authorization",
-								"value": "{{bearer}}"
 							}
 						],
 						"url": {
@@ -3120,10 +3036,6 @@
 							{
 								"key": "Content-Type",
 								"value": "application/json"
-							},
-							{
-								"key": "Authorization",
-								"value": "{{bearer}}"
 							}
 						],
 						"url": {
@@ -3232,10 +3144,6 @@
 							{
 								"key": "Content-Type",
 								"value": "application/json"
-							},
-							{
-								"key": "Authorization",
-								"value": "{{bearer}}"
 							}
 						],
 						"body": {
@@ -3348,10 +3256,6 @@
 							{
 								"key": "Content-Type",
 								"value": "application/json"
-							},
-							{
-								"key": "Authorization",
-								"value": "{{bearer}}"
 							}
 						],
 						"body": {
@@ -3462,10 +3366,6 @@
 							{
 								"key": "Content-Type",
 								"value": "application/json"
-							},
-							{
-								"key": "Authorization",
-								"value": "{{bearer}}"
 							}
 						],
 						"body": {
@@ -3578,13 +3478,7 @@
 					"name": "Get a Unit",
 					"request": {
 						"method": "GET",
-						"header": [
-							{
-								"key": "Authorization",
-								"type": "text",
-								"value": "{{bearer}}"
-							}
-						],
+						"header": [],
 						"url": {
 							"raw": "{{http}}://{{domain}}/api/v1/units/1",
 							"protocol": "{{http}}",
@@ -3679,13 +3573,7 @@
 					"name": "Find Unit(s)",
 					"request": {
 						"method": "GET",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "{{bearer}}",
-								"type": "text"
-							}
-						],
+						"header": [],
 						"url": {
 							"raw": "{{http}}://{{domain}}/api/v1/units",
 							"protocol": "{{http}}",
@@ -3778,13 +3666,7 @@
 					"name": "Find Units By Type",
 					"request": {
 						"method": "GET",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "{{bearer}}",
-								"type": "text"
-							}
-						],
+						"header": [],
 						"url": {
 							"raw": "{{http}}://{{domain}}/api/v1/units/by-type/sigfox/exclusive",
 							"protocol": "{{http}}",
@@ -4995,10 +4877,6 @@
 							{
 								"key": "Content-Type",
 								"value": "application/json"
-							},
-							{
-								"key": "Authorization",
-								"value": "{{bearer}}"
 							}
 						],
 						"body": {
@@ -5455,7 +5333,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"id\": null,\n    \"filename\": \"photo_2019-09-08_10-04-01.jpg\",\n    \"size_bytes\": 181589,\n    \"type\": \"photo\",\n    \"url\": \"https://cdn.filestackcontent.com/WMhxnfNPRWoUpjBtc1wQ\"\n}",
+									"raw": "{\n    \"id\": null,\n    \"filename\": \"photo_2019-09-08_10-04-01.jpg\",\n    \"size_bytes\": 181589,\n    \"type\": \"photo\",\n    \"url\": \"https://cdn.filestackcontent.com/K41aOVsjQTqe4zquiM8V\"\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -5530,7 +5408,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"photos\": [\n        {\n            \"filename\": \"photo_2019-09-08_10-04-01.jpg\",\n            \"size_bytes\": 181589,\n            \"type\": \"photo\",\n            \"url\": \"https://cdn.filestackcontent.com/WMhxnfNPRWoUpjBtc1wQ\"\n        }\n    ]\n}",
+							"raw": "{\n    \"photos\": [\n        {\n            \"filename\": \"photo_2019-09-08_10-04-01.jpg\",\n            \"size_bytes\": 181589,\n            \"type\": \"photo\",\n            \"url\": \"https://cdn.filestackcontent.com/7ijusM2mTEj5qEKl3OCW\"\n        }\n    ]\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -5560,7 +5438,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"photos\": [\n        {\n            \"filename\": \"photo_2019-09-08_10-04-01.jpg\",\n            \"size_bytes\": 181589,\n            \"type\": \"photo\",\n            \"url\": \"https://cdn.filestackcontent.com/WMhxnfNPRWoUpjBtc1wQ\"\n        }\n    ]\n}",
+									"raw": "{\n    \"photos\": [\n        {\n            \"filename\": \"photo_2019-09-08_10-04-01.jpg\",\n            \"size_bytes\": 181589,\n            \"type\": \"photo\",\n            \"url\": \"https://cdn.filestackcontent.com/7ijusM2mTEj5qEKl3OCW\"\n        }\n    ]\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -5624,7 +5502,7 @@
 								}
 							],
 							"cookie": [],
-							"body": "{\n    \"notices\": [\n        \"Photo(s) Added Successfully\"\n    ],\n    \"data\": [\n        {\n            \"id\": 6,\n            \"url\": \"https://www.dummydomain.com/WMhxnfNPRWoUpjBtc1wQ\",\n            \"type\": \"photo\",\n            \"filename\": \"photo_2019-09-08_10-04-01.jpg\",\n            \"size_bytes\": 181589,\n            \"created_at\": \"2021-04-23T10:26:33+02:00\",\n            \"updated_at\": null\n        }\n    ]\n}"
+							"body": "{\n    \"notices\": [\n        \"Photo(s) Added Successfully\"\n    ],\n    \"data\": [\n        {\n            \"id\": 6,\n            \"url\": \"https://www.dummydomain.com/7ijusM2mTEj5qEKl3OCW\",\n            \"type\": \"photo\",\n            \"filename\": \"photo_2019-09-08_10-04-01.jpg\",\n            \"size_bytes\": 181589,\n            \"created_at\": \"2021-04-23T10:26:33+02:00\",\n            \"updated_at\": null\n        }\n    ]\n}"
 						}
 					]
 				},
@@ -5666,7 +5544,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"id\": 1,\n    \"filename\": \"photo_2019-09-08_10-04-01.jpg\",\n    \"size_bytes\": 181589,\n    \"type\": \"photo\",\n    \"url\": \"https://cdn.filestackcontent.com/WMhxnfNPRWoUpjBtc1wQ\"\n}",
+									"raw": "{\n    \"id\": 1,\n    \"filename\": \"photo_2019-09-08_10-04-01.jpg\",\n    \"size_bytes\": 181589,\n    \"type\": \"photo\",\n    \"url\": \"https://cdn.filestackcontent.com/K41aOVsjQTqe4zquiM8V\"\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -5742,7 +5620,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"url\": \"units/1/photo/1\",\n    \"data\": {\n        \"id\": 1,\n        \"url\": \"https://cdn.filestackcontent.com/WMhxnfNPRWoUpjBtc1wQ\",\n        \"type\": \"photo\",\n        \"filename\": \"photo_2019-09-08_10-04-01.jpg\",\n        \"size_bytes\": 181589,\n        \"created_at\": \"2021-04-23T09:08:00+02:00\",\n        \"updated_at\": null\n    }\n}",
+							"raw": "{\n    \"url\": \"units/1/photo/1\",\n    \"data\": {\n        \"id\": 1,\n        \"url\": \"https://cdn.filestackcontent.com/jkiL9DMgSKyI6zCUvBjU\",\n        \"type\": \"photo\",\n        \"filename\": \"photo_2019-09-08_10-04-01.jpg\",\n        \"size_bytes\": 181589,\n        \"created_at\": \"2021-04-23T09:08:00+02:00\",\n        \"updated_at\": null\n    }\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -5773,7 +5651,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"url\": \"units/1/photo/3\",\n    \"data\": {\n        \"id\": 3,\n        \"url\": \"https://cdn.filestackcontent.com/WMhxnfNPRWoUpjBtc1wQ\",\n        \"type\": \"photo\",\n        \"filename\": \"photo_2019-09-08_10-04-01.jpg\",\n        \"size_bytes\": 181589,\n        \"created_at\": \"2021-04-23T09:08:00+02:00\",\n        \"updated_at\": null\n    }\n}",
+									"raw": "{\n    \"url\": \"units/1/photo/3\",\n    \"data\": {\n        \"id\": 3,\n        \"url\": \"https://cdn.filestackcontent.com/jkiL9DMgSKyI6zCUvBjU\",\n        \"type\": \"photo\",\n        \"filename\": \"photo_2019-09-08_10-04-01.jpg\",\n        \"size_bytes\": 181589,\n        \"created_at\": \"2021-04-23T09:08:00+02:00\",\n        \"updated_at\": null\n    }\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -5842,7 +5720,7 @@
 								}
 							],
 							"cookie": [],
-							"body": "{\n    \"notices\": [\n        \"Photo Deleted Successfully\"\n    ],\n    \"data\": {\n        \"id\": 1,\n        \"url\": \"https://www.dummydomain/WMhxnfNPRWoUpjBtc1wQ\",\n        \"type\": \"photo\",\n        \"filename\": \"photo_2019-09-08_10-04-01.jpg\",\n        \"size_bytes\": 181589,\n        \"created_at\": \"2021-04-23T09:08:00+02:00\",\n        \"updated_at\": null\n    }\n}"
+							"body": "{\n    \"notices\": [\n        \"Photo Deleted Successfully\"\n    ],\n    \"data\": {\n        \"id\": 1,\n        \"url\": \"https://www.dummydomain/jkiL9DMgSKyI6zCUvBjU\",\n        \"type\": \"photo\",\n        \"filename\": \"photo_2019-09-08_10-04-01.jpg\",\n        \"size_bytes\": 181589,\n        \"created_at\": \"2021-04-23T09:08:00+02:00\",\n        \"updated_at\": null\n    }\n}"
 						}
 					]
 				},
@@ -6156,11 +6034,6 @@
 							{
 								"key": "Content-Type",
 								"value": "application/json",
-								"type": "text"
-							},
-							{
-								"key": "Authorization",
-								"value": "{{bearer}}",
 								"type": "text"
 							}
 						],
@@ -9601,6 +9474,100 @@
 							],
 							"cookie": [],
 							"body": "{\n    \"data\": {\n        \"id\": 1,\n        \"partner_id\": 1,\n        \"partner\": {\n            \"id\": 1,\n            \"name\": \"Partner Name\"\n        },\n        \"agency_id\": null,\n        \"agency\": null,\n        \"client_id\": 1,\n        \"client\": {\n            \"id\": 1,\n            \"name\": \"Client Name\"\n        },\n        \"driver_id\": null,\n        \"driver\": null,\n        \"vehicle_event_profile_id\": null,\n        \"vehicle_group_id\": null,\n        \"vehicle_group\": null,\n        \"reg_no\": \"ABC 123 GP\",\n        \"fleet_no\": null,\n        \"icon_name\": null,\n        \"vin\": null,\n        \"engine_no\": null,\n        \"vehicle_make\": null,\n        \"vehicle_model\": null,\n        \"vehicle_color\": null,\n        \"vehicle_year\": null,\n        \"odo_veh_km\": null,\n        \"odo_gps_km\": null,\n        \"service_interval_km\": null,\n        \"service_interval_month\": null,\n        \"prev_service_km\": null,\n        \"next_service_km\": null,\n        \"prev_service_date\": null,\n        \"next_service_date\": null,\n        \"prev_license_date\": null,\n        \"license_exp_date\": null,\n        \"prev_permit_date\": null,\n        \"permit_exp_date\": null,\n        \"created_at\": \"2021-02-03T14:33:07+02:00\",\n        \"updated_at\": null,\n        \"vehicle_status_code\": \"active\",\n        \"vehicle_status_name\": \"Active\",\n        \"notes\": [\n            {\n                \"id\": 1,\n                \"user_id\": 6,\n                \"user_full_name\": \"User Name\",\n                \"created_at\": \"2021-04-21T14:00:38+02:00\",\n                \"note\": \"This is an Postman note.\"\n            },\n            {\n                \"id\": 2,\n                \"user_id\": 6,\n                \"user_full_name\": \"User Name\",\n                \"created_at\": \"2021-04-21T14:04:33+02:00\",\n                \"note\": \"This is an example note.\"\n            }\n        ],\n        \"attachments\": [],\n        \"assigned_units\": []\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Get Vehicle Telemetry",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{http}}://{{domain}}/api/v1/vehicles/1/primary/telemetry",
+							"protocol": "{{http}}",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"vehicles",
+								"1",
+								"primary",
+								"telemetry"
+							]
+						},
+						"description": "/primary/ can also be /backup_1/ or /backup_2/"
+					},
+					"response": [
+						{
+							"name": "200 OK",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{http}}://{{domain}}/api/v1/vehicles/1/primary/telemetry",
+									"protocol": "{{http}}",
+									"host": [
+										"{{domain}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"vehicles",
+										"1",
+										"primary",
+										"telemetry"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.15.8"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 30 Apr 2021 07:20:10 GMT"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "58"
+								},
+								{
+									"key": "X-RateLimit-Reset",
+									"value": "49"
+								},
+								{
+									"key": "Authorization",
+									"value": "token"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"telemetry\": {\n            \"gps\": {\n                \"fix\": [\n                    \"fixed\"\n                ],\n                \"gnss\": 1,\n                \"hdop\": 0,\n                \"pdop\": 0,\n                \"tdop\": null,\n                \"vdop\": null,\n                \"speed\": 0,\n                \"heading\": 198,\n                \"activity\": \"unknown\",\n                \"altitude\": 1678,\n                \"latitude\": -26.439923,\n                \"odometer\": null,\n                \"timezone\": \"Africa/Johannesburg\",\n                \"trip_odo\": 0,\n                \"longitude\": 29.475668,\n                \"timestamp\": \"2021-02-09T11:16:53+00:00\",\n                \"local_time\": \"2021-02-09T13:16:53+02:00\",\n                \"satellites\": 14,\n                \"distance_km\": 0\n            },\n            \"gsm\": [\n                {\n                    \"cid\": [],\n                    \"lac\": [],\n                    \"mcc\": [],\n                    \"mnc\": [],\n                    \"lcid\": [],\n                    \"rcpi\": [],\n                    \"rssi\": [],\n                    \"status\": [\n                        \"engine\",\n                        \"network\",\n                        \"data\",\n                        \"connected\"\n                    ],\n                    \"carrier\": null,\n                    \"data_mode\": \"home_stop\",\n                    \"signal_lvl\": 4,\n                    \"signal_str\": 80\n                }\n            ],\n            \"ldps\": {\n                \"name\": \"www.dummydomain.net\",\n                \"error\": null,\n                \"timestamp\": \"2021-02-09T11:17:42+00:00\",\n                \"error_code\": null\n            },\n            \"port\": 5027,\n            \"sims\": [],\n            \"valid\": true,\n            \"device\": {\n                \"id\": 1,\n                \"imei\": \"359633101461387\",\n                \"name\": null,\n                \"type\": \"teltonika\",\n                \"model\": \"acmtrack_1\",\n                \"status\": \"factory\",\n                \"firm_ver\": null,\n                \"stock_no\": null,\n                \"serial_no\": null,\n                \"identifier\": \"imei\",\n                \"assigned_as\": null\n            },\n            \"driver\": null,\n            \"events\": [],\n            \"inputs\": \"000\",\n            \"obd_ii\": {\n                \"mode_01\": []\n            },\n            \"seq_no\": 1,\n            \"source\": \"device\",\n            \"can_bus\": [],\n            \"gateway\": \"gateway.dummydomain.net\",\n            \"network\": {\n                \"mac\": null,\n                \"remote_ipv4\": \"41.206.206.35\",\n                \"remote_ipv6\": null,\n                \"remote_port\": 58303\n            },\n            \"outputs\": \"00\",\n            \"sensors\": [\n                [\n                    \"eco_score\",\n                    10\n                ],\n                [\n                    \"speed\",\n                    0\n                ],\n                [\n                    \"ebat_volts\",\n                    12.254\n                ],\n                [\n                    \"ibat_volts\",\n                    4.029\n                ],\n                [\n                    \"ibat_amps\",\n                    0\n                ],\n                [\n                    \"trip_odo\",\n                    0\n                ],\n                [\n                    \"movement\",\n                    false\n                ],\n                [\n                    \"ignition\",\n                    \"off\"\n                ],\n                [\n                    \"sleep_mode\",\n                    \"no_sleep\"\n                ]\n            ],\n            \"vehicle\": null,\n            \"buffered\": false,\n            \"an_inputs\": [\n                0.131\n            ],\n            \"timestamp\": \"2021-02-09T11:17:42+00:00\",\n            \"aux_inputs\": [],\n            \"message_ver\": 1,\n            \"message_type\": \"gps\",\n            \"transmission\": \"tcp\"\n        }\n    }\n}"
 						}
 					]
 				},
@@ -13756,10 +13723,6 @@
 							{
 								"key": "Content-Type",
 								"value": "application/json"
-							},
-							{
-								"key": "Authorization",
-								"value": "{{bearer}}"
 							}
 						],
 						"body": {
@@ -14216,7 +14179,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"id\": null,\n    \"filename\": \"photo_2019-09-08_10-04-01.jpg\",\n    \"size_bytes\": 181589,\n    \"type\": \"photo\",\n    \"url\": \"https://cdn.filestackcontent.com/WMhxnfNPRWoUpjBtc1wQ\"\n}",
+									"raw": "{\n    \"id\": null,\n    \"filename\": \"photo_2019-09-08_10-04-01.jpg\",\n    \"size_bytes\": 181589,\n    \"type\": \"photo\",\n    \"url\": \"https://cdn.filestackcontent.com/K41aOVsjQTqe4zquiM8V\"\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -14406,7 +14369,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"url\": \"units/1/photo/1\",\n    \"data\": {\n        \"id\": 1,\n        \"url\": \"https://cdn.filestackcontent.com/WMhxnfNPRWoUpjBtc1wQ\",\n        \"type\": \"photo\",\n        \"filename\": \"photo_2019-09-08_10-04-01.jpg\",\n        \"size_bytes\": 181589,\n        \"created_at\": \"2021-04-23T09:08:00+02:00\",\n        \"updated_at\": null\n    }\n}",
+							"raw": "{\n    \"url\": \"units/1/photo/1\",\n    \"data\": {\n        \"id\": 1,\n        \"url\": \"https://cdn.filestackcontent.com/jkiL9DMgSKyI6zCUvBjU\",\n        \"type\": \"photo\",\n        \"filename\": \"photo_2019-09-08_10-04-01.jpg\",\n        \"size_bytes\": 181589,\n        \"created_at\": \"2021-04-23T09:08:00+02:00\",\n        \"updated_at\": null\n    }\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -14437,7 +14400,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"url\": \"units/1/photo/1\",\n    \"data\": {\n        \"id\": 1,\n        \"url\": \"https://cdn.filestackcontent.com/WMhxnfNPRWoUpjBtc1wQ\",\n        \"type\": \"photo\",\n        \"filename\": \"photo_2019-09-08_10-04-01.jpg\",\n        \"size_bytes\": 181589,\n        \"created_at\": \"2021-04-23T09:08:00+02:00\",\n        \"updated_at\": null\n    }\n}",
+									"raw": "{\n    \"url\": \"units/1/photo/1\",\n    \"data\": {\n        \"id\": 1,\n        \"url\": \"https://cdn.filestackcontent.com/jkiL9DMgSKyI6zCUvBjU\",\n        \"type\": \"photo\",\n        \"filename\": \"photo_2019-09-08_10-04-01.jpg\",\n        \"size_bytes\": 181589,\n        \"created_at\": \"2021-04-23T09:08:00+02:00\",\n        \"updated_at\": null\n    }\n}",
 									"options": {
 										"raw": {
 											"language": "json"

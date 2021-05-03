@@ -24,7 +24,7 @@ We have 4 APIs with which you can access and manage data.
    used to receive messages live from our backend. SSE is built
    into most modern browsers. Most popular programming languages also
    have one or more SSE client/server libraries available. See our
-   [guide here](SSE/Live%20Telemetry%20through%20SSE.md).
+   [guide here](SSE/Destiny%20SSE%20Guide.md).
 
 3. **HTTP History Query API**: Provides the ability to query previously
    captured historical telemetry data. Since we capture a lot of data from
@@ -46,12 +46,14 @@ to look at one of our Message Queuing solutions.
    route to the devices you want to monitor. We also refer to this as
    *Stage 1* in our backend services. Stage 1 converts the raw data 
    from various types of devices and protocols to our own 
-   [Universal GPS JSON Message Data Structure](Telemetry/Universal%20JSON%20Message%20Data%20Structure%20v1.md).
+   [Universal GPS JSON Message Data Structure](Telemetry/Universal%20JSON%20Message%20Data%20Structures%20v1.md).
    
 2. **LDPS:** LDPS, or Live Date Processing Services is our **Stage 2** system, 
    here we process the newly received data and add additional information 
    to the message such as active drivers, reverse geolocation, zone detection
-   and more.
+   and more. Stage 2 adds additional data to the Universal GPS JSON Messages
+   which we call 
+   [Extended Universal JSON GPS Messages](Telemetry/Universal%20JSON%20GPS%20Message%20Extended.md).
    
 # Available Documentation
 
@@ -68,12 +70,10 @@ You will require a username, password as well as the domain details from us.
 
 To interact with our REST API, start by reading our 
 [Quick Start Guide](API/Quick%20Start%20Guide.md) and try out the accompanying
-[Postman collection](API/Destiny%20API%20Quick%20Start%20Guide.postman_collection.zip).
+[Postman collection](https://documenter.getpostman.com/view/217817/TzRLnWoy).
 
 Our full API Reference is currently only available as a Postman collection which
-you can access [here](API/Destiny%20HTTP%20API.postman_collection.zip) but you can
-read the [Technical Specifications Document](API/Destiny%20HTTP%20Technical%20Specifications.md)
-which will give you a very good reference on how to interact with the API in general.
+you can access [here](https://documenter.getpostman.com/view/217817/TzRLnWp3).
 
 For the technical specifications of our API and its data Search/Query capabilities
 please read our [Destiny HTTP Technical Specifications](API/Destiny%20HTTP%20Technical%20Specifications.md)
@@ -81,28 +81,30 @@ document.
 
 ## HTTP SSE: Live Telemetry through SSE Guide
 
-See our guide on [Live Telemetry through SSE](SSE/Live%20Telemetry%20through%20SSE.md) or
-download the [Postman collection](SSE/Live%20Telemetry%20through%20SSE.postman_collection.zip).
+See our guide on [Live Telemetry through SSE](SSE/Destiny%20SSE%20Guide.md) or
+download the [Postman collection](SSE/Destiny%20SSE%20Guide.postman_collection.zip) or view the
+[Postman collection online](https://documenter.getpostman.com/view/217817/TzRLnWp4).
 
 # Documentation Index
 
 **API:**
 - [Destiny HTTP API Quick Start Guide](API/Quick%20Start%20Guide.md)
-- [Destiny HTTP API Quick Start Guide Postman Collection](API/Destiny%20HTTP%20API%20Quick%20Start%20Guide.postman_collection.json)
+- [Destiny HTTP API Quick Start Guide Postman Collection](https://documenter.getpostman.com/view/217817/TzRLnWoy)
 - [Destiny HTTP Technical Specifications](API/Destiny%20HTTP%20Technical%20Specifications.md)
-- [Destiny API Full Postman Collection](API/Destiny%20HTTP%20API.postman_collection.zip)
+- [Destiny HTTP API Full Postman Collection](https://documenter.getpostman.com/view/217817/TzRLnWp3)
 - [Github API Directory](API)
 
 **SSE:**
-- [Live Telemetry through SSE](SSE/Live%20Telemetry%20through%20SSE.md)
+- [Live Telemetry through SSE](SSE/Destiny%20SSE%20Guide.md)
 - [Github SSE Directory](SSE)
-- [Live Telemetry through SSE Postman Collection](SSE/Live%20Telemetry%20through%20SSE.postman_collection.zip)
+- [SSE Guide Postman Collection](https://documenter.getpostman.com/view/217817/TzRLnWp4)
 - [SSE Unit Subscription Diagram](SSE/SSE_EventSource_Unit_Subscription.png)
 - [SSE Unit Subscription HTML Example](SSE/UnitSubscribeExample.html)
 - [SSE Vehicle Subscription HTML Example](SSE/VehicleSubscribeExample.html)
 
 **History Query API:**
 - [History Query API](History/Destiny%20HTTP%20History%20Query%20API.md)
+- [History Query API Postman Collection](https://documenter.getpostman.com/view/217817/TzRLnWp8)
 
 **Telemetry Data:**
 - [Universal JSON Message Data Structures v1](Telemetry/Universal%20JSON%20Message%20Data%20Structures%20v1.md)
