@@ -7,6 +7,9 @@ the vehicles and units available to you.
 The API uses the same authentication as the regular HTTP API and therefore does
 not require a separate login request.
 
+You can view the [Postman collection here](https://documenter.getpostman.com/view/217817/TzRLnWp8?version=latest) or
+[download it here](Destiny%20HTTP%20History%20Query%20API.postman_collection.zip).
+
 # Request URL Instructions
 
 Arguments within the queries are indicated with curly braces (`{` and `}`) but the
