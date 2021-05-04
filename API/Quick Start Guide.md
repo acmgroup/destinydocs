@@ -52,4 +52,5 @@ axios.get('http://www.dummydomain.net/api/v1/units')
 # What is Next?
 
 Take a look at our [Quick Start Guide Postman Collection](https://documenter.getpostman.com/view/217817/TzRLnWoy) 
-to try out the examples in the quick start guide.
+to try out the examples in the quick start guide. You can also
+[download the Postman collection here](Destiny%20HTTP%20API%20Quick%20Start%20Guide.postman_collection.zip)
