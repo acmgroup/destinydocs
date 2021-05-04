@@ -91,6 +91,24 @@ api/v1/history/telemetry/unit/1/date/2021-04-30/from/22:00:00/to/04:00:00
 > If the `to_time` is earlier than the `from_time` the server assumes
 that you want to query data across midnight into the following day.
 
+### Request Unit Telemetry for a period:
+
+This request allows you to request all telemetry data between a start date
+and time, and an end date and time.
+
+> **Important**: A limit of 2 days is allowed for all units except for the
+> ACM Foxy units and other Sigfox type units which have a 31-day limit.
+
+```
+api/v1/history/telemetry/unit/{unit_id}/period/from/{from_date}/time/{from_time}/to/{to_date}/time/{to_time}
+```
+
+**Example:**
+
+```
+api/v1/history/telemetry/unit/1/period/from/2021-04-30/time/08:00:00/to/2021-05-03/time/17:00:00
+```
+
 ### Request Unit Trip Telemetry for specific date
 
 As opposed to the request **Request All Unit Telemetry for specific Date** 
@@ -456,6 +474,25 @@ api/v1/history/telemetry/vehicle/1/primary/date/2021-04-30/from/22:00:00/to/04:0
 
 > If the `to_time` is earlier than the `from_time` the server assumes
 that you want to query data across midnight into the following day.
+
+### Request Vehicle Telemetry for a period:
+
+This request allows you to request all telemetry data between a start date
+and time, and an end date and time.
+
+> **Important**: A limit of 2 days is allowed for all vehicles except for the
+> those fitted with ACM Foxy units and other Sigfox type units which have a 
+> 31-day limit.
+
+```
+api/v1/history/telemetry/vehicle/{vehicle_id}/{assigned_as}/period/from/{from_date}/time/{from_time}/to/{to_date}/time/{to_time}
+```
+
+**Example:**
+
+```
+api/v1/history/telemetry/vehicle/1/primary/period/from/2021-04-30/time/08:00:00/to/2021-05-03/time/17:00:00
+```
 
 ### Request Vehicle Trip Telemetry for specific date
 

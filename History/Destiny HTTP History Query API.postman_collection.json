@@ -21,7 +21,7 @@
 							}
 						],
 						"url": {
-							"raw": "{{http}}://{{domain}}/api/v1/history/trips/vehicle/{{vehicle_id}}/primary/date/{{date}}/all",
+							"raw": "{{http}}://{{domain}}/api/v1/history/trips/vehicle/{{vehicle_id}}/primary/date/{{from_date}}/all",
 							"protocol": "{{http}}",
 							"host": [
 								"{{domain}}"
@@ -35,7 +35,7 @@
 								"{{vehicle_id}}",
 								"primary",
 								"date",
-								"{{date}}",
+								"{{from_date}}",
 								"all"
 							]
 						}
@@ -48,7 +48,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{http}}://{{domain}}/api/v1/history/trips/vehicle/{{vehicle_id}}/primary/date/{{date}}/all",
+							"raw": "{{http}}://{{domain}}/api/v1/history/trips/vehicle/{{vehicle_id}}/primary/date/{{from_date}}/all",
 							"protocol": "{{http}}",
 							"host": [
 								"{{domain}}"
@@ -62,7 +62,7 @@
 								"{{vehicle_id}}",
 								"primary",
 								"date",
-								"{{date}}",
+								"{{from_date}}",
 								"all"
 							],
 							"query": [
@@ -82,7 +82,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{http}}://{{domain}}/api/v1/history/trips/vehicle/{{vehicle_id}}/primary/date/{{date}}/last",
+							"raw": "{{http}}://{{domain}}/api/v1/history/trips/vehicle/{{vehicle_id}}/primary/date/{{from_date}}/last",
 							"protocol": "{{http}}",
 							"host": [
 								"{{domain}}"
@@ -96,7 +96,7 @@
 								"{{vehicle_id}}",
 								"primary",
 								"date",
-								"{{date}}",
+								"{{from_date}}",
 								"last"
 							],
 							"query": [
@@ -116,7 +116,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{http}}://{{domain}}/api/v1/history/telemetry/vehicle/{{vehicle_id}}/primary/date/{{date}}?_fields=gps.local_time,gps.timestamp,gps.latitude,gps.longitude,gps.speed,gps.heading",
+							"raw": "{{http}}://{{domain}}/api/v1/history/telemetry/vehicle/{{vehicle_id}}/primary/date/{{from_date}}?_fields=gps.local_time,gps.timestamp,gps.latitude,gps.longitude,gps.speed,gps.heading",
 							"protocol": "{{http}}",
 							"host": [
 								"{{domain}}"
@@ -130,7 +130,46 @@
 								"{{vehicle_id}}",
 								"primary",
 								"date",
-								"{{date}}"
+								"{{from_date}}"
+							],
+							"query": [
+								{
+									"key": "_fields",
+									"value": "gps.local_time,gps.timestamp,gps.latitude,gps.longitude,gps.speed,gps.heading"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Vehicle Telemetry (Period)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{http}}://{{domain}}/api/v1/history/telemetry/vehicle/{{vehicle_id}}/primary/period/from/{{from_date}}/time/{{from_time}}/to/{{to_date}}/time/{{to_time}}?_fields=gps.local_time,gps.timestamp,gps.latitude,gps.longitude,gps.speed,gps.heading",
+							"protocol": "{{http}}",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"history",
+								"telemetry",
+								"vehicle",
+								"{{vehicle_id}}",
+								"primary",
+								"period",
+								"from",
+								"{{from_date}}",
+								"time",
+								"{{from_time}}",
+								"to",
+								"{{to_date}}",
+								"time",
+								"{{to_time}}"
 							],
 							"query": [
 								{
@@ -148,7 +187,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{http}}://{{domain}}/api/v1/history/trips/telemetry/vehicle/{{vehicle_id}}/primary/date/{{date}}/from/{{from}}/to/{{to}}?_fields=gps.local_time,gps.timestamp,gps.latitude,gps.longitude,gps.speed,gps.heading",
+							"raw": "{{http}}://{{domain}}/api/v1/history/trips/telemetry/vehicle/{{vehicle_id}}/primary/date/{{from_date}}/from/{{from_time}}/to/{{to_time}}?_fields=gps.local_time,gps.timestamp,gps.latitude,gps.longitude,gps.speed,gps.heading",
 							"protocol": "{{http}}",
 							"host": [
 								"{{domain}}"
@@ -163,11 +202,11 @@
 								"{{vehicle_id}}",
 								"primary",
 								"date",
-								"{{date}}",
+								"{{from_date}}",
 								"from",
-								"{{from}}",
+								"{{from_time}}",
 								"to",
-								"{{to}}"
+								"{{to_time}}"
 							],
 							"query": [
 								{
@@ -185,7 +224,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{http}}://{{domain}}/api/v1/history/trips/telemetry/vehicle/{{vehicle_id}}/primary/period/from/{{from_date}}/time/{{from}}/to/{{to_date}}/time/{{to}}?_fields=gps.local_time,gps.timestamp,gps.latitude,gps.longitude,gps.speed,gps.heading",
+							"raw": "{{http}}://{{domain}}/api/v1/history/trips/telemetry/vehicle/{{vehicle_id}}/primary/period/from/{{from_date}}/time/{{from_time}}/to/{{to_date}}/time/{{to_time}}?_fields=gps.local_time,gps.timestamp,gps.latitude,gps.longitude,gps.speed,gps.heading",
 							"protocol": "{{http}}",
 							"host": [
 								"{{domain}}"
@@ -203,11 +242,11 @@
 								"from",
 								"{{from_date}}",
 								"time",
-								"{{from}}",
+								"{{from_time}}",
 								"to",
 								"{{to_date}}",
 								"time",
-								"{{to}}"
+								"{{to_time}}"
 							],
 							"query": [
 								{
@@ -225,7 +264,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{http}}://{{domain}}/api/v1/history/trips/telemetry/vehicle/{{vehicle_id}}/primary/date/{{date}}?_fields=gps.local_time,gps.timestamp,gps.latitude,gps.longitude,gps.speed,gps.heading",
+							"raw": "{{http}}://{{domain}}/api/v1/history/trips/telemetry/vehicle/{{vehicle_id}}/primary/date/{{from_date}}?_fields=gps.local_time,gps.timestamp,gps.latitude,gps.longitude,gps.speed,gps.heading",
 							"protocol": "{{http}}",
 							"host": [
 								"{{domain}}"
@@ -240,7 +279,7 @@
 								"{{vehicle_id}}",
 								"primary",
 								"date",
-								"{{date}}"
+								"{{from_date}}"
 							],
 							"query": [
 								{
@@ -258,7 +297,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{http}}://{{domain}}/api/v1/history/telemetry/vehicle/{{vehicle_id}}/primary/date/{{date}}/from/{{from}}/to/{{to}}?_fields=gps.local_time,gps.timestamp,gps.latitude,gps.longitude,gps.speed,gps.heading",
+							"raw": "{{http}}://{{domain}}/api/v1/history/telemetry/vehicle/{{vehicle_id}}/primary/date/{{from_date}}/from/{{from_time}}/to/{{to_time}}?_fields=gps.local_time,gps.timestamp,gps.latitude,gps.longitude,gps.speed,gps.heading",
 							"protocol": "{{http}}",
 							"host": [
 								"{{domain}}"
@@ -272,11 +311,11 @@
 								"{{vehicle_id}}",
 								"primary",
 								"date",
-								"{{date}}",
+								"{{from_date}}",
 								"from",
-								"{{from}}",
+								"{{from_time}}",
 								"to",
-								"{{to}}"
+								"{{to_time}}"
 							],
 							"query": [
 								{
@@ -332,7 +371,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{http}}://{{domain}}/api/v1/history/trips/unit/{{unit_id}}/date/{{date}}/all",
+							"raw": "{{http}}://{{domain}}/api/v1/history/trips/unit/{{unit_id}}/date/{{from_date}}/all",
 							"protocol": "{{http}}",
 							"host": [
 								"{{domain}}"
@@ -345,7 +384,7 @@
 								"unit",
 								"{{unit_id}}",
 								"date",
-								"{{date}}",
+								"{{from_date}}",
 								"all"
 							]
 						}
@@ -358,7 +397,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{http}}://{{domain}}/api/v1/history/trips/unit/{{unit_id}}/date/{{date}}/first",
+							"raw": "{{http}}://{{domain}}/api/v1/history/trips/unit/{{unit_id}}/date/{{from_date}}/first",
 							"protocol": "{{http}}",
 							"host": [
 								"{{domain}}"
@@ -371,7 +410,7 @@
 								"unit",
 								"{{unit_id}}",
 								"date",
-								"{{date}}",
+								"{{from_date}}",
 								"first"
 							]
 						}
@@ -384,7 +423,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{http}}://{{domain}}/api/v1/history/trips/unit/{{unit_id}}/date/{{date}}/last",
+							"raw": "{{http}}://{{domain}}/api/v1/history/trips/unit/{{unit_id}}/date/{{from_date}}/last",
 							"protocol": "{{http}}",
 							"host": [
 								"{{domain}}"
@@ -397,7 +436,7 @@
 								"unit",
 								"{{unit_id}}",
 								"date",
-								"{{date}}",
+								"{{from_date}}",
 								"last"
 							]
 						}
@@ -407,13 +446,10 @@
 				{
 					"name": "Get Unit Telemetry (All)",
 					"request": {
-						"auth": {
-							"type": "noauth"
-						},
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{http}}://{{domain}}/api/v1/history/telemetry/unit/{{unit_id}}/date/{{date}}?_fields=gps.local_time,gps.speed,events&_query=gps.speed>0",
+							"raw": "{{http}}://{{domain}}/api/v1/history/telemetry/unit/{{unit_id}}/date/{{from_date}}?_fields=gps.local_time,gps.speed,events",
 							"protocol": "{{http}}",
 							"host": [
 								"{{domain}}"
@@ -426,16 +462,12 @@
 								"unit",
 								"{{unit_id}}",
 								"date",
-								"{{date}}"
+								"{{from_date}}"
 							],
 							"query": [
 								{
 									"key": "_fields",
 									"value": "gps.local_time,gps.speed,events"
-								},
-								{
-									"key": "_query",
-									"value": "gps.speed>0"
 								}
 							]
 						}
@@ -445,13 +477,10 @@
 				{
 					"name": "Get Unit Trip Telemetry (Time Range)",
 					"request": {
-						"auth": {
-							"type": "noauth"
-						},
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{http}}://{{domain}}/api/v1/history/trips/telemetry/unit/{{unit_id}}/date/{{date}}/from/{{from}}/to/{{to}}?_fields=gps.local_time,gps.timestamp,gps.latitude,gps.longitude,gps.speed,gps.heading",
+							"raw": "{{http}}://{{domain}}/api/v1/history/trips/telemetry/unit/{{unit_id}}/date/{{from_date}}/from/{{from_time}}/to/{{to_time}}?_fields=gps.local_time,gps.timestamp,gps.latitude,gps.longitude,gps.speed,gps.heading",
 							"protocol": "{{http}}",
 							"host": [
 								"{{domain}}"
@@ -465,11 +494,49 @@
 								"unit",
 								"{{unit_id}}",
 								"date",
-								"{{date}}",
+								"{{from_date}}",
 								"from",
-								"{{from}}",
+								"{{from_time}}",
 								"to",
-								"{{to}}"
+								"{{to_time}}"
+							],
+							"query": [
+								{
+									"key": "_fields",
+									"value": "gps.local_time,gps.timestamp,gps.latitude,gps.longitude,gps.speed,gps.heading"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Unit Telemetry (Period)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{http}}://{{domain}}/api/v1/history/telemetry/unit/{{unit_id}}/period/from/{{from_date}}/time/{{from_time}}/to/{{to_date}}/time/{{to_time}}?_fields=gps.local_time,gps.timestamp,gps.latitude,gps.longitude,gps.speed,gps.heading",
+							"protocol": "{{http}}",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"history",
+								"telemetry",
+								"unit",
+								"{{unit_id}}",
+								"period",
+								"from",
+								"{{from_date}}",
+								"time",
+								"{{from_time}}",
+								"to",
+								"{{to_date}}",
+								"time",
+								"{{to_time}}"
 							],
 							"query": [
 								{
@@ -487,7 +554,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{http}}://{{domain}}/api/v1/history/trips/telemetry/unit/{{unit_id}}/period/from/{{from_date}}/time/{{from}}/to/{{to_date}}/time/{{to}}?_fields=gps.local_time,gps.timestamp,gps.latitude,gps.longitude,gps.speed,gps.heading",
+							"raw": "{{http}}://{{domain}}/api/v1/history/trips/telemetry/unit/{{unit_id}}/period/from/{{from_date}}/time/{{from_time}}/to/{{to_date}}/time/{{to_time}}?_fields=gps.local_time,gps.timestamp,gps.latitude,gps.longitude,gps.speed,gps.heading",
 							"protocol": "{{http}}",
 							"host": [
 								"{{domain}}"
@@ -504,11 +571,11 @@
 								"from",
 								"{{from_date}}",
 								"time",
-								"{{from}}",
+								"{{from_time}}",
 								"to",
 								"{{to_date}}",
 								"time",
-								"{{to}}"
+								"{{to_time}}"
 							],
 							"query": [
 								{
@@ -523,13 +590,10 @@
 				{
 					"name": "Get Unit Trip Telemetry By Date",
 					"request": {
-						"auth": {
-							"type": "noauth"
-						},
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{http}}://{{domain}}/api/v1/history/trips/telemetry/unit/{{unit_id}}/date/{{date}}?_fields=gps.local_time,gps.timestamp,gps.latitude,gps.longitude,gps.speed,gps.heading",
+							"raw": "{{http}}://{{domain}}/api/v1/history/trips/telemetry/unit/{{unit_id}}/date/{{from_date}}?_fields=gps.local_time,gps.timestamp,gps.latitude,gps.longitude,gps.speed,gps.heading",
 							"protocol": "{{http}}",
 							"host": [
 								"{{domain}}"
@@ -543,7 +607,7 @@
 								"unit",
 								"{{unit_id}}",
 								"date",
-								"{{date}}"
+								"{{from_date}}"
 							],
 							"query": [
 								{
@@ -572,7 +636,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{http}}://{{domain}}/api/v1/history/telemetry/unit/{{unit_id}}/date/{{date}}/from/{{from}}/to/{{to}}?_fields=gps.local_time,gps.timestamp,gps.latitude,gps.longitude,gps.speed,gps.heading",
+							"raw": "{{http}}://{{domain}}/api/v1/history/telemetry/unit/{{unit_id}}/date/{{from_date}}/from/{{from_time}}/to/{{to_time}}?_fields=gps.local_time,gps.timestamp,gps.latitude,gps.longitude,gps.speed,gps.heading",
 							"protocol": "{{http}}",
 							"host": [
 								"{{domain}}"
@@ -585,11 +649,11 @@
 								"unit",
 								"{{unit_id}}",
 								"date",
-								"{{date}}",
+								"{{from_date}}",
 								"from",
-								"{{from}}",
+								"{{from_time}}",
 								"to",
-								"{{to}}"
+								"{{to_time}}"
 							],
 							"query": [
 								{
@@ -669,7 +733,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{http}}://{{domain}}/api/v1/history/summary/vehicles/distances/by-vehicle-group/1/client/{{client_id}}/date/{{date}}/period/{{period}}?limit=20",
+							"raw": "{{http}}://{{domain}}/api/v1/history/summary/vehicles/distances/by-vehicle-group/1/client/{{client_id}}/date/{{from_date}}/period/{{period}}?limit=20",
 							"protocol": "{{http}}",
 							"host": [
 								"{{domain}}"
@@ -686,7 +750,7 @@
 								"client",
 								"{{client_id}}",
 								"date",
-								"{{date}}",
+								"{{from_date}}",
 								"period",
 								"{{period}}"
 							],
@@ -706,7 +770,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{http}}://{{domain}}/api/v1/history/summary/vehicles/distances/by-client/{{client_id}}/date/{{date}}/period/{{period}}",
+							"raw": "{{http}}://{{domain}}/api/v1/history/summary/vehicles/distances/by-client/{{client_id}}/date/{{from_date}}/period/{{period}}",
 							"protocol": "{{http}}",
 							"host": [
 								"{{domain}}"
@@ -721,7 +785,7 @@
 								"by-client",
 								"{{client_id}}",
 								"date",
-								"{{date}}",
+								"{{from_date}}",
 								"period",
 								"{{period}}"
 							]
@@ -740,7 +804,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{http}}://{{domain}}/api/v1/history/summary/units/distances/by-client/{{client_id}}/date/{{date}}/period/this-month",
+							"raw": "{{http}}://{{domain}}/api/v1/history/summary/units/distances/by-client/{{client_id}}/date/{{from_date}}/period/this-month",
 							"protocol": "{{http}}",
 							"host": [
 								"{{domain}}"
@@ -755,7 +819,7 @@
 								"by-client",
 								"{{client_id}}",
 								"date",
-								"{{date}}",
+								"{{from_date}}",
 								"period",
 								"this-month"
 							]
@@ -769,7 +833,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{http}}://{{domain}}/api/v1/history/summary/units/distances/by-unit-group/18/client/{{client_id}}/date/{{date}}/period/{{period}}?limit=20",
+							"raw": "{{http}}://{{domain}}/api/v1/history/summary/units/distances/by-unit-group/18/client/{{client_id}}/date/{{from_date}}/period/{{period}}?limit=20",
 							"protocol": "{{http}}",
 							"host": [
 								"{{domain}}"
@@ -786,7 +850,7 @@
 								"client",
 								"{{client_id}}",
 								"date",
-								"{{date}}",
+								"{{from_date}}",
 								"period",
 								"{{period}}"
 							],
