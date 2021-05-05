@@ -67,6 +67,8 @@ out the [Postman Desktop client](https://www.postman.com/downloads/). We have
 a "Collection" of requests for our HTTP API's that you can play around with.
 You will require a username, password as well as the domain details from us.
 
+[Click to read our basic guide on using Postman](Postman/Setting%20Up%20Postman.md).
+
 ## REST API v1 Documentation
 
 To interact with our REST API, start by reading our 
@@ -96,7 +98,7 @@ download the [Postman collection](SSE/Destiny%20SSE%20Guide.postman_collection.z
 - [Github API Directory](API)
 
 **SSE:**
-- [Live Telemetry through SSE](SSE/Destiny%20SSE%20Guide.md)
+- [Destiny SSE Guide](SSE/Destiny%20SSE%20Guide.md)
 - [Github SSE Directory](SSE)
 - [SSE Guide Postman Collection](https://documenter.getpostman.com/view/217817/TzRLnWp4)
 - [SSE Unit Subscription Diagram](SSE/SSE_EventSource_Unit_Subscription.png)
