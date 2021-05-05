@@ -1,6 +1,6 @@
 # Introduction
 
-Postman provides an API Client to test and experiment with API requests amongst other
+Postman provides an API Client to test and experiment with API requests among other
 things. It provides both a web interface and desktop clients for multiple operating systems.
 
 This guide demonstrates how to setup Postman to test API requests.
@@ -16,7 +16,7 @@ The steps to sign up is as follows:
 
 ![](postman_signup.png)
 
-2. After creating your account signing up, you will see a **Welcome to Postman** screen. 
+2. After creating your account or signing up, you will see a **Welcome to Postman** screen. 
    You can enter your name if you want, but selecting any of the additional options are
    not required:
 
@@ -85,18 +85,20 @@ We can now finally add one of the Destiny Postman Collections to your workspace.
 > for your convenience they are listed below.
 
 When you click on any of the links below you will be taken to the corresponding
-public documentation for that collection. For a start, click on the [Destiny HTTP API Quick Start Guide Collection](https://documenter.getpostman.com/view/217817/TzRLnWoy)
-link. Once the page have opened you should see something like this:
+public documentation for that collection. For a start, open this link
+on a new tab in your browser: [Destiny HTTP API Quick Start Guide Collection](https://documenter.getpostman.com/view/217817/TzRLnWoy). 
+Once the page have opened you should see something like this:
 
 ![](run_in_postman_01.png)
 
 Before you do anything else, select the Environment we have created for you. You can also
-pick between different languages in which to show the API request demonstration.
+pick between different languages to show the API request examples.
 
 ![](run_in_postman_02.png)
 
 Scroll down and take a look at some example requests in this collection. Finally, you can
-make your own copy of the collection by clicking on the **Run in Postman** button.
+make your own personal copy of the collection by clicking on the 
+**Run in Postman** button.
 
 ![](run_in_postman_03.png)
 
