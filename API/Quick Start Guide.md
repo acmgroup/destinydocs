@@ -27,7 +27,7 @@ axios.post('http://www.dummydomain.net/api/v1/auth/login', {
 })
 ```
 
-# Subsequent Requests
+# Follow-up Requests
 
 Next, lets see if there are any units / devices allocated to us, this time the Authorization token will automatically be transmitted along by Axios. However, whenever the server responds we need to check to see if it sent a new Bearer token, and if so we need to update our own local copy of the token.
 
