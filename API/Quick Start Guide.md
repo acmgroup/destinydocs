@@ -10,7 +10,7 @@ For these examples we will be using the extremely popular [Axios Javascript/Node
 First, lets perform a login request:
 
 ```javascript
-axios.post('http://www.dummydomain.net/api/v1/auth/login', {
+axios.post('https://www.dummydomain.net/api/v1/auth/login', {
   username: 'your username',
   password: 'your password'
 })
@@ -32,7 +32,7 @@ axios.post('http://www.dummydomain.net/api/v1/auth/login', {
 Next, lets see if there are any units / devices allocated to us, this time the Authorization token will automatically be transmitted along by Axios. However, whenever the server responds we need to check to see if it sent a new Bearer token, and if so we need to update our own local copy of the token.
 
 ```javascript
-axios.get('http://www.dummydomain.net/api/v1/units')
+axios.get('https://www.dummydomain.net/api/v1/units')
 .then((response) => {
   console.log(response)
   // Success, but we need to update our 
