@@ -3480,7 +3480,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{http}}://{{domain}}/api/v1/units/1",
+							"raw": "{{http}}://{{domain}}/api/v1/units/{{unit_id}}",
 							"protocol": "{{http}}",
 							"host": [
 								"{{domain}}"
@@ -3489,7 +3489,7 @@
 								"api",
 								"v1",
 								"units",
-								"1"
+								"{{unit_id}}"
 							]
 						}
 					},
@@ -3860,7 +3860,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{http}}://{{domain}}/api/v1/units/by-vehicle/1/assigned-as",
+							"raw": "{{http}}://{{domain}}/api/v1/units/by-vehicle/{{vehicle_id}}/assigned",
 							"protocol": "{{http}}",
 							"host": [
 								"{{domain}}"
@@ -3870,8 +3870,8 @@
 								"v1",
 								"units",
 								"by-vehicle",
-								"1",
-								"assigned-as"
+								"{{vehicle_id}}",
+								"assigned"
 							]
 						}
 					},
@@ -3944,6 +3944,100 @@
 							],
 							"cookie": [],
 							"body": "{\n    \"data\": [\n        {\n            \"id\": 1,\n            \"partner_id\": 1,\n            \"partner\": {\n                \"id\": 1,\n                \"name\": \"Partner Name\"\n            },\n            \"agency_id\": null,\n            \"agency\": null,\n            \"client_id\": 1,\n            \"client\": {\n                \"id\": 1,\n                \"name\": \"Client Name\"\n            },\n            \"imei\": \"5551234567890\",\n            \"serial_no\": \"65G4423\",\n            \"stock_no\": null,\n            \"name\": null,\n            \"unit_type_code\": \"acmtech\",\n            \"unit_type_name\": \"ACMTech\",\n            \"unit_model_code\": \"acmtrack_1\",\n            \"unit_model_name\": \"ACMTrack v1\",\n            \"unit_status_code\": \"factory\",\n            \"unit_status_name\": \"Factory\",\n            \"unit_group_id\": null,\n            \"unit_group\": null,\n            \"ignition\": \"input_01\",\n            \"fixed_latitude\": null,\n            \"fixed_longitude\": null,\n            \"vehicle_id\": 1,\n            \"assigned_as\": \"primary\",\n            \"vehicle\": {\n                \"id\": 1,\n                \"reg_no\": \"ABC 123 GP\",\n                \"fleet_no\": \"5551234\",\n                \"assigned_as\": \"primary\"\n            },\n            \"timezone\": \"UTC\",\n            \"op_timezone\": \"auto\",\n            \"user_full_name\": \"User Name\",\n            \"user_id\": 6,\n            \"created_at\": \"2021-04-22T14:18:11+02:00\",\n            \"updated_at\": \"2021-04-22T14:31:55+02:00\",\n            \"sensors\": []\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Get Unit By Assigned Slot",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{http}}://{{domain}}/api/v1/units/by-vehicle/{{vehicle_id}}/assigned-as/primary",
+							"protocol": "{{http}}",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"units",
+								"by-vehicle",
+								"{{vehicle_id}}",
+								"assigned-as",
+								"primary"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200 OK",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{http}}://{{domain}}/api/v1/units/by-vehicle/1/assigned-as",
+									"protocol": "{{http}}",
+									"host": [
+										"{{domain}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"units",
+										"by-vehicle",
+										"1",
+										"assigned-as"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.15.8"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 22 Apr 2021 12:31:59 GMT"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "48"
+								},
+								{
+									"key": "X-RateLimit-Reset",
+									"value": "29"
+								},
+								{
+									"key": "Authorization",
+									"value": "token"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"id\": 1,\n        \"partner_id\": 1,\n        \"partner\": {\n            \"id\": 1,\n            \"name\": \"Partner Name\"\n        },\n        \"agency_id\": null,\n        \"agency\": null,\n        \"client_id\": 1,\n        \"client\": {\n            \"id\": 1,\n            \"name\": \"Client Name\"\n        },\n        \"imei\": \"5551234567890\",\n        \"serial_no\": null,\n        \"stock_no\": null,\n        \"name\": null,\n        \"unit_type_code\": \"acmtech\",\n        \"unit_type_name\": \"ACMTech\",\n        \"unit_model_code\": \"acmtrack_1\",\n        \"unit_model_name\": \"ACMTrack v1\",\n        \"unit_status_code\": \"factory\",\n        \"unit_status_name\": \"Factory\",\n        \"unit_group_id\": null,\n        \"unit_group\": null,\n        \"ignition\": \"input_01\",\n        \"fixed_latitude\": null,\n        \"fixed_longitude\": null,\n        \"vehicle_id\": 6,\n        \"assigned_as\": \"primary\",\n        \"vehicle\": {\n            \"id\": 6,\n            \"reg_no\": \"123 ABC GP\",\n            \"fleet_no\": null,\n            \"assigned_as\": \"primary\"\n        },\n        \"timezone\": \"UTC\",\n        \"op_timezone\": \"auto\",\n        \"user_full_name\": \"User Name\",\n        \"user_id\": 6,\n        \"created_at\": \"2021-04-22T13:32:48+02:00\",\n        \"updated_at\": null,\n        \"flags\": {\n            \"ign_connected\": true,\n            \"allow_geo_lookups\": true,\n            \"auto_correct_direction\": true,\n            \"perform_post_processing\": true,\n            \"post_process_trip_stops\": true\n        },\n        \"system\": {\n            \"idling\": {\n                \"enabled\": true,\n                \"event_idle_stop\": \"ENG_IDLE:STOP\",\n                \"speed_less_than\": \"1 kmh\",\n                \"event_idle_start\": \"ENG_IDLE:START\"\n            },\n            \"trip_stop\": {\n                \"time\": \"5 minutes\",\n                \"event\": \"TRIP_STOP\",\n                \"enabled\": true\n            },\n            \"trip_start\": {\n                \"event\": \"TRIP_START\",\n                \"speed\": \"10 kmh\",\n                \"enabled\": true,\n                \"distance\": \"50 meters\"\n            },\n            \"gps_spiking\": {\n                \"event\": \"GPS_SPIKE\",\n                \"speed\": \"250 kmh\",\n                \"enabled\": true\n            },\n            \"gps_drifting\": {\n                \"event\": \"GPS_DRIFTING\",\n                \"speed\": \"10 kmh\",\n                \"radius\": \"50 meters\",\n                \"enabled\": true\n            },\n            \"comms_failure\": {\n                \"after\": \"60 seconds\",\n                \"event\": \"NO_COMMS\",\n                \"enabled\": true,\n                \"report_every\": \"24 hours\",\n                \"restored_event\": \"COMMS_OK\"\n            },\n            \"faulty_ignition\": {\n                \"event\": \"IGN_FAULTY\",\n                \"enabled\": true\n            }\n        },\n        \"sensors\": [],\n        \"standard_inputs\": [],\n        \"auxiliary_inputs\": [],\n        \"event_conversions\": [],\n        \"notes\": [],\n        \"attachments\": [],\n        \"photos\": []\n    }\n}"
 						}
 					]
 				},
@@ -4307,7 +4401,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{http}}://{{domain}}/api/v1/units/1/telemetry",
+							"raw": "{{http}}://{{domain}}/api/v1/units/{{unit_id}}/telemetry",
 							"protocol": "{{http}}",
 							"host": [
 								"{{domain}}"
@@ -4316,7 +4410,191 @@
 								"api",
 								"v1",
 								"units",
-								"1",
+								"{{unit_id}}",
+								"telemetry"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200 OK",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{http}}://{{domain}}/api/v1/units/1/telemetry",
+									"protocol": "{{http}}",
+									"host": [
+										"{{domain}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"units",
+										"1",
+										"telemetry"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.15.8"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 22 Apr 2021 13:15:48 GMT"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "59"
+								},
+								{
+									"key": "X-RateLimit-Reset",
+									"value": "60"
+								},
+								{
+									"key": "Authorization",
+									"value": "token"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"telemetry\": {\n            \"gps\": {\n                \"fix\": [\n                    \"fixed\"\n                ],\n                \"gnss\": 1,\n                \"hdop\": 0,\n                \"pdop\": 0,\n                \"tdop\": null,\n                \"vdop\": null,\n                \"speed\": 0,\n                \"heading\": 198,\n                \"activity\": \"unknown\",\n                \"altitude\": 1678,\n                \"latitude\": -26.439923,\n                \"odometer\": null,\n                \"timezone\": \"Africa/Johannesburg\",\n                \"trip_odo\": 0,\n                \"longitude\": 29.475668,\n                \"timestamp\": \"2021-02-09T11:16:53+00:00\",\n                \"local_time\": \"2021-02-09T13:16:53+02:00\",\n                \"satellites\": 14,\n                \"distance_km\": 0\n            },\n            \"gsm\": [\n                {\n                    \"cid\": [],\n                    \"lac\": [],\n                    \"mcc\": [],\n                    \"mnc\": [],\n                    \"lcid\": [],\n                    \"rcpi\": [],\n                    \"rssi\": [],\n                    \"status\": [\n                        \"engine\",\n                        \"network\",\n                        \"data\",\n                        \"connected\"\n                    ],\n                    \"carrier\": null,\n                    \"data_mode\": \"home_stop\",\n                    \"signal_lvl\": 4,\n                    \"signal_str\": 80\n                }\n            ],\n            \"ldps\": {\n                \"name\": \"www.dummydomain.net\",\n                \"error\": null,\n                \"timestamp\": \"2021-02-09T11:17:42+00:00\",\n                \"error_code\": null\n            },\n            \"port\": 5027,\n            \"sims\": [],\n            \"valid\": true,\n            \"device\": {\n                \"id\": 1,\n                \"imei\": \"359633101461387\",\n                \"name\": null,\n                \"type\": \"teltonika\",\n                \"model\": \"acmtrack_1\",\n                \"status\": \"factory\",\n                \"firm_ver\": null,\n                \"stock_no\": null,\n                \"serial_no\": null,\n                \"identifier\": \"imei\",\n                \"assigned_as\": null\n            },\n            \"driver\": null,\n            \"events\": [],\n            \"inputs\": \"000\",\n            \"obd_ii\": {\n                \"mode_01\": []\n            },\n            \"seq_no\": 1,\n            \"source\": \"device\",\n            \"can_bus\": [],\n            \"gateway\": \"gateway.dummydomain.net\",\n            \"network\": {\n                \"mac\": null,\n                \"remote_ipv4\": \"41.206.206.35\",\n                \"remote_ipv6\": null,\n                \"remote_port\": 58303\n            },\n            \"outputs\": \"00\",\n            \"sensors\": [\n                [\n                    \"eco_score\",\n                    10\n                ],\n                [\n                    \"speed\",\n                    0\n                ],\n                [\n                    \"ebat_volts\",\n                    12.254\n                ],\n                [\n                    \"ibat_volts\",\n                    4.029\n                ],\n                [\n                    \"ibat_amps\",\n                    0\n                ],\n                [\n                    \"trip_odo\",\n                    0\n                ],\n                [\n                    \"movement\",\n                    false\n                ],\n                [\n                    \"ignition\",\n                    \"off\"\n                ],\n                [\n                    \"sleep_mode\",\n                    \"no_sleep\"\n                ]\n            ],\n            \"vehicle\": null,\n            \"buffered\": false,\n            \"an_inputs\": [\n                0.131\n            ],\n            \"timestamp\": \"2021-02-09T11:17:42+00:00\",\n            \"aux_inputs\": [],\n            \"message_ver\": 1,\n            \"message_type\": \"gps\",\n            \"transmission\": \"tcp\"\n        }\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Get Unit Telemetry by IMEI",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{http}}://{{domain}}/api/v1/units/by-imei/{{imei}}/telemetry",
+							"protocol": "{{http}}",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"units",
+								"by-imei",
+								"{{imei}}",
+								"telemetry"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200 OK",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{http}}://{{domain}}/api/v1/units/1/telemetry",
+									"protocol": "{{http}}",
+									"host": [
+										"{{domain}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"units",
+										"1",
+										"telemetry"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.15.8"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 22 Apr 2021 13:15:48 GMT"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "59"
+								},
+								{
+									"key": "X-RateLimit-Reset",
+									"value": "60"
+								},
+								{
+									"key": "Authorization",
+									"value": "token"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"telemetry\": {\n            \"gps\": {\n                \"fix\": [\n                    \"fixed\"\n                ],\n                \"gnss\": 1,\n                \"hdop\": 0,\n                \"pdop\": 0,\n                \"tdop\": null,\n                \"vdop\": null,\n                \"speed\": 0,\n                \"heading\": 198,\n                \"activity\": \"unknown\",\n                \"altitude\": 1678,\n                \"latitude\": -26.439923,\n                \"odometer\": null,\n                \"timezone\": \"Africa/Johannesburg\",\n                \"trip_odo\": 0,\n                \"longitude\": 29.475668,\n                \"timestamp\": \"2021-02-09T11:16:53+00:00\",\n                \"local_time\": \"2021-02-09T13:16:53+02:00\",\n                \"satellites\": 14,\n                \"distance_km\": 0\n            },\n            \"gsm\": [\n                {\n                    \"cid\": [],\n                    \"lac\": [],\n                    \"mcc\": [],\n                    \"mnc\": [],\n                    \"lcid\": [],\n                    \"rcpi\": [],\n                    \"rssi\": [],\n                    \"status\": [\n                        \"engine\",\n                        \"network\",\n                        \"data\",\n                        \"connected\"\n                    ],\n                    \"carrier\": null,\n                    \"data_mode\": \"home_stop\",\n                    \"signal_lvl\": 4,\n                    \"signal_str\": 80\n                }\n            ],\n            \"ldps\": {\n                \"name\": \"www.dummydomain.net\",\n                \"error\": null,\n                \"timestamp\": \"2021-02-09T11:17:42+00:00\",\n                \"error_code\": null\n            },\n            \"port\": 5027,\n            \"sims\": [],\n            \"valid\": true,\n            \"device\": {\n                \"id\": 1,\n                \"imei\": \"359633101461387\",\n                \"name\": null,\n                \"type\": \"teltonika\",\n                \"model\": \"acmtrack_1\",\n                \"status\": \"factory\",\n                \"firm_ver\": null,\n                \"stock_no\": null,\n                \"serial_no\": null,\n                \"identifier\": \"imei\",\n                \"assigned_as\": null\n            },\n            \"driver\": null,\n            \"events\": [],\n            \"inputs\": \"000\",\n            \"obd_ii\": {\n                \"mode_01\": []\n            },\n            \"seq_no\": 1,\n            \"source\": \"device\",\n            \"can_bus\": [],\n            \"gateway\": \"gateway.dummydomain.net\",\n            \"network\": {\n                \"mac\": null,\n                \"remote_ipv4\": \"41.206.206.35\",\n                \"remote_ipv6\": null,\n                \"remote_port\": 58303\n            },\n            \"outputs\": \"00\",\n            \"sensors\": [\n                [\n                    \"eco_score\",\n                    10\n                ],\n                [\n                    \"speed\",\n                    0\n                ],\n                [\n                    \"ebat_volts\",\n                    12.254\n                ],\n                [\n                    \"ibat_volts\",\n                    4.029\n                ],\n                [\n                    \"ibat_amps\",\n                    0\n                ],\n                [\n                    \"trip_odo\",\n                    0\n                ],\n                [\n                    \"movement\",\n                    false\n                ],\n                [\n                    \"ignition\",\n                    \"off\"\n                ],\n                [\n                    \"sleep_mode\",\n                    \"no_sleep\"\n                ]\n            ],\n            \"vehicle\": null,\n            \"buffered\": false,\n            \"an_inputs\": [\n                0.131\n            ],\n            \"timestamp\": \"2021-02-09T11:17:42+00:00\",\n            \"aux_inputs\": [],\n            \"message_ver\": 1,\n            \"message_type\": \"gps\",\n            \"transmission\": \"tcp\"\n        }\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Get Unit Telemetry by Serial No.",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{http}}://{{domain}}/api/v1/units/by-serial-no/{{serial_no}}/telemetry",
+							"protocol": "{{http}}",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"units",
+								"by-serial-no",
+								"{{serial_no}}",
 								"telemetry"
 							]
 						}
@@ -4398,7 +4676,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{http}}://{{domain}}/api/v1/units/1/view",
+							"raw": "{{http}}://{{domain}}/api/v1/units/{{unit_id}}/view",
 							"protocol": "{{http}}",
 							"host": [
 								"{{domain}}"
@@ -4407,7 +4685,7 @@
 								"api",
 								"v1",
 								"units",
-								"1",
+								"{{unit_id}}",
 								"view"
 							]
 						}
@@ -4489,7 +4767,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{http}}://{{domain}}/api/v1/units/basic/1/edit",
+							"raw": "{{http}}://{{domain}}/api/v1/units/basic/{{unit_id}}/edit",
 							"protocol": "{{http}}",
 							"host": [
 								"{{domain}}"
@@ -4499,7 +4777,7 @@
 								"v1",
 								"units",
 								"basic",
-								"1",
+								"{{unit_id}}",
 								"edit"
 							]
 						}
@@ -4582,7 +4860,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{http}}://{{domain}}/api/v1/units/basic/1",
+							"raw": "{{http}}://{{domain}}/api/v1/units/basic/{{unit_id}}",
 							"protocol": "{{http}}",
 							"host": [
 								"{{domain}}"
@@ -4592,7 +4870,7 @@
 								"v1",
 								"units",
 								"basic",
-								"1"
+								"{{unit_id}}"
 							]
 						}
 					},
@@ -4762,7 +5040,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{http}}://{{domain}}/api/v1/units/1/edit",
+							"raw": "{{http}}://{{domain}}/api/v1/units/{{unit_id}}/edit",
 							"protocol": "{{http}}",
 							"host": [
 								"{{domain}}"
@@ -4771,7 +5049,7 @@
 								"api",
 								"v1",
 								"units",
-								"1",
+								"{{unit_id}}",
 								"edit"
 							]
 						}
@@ -4853,7 +5131,7 @@
 						"method": "PUT",
 						"header": [],
 						"url": {
-							"raw": "{{http}}://{{domain}}/api/v1/units/basic/1",
+							"raw": "{{http}}://{{domain}}/api/v1/units/basic/{{unit_id}}",
 							"protocol": "{{http}}",
 							"host": [
 								"{{domain}}"
@@ -4863,7 +5141,7 @@
 								"v1",
 								"units",
 								"basic",
-								"1"
+								"{{unit_id}}"
 							]
 						}
 					},
@@ -4884,7 +5162,7 @@
 							"raw": "{\n    \"note\": \"This is an additional note.\"\n}"
 						},
 						"url": {
-							"raw": "{{http}}://{{domain}}/api/v1/units/1/note",
+							"raw": "{{http}}://{{domain}}/api/v1/units/{{unit_id}}/note",
 							"protocol": "{{http}}",
 							"host": [
 								"{{domain}}"
@@ -4893,7 +5171,7 @@
 								"api",
 								"v1",
 								"units",
-								"1",
+								"{{unit_id}}",
 								"note"
 							]
 						},
@@ -4998,7 +5276,7 @@
 							}
 						},
 						"url": {
-							"raw": "{{http}}://{{domain}}/api/v1/units/1/attachment",
+							"raw": "{{http}}://{{domain}}/api/v1/units/{{unit_id}}/attachment",
 							"protocol": "{{http}}",
 							"host": [
 								"{{domain}}"
@@ -5007,7 +5285,7 @@
 								"api",
 								"v1",
 								"units",
-								"1",
+								"{{unit_id}}",
 								"attachment"
 							]
 						}
@@ -5107,7 +5385,7 @@
 							}
 						},
 						"url": {
-							"raw": "{{http}}://{{domain}}/api/v1/units/1/attachment/1",
+							"raw": "{{http}}://{{domain}}/api/v1/units/{{unit_id}}/attachment/1",
 							"protocol": "{{http}}",
 							"host": [
 								"{{domain}}"
@@ -5116,7 +5394,7 @@
 								"api",
 								"v1",
 								"units",
-								"1",
+								"{{unit_id}}",
 								"attachment",
 								"1"
 							]
@@ -5209,7 +5487,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{http}}://{{domain}}/api/v1/units/1/attachment/1",
+							"raw": "{{http}}://{{domain}}/api/v1/units/{{unit_id}}/attachment/1",
 							"protocol": "{{http}}",
 							"host": [
 								"{{domain}}"
@@ -5218,7 +5496,7 @@
 								"api",
 								"v1",
 								"units",
-								"1",
+								"{{unit_id}}",
 								"attachment",
 								"1"
 							]
@@ -5311,7 +5589,7 @@
 							}
 						},
 						"url": {
-							"raw": "{{http}}://{{domain}}/api/v1/units/1/photo",
+							"raw": "{{http}}://{{domain}}/api/v1/units/{{unit_id}}/photo",
 							"protocol": "{{http}}",
 							"host": [
 								"{{domain}}"
@@ -5320,7 +5598,7 @@
 								"api",
 								"v1",
 								"units",
-								"1",
+								"{{unit_id}}",
 								"photo"
 							]
 						}
@@ -5416,7 +5694,7 @@
 							}
 						},
 						"url": {
-							"raw": "{{http}}://{{domain}}/api/v1/units/1/photos",
+							"raw": "{{http}}://{{domain}}/api/v1/units/{{unit_id}}/photos",
 							"protocol": "{{http}}",
 							"host": [
 								"{{domain}}"
@@ -5425,7 +5703,7 @@
 								"api",
 								"v1",
 								"units",
-								"1",
+								"{{unit_id}}",
 								"photos"
 							]
 						}
@@ -5521,7 +5799,7 @@
 							}
 						},
 						"url": {
-							"raw": "{{http}}://{{domain}}/api/v1/units/1/photo/17",
+							"raw": "{{http}}://{{domain}}/api/v1/units/{{unit_id}}/photo/17",
 							"protocol": "{{http}}",
 							"host": [
 								"{{domain}}"
@@ -5530,7 +5808,7 @@
 								"api",
 								"v1",
 								"units",
-								"1",
+								"{{unit_id}}",
 								"photo",
 								"17"
 							]
@@ -5628,7 +5906,7 @@
 							}
 						},
 						"url": {
-							"raw": "{{http}}://{{domain}}/api/v1/units/1/photo/1",
+							"raw": "{{http}}://{{domain}}/api/v1/units/{{unit_id}}/photo/1",
 							"protocol": "{{http}}",
 							"host": [
 								"{{domain}}"
@@ -5637,7 +5915,7 @@
 								"api",
 								"v1",
 								"units",
-								"1",
+								"{{unit_id}}",
 								"photo",
 								"1"
 							]
@@ -5739,7 +6017,7 @@
 							}
 						},
 						"url": {
-							"raw": "{{http}}://{{domain}}/api/v1/units/1",
+							"raw": "{{http}}://{{domain}}/api/v1/units/{{unit_id}}",
 							"protocol": "{{http}}",
 							"host": [
 								"{{domain}}"
@@ -5748,7 +6026,7 @@
 								"api",
 								"v1",
 								"units",
-								"1"
+								"{{unit_id}}"
 							]
 						}
 					},
@@ -5837,7 +6115,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{http}}://{{domain}}/api/v1/units/1",
+							"raw": "{{http}}://{{domain}}/api/v1/units/{{unit_id}}",
 							"protocol": "{{http}}",
 							"host": [
 								"{{domain}}"
@@ -5846,7 +6124,7 @@
 								"api",
 								"v1",
 								"units",
-								"1"
+								"{{unit_id}}"
 							]
 						}
 					},
@@ -9304,7 +9582,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{http}}://{{domain}}/api/v1/vehicles/1/edit",
+							"raw": "{{http}}://{{domain}}/api/v1/vehicles/{{vehicle_id}}/edit",
 							"protocol": "{{http}}",
 							"host": [
 								"{{domain}}"
@@ -9313,7 +9591,7 @@
 								"api",
 								"v1",
 								"vehicles",
-								"1",
+								"{{vehicle_id}}",
 								"edit"
 							]
 						}
@@ -9394,7 +9672,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{http}}://{{domain}}/api/v1/vehicles/1",
+							"raw": "{{http}}://{{domain}}/api/v1/vehicles/{{vehicle_id}}",
 							"protocol": "{{http}}",
 							"host": [
 								"{{domain}}"
@@ -9403,7 +9681,7 @@
 								"api",
 								"v1",
 								"vehicles",
-								"1"
+								"{{vehicle_id}}"
 							]
 						}
 					},
@@ -9483,7 +9761,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{http}}://{{domain}}/api/v1/vehicles/1/primary/telemetry",
+							"raw": "{{http}}://{{domain}}/api/v1/vehicles/{{vehicle_id}}/primary/telemetry",
 							"protocol": "{{http}}",
 							"host": [
 								"{{domain}}"
@@ -9492,7 +9770,7 @@
 								"api",
 								"v1",
 								"vehicles",
-								"1",
+								"{{vehicle_id}}",
 								"primary",
 								"telemetry"
 							]
@@ -9693,7 +9971,7 @@
 							}
 						},
 						"url": {
-							"raw": "{{http}}://{{domain}}/api/v1/vehicles/1/note",
+							"raw": "{{http}}://{{domain}}/api/v1/vehicles/{{vehicle_id}}/note",
 							"protocol": "{{http}}",
 							"host": [
 								"{{domain}}"
@@ -9702,7 +9980,7 @@
 								"api",
 								"v1",
 								"vehicles",
-								"1",
+								"{{vehicle_id}}",
 								"note"
 							]
 						}
@@ -9798,7 +10076,7 @@
 							}
 						},
 						"url": {
-							"raw": "{{http}}://{{domain}}/api/v1/vehicles/1/attachment",
+							"raw": "{{http}}://{{domain}}/api/v1/vehicles/{{vehicle_id}}/attachment",
 							"protocol": "{{http}}",
 							"host": [
 								"{{domain}}"
@@ -9807,7 +10085,7 @@
 								"api",
 								"v1",
 								"vehicles",
-								"1",
+								"{{vehicle_id}}",
 								"attachment"
 							]
 						}
@@ -9907,7 +10185,7 @@
 							}
 						},
 						"url": {
-							"raw": "{{http}}://{{domain}}/api/v1/vehicles/1/attachment/1",
+							"raw": "{{http}}://{{domain}}/api/v1/vehicles/{{vehicle_id}}/attachment/1",
 							"protocol": "{{http}}",
 							"host": [
 								"{{domain}}"
@@ -9916,7 +10194,7 @@
 								"api",
 								"v1",
 								"vehicles",
-								"1",
+								"{{vehicle_id}}",
 								"attachment",
 								"1"
 							]
@@ -10009,7 +10287,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{http}}://{{domain}}/api/v1/vehicles/1/attachment/1",
+							"raw": "{{http}}://{{domain}}/api/v1/vehicles/{{vehicle_id}}/attachment/1",
 							"protocol": "{{http}}",
 							"host": [
 								"{{domain}}"
@@ -10018,7 +10296,7 @@
 								"api",
 								"v1",
 								"vehicles",
-								"1",
+								"{{vehicle_id}}",
 								"attachment",
 								"1"
 							]
@@ -10111,7 +10389,7 @@
 							}
 						},
 						"url": {
-							"raw": "{{http}}://{{domain}}/api/v1/vehicles/1",
+							"raw": "{{http}}://{{domain}}/api/v1/vehicles/{{vehicle_id}}",
 							"protocol": "{{http}}",
 							"host": [
 								"{{domain}}"
@@ -10120,7 +10398,7 @@
 								"api",
 								"v1",
 								"vehicles",
-								"1"
+								"{{vehicle_id}}"
 							]
 						}
 					},
@@ -10209,7 +10487,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{http}}://{{domain}}/api/v1/vehicles/1",
+							"raw": "{{http}}://{{domain}}/api/v1/vehicles/{{vehicle_id}}",
 							"protocol": "{{http}}",
 							"host": [
 								"{{domain}}"
@@ -10218,7 +10496,7 @@
 								"api",
 								"v1",
 								"vehicles",
-								"1"
+								"{{vehicle_id}}"
 							]
 						}
 					},
@@ -14805,28 +15083,6 @@
 					""
 				]
 			}
-		}
-	],
-	"variable": [
-		{
-			"key": "http",
-			"value": ""
-		},
-		{
-			"key": "username",
-			"value": ""
-		},
-		{
-			"key": "password",
-			"value": ""
-		},
-		{
-			"key": "domain",
-			"value": ""
-		},
-		{
-			"key": "bearer",
-			"value": ""
 		}
 	]
 }
