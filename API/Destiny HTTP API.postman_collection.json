@@ -11534,7 +11534,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{http}}://{{domain}}/api/v1/monitoring/vehicle/1/primary",
+							"raw": "{{http}}://{{domain}}/api/v1/monitoring/vehicle/{{vehicle_id}}/primary",
 							"protocol": "{{http}}",
 							"host": [
 								"{{domain}}"
@@ -11544,7 +11544,7 @@
 								"v1",
 								"monitoring",
 								"vehicle",
-								"1",
+								"{{vehicle_id}}",
 								"primary"
 							]
 						}
@@ -11718,7 +11718,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{http}}://{{domain}}/api/v1/monitoring/unit/1",
+							"raw": "{{http}}://{{domain}}/api/v1/monitoring/unit/{{unit_id}}",
 							"protocol": "{{http}}",
 							"host": [
 								"{{domain}}"
@@ -11728,7 +11728,191 @@
 								"v1",
 								"monitoring",
 								"unit",
-								"1"
+								"{{unit_id}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200 OK",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{http}}://{{domain}}/api/v1/monitoring/unit/1",
+									"protocol": "{{http}}",
+									"host": [
+										"{{domain}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"monitoring",
+										"unit",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.15.8"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 26 Apr 2021 15:37:08 GMT"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "58"
+								},
+								{
+									"key": "X-RateLimit-Reset",
+									"value": "49"
+								},
+								{
+									"key": "Authorization",
+									"value": "token"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"uid\": \"5551234567890\",\n        \"unit_id\": 1,\n        \"unit_name\": null,\n        \"vehicle_id\": 1,\n        \"vehicle_reg_no\": \"ABC 123 GP\",\n        \"vehicle_fleet_no\": null,\n        \"vehicle_icon_name\": null,\n        \"vehicle_group_name\": null,\n        \"driver_id\": null,\n        \"token\": \"token\",\n        \"telemetry\": null\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Monitor Unit By IMEI",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{http}}://{{domain}}/api/v1/monitoring/unit/by-imei/{{imei}}",
+							"protocol": "{{http}}",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"monitoring",
+								"unit",
+								"by-imei",
+								"{{imei}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200 OK",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{http}}://{{domain}}/api/v1/monitoring/unit/1",
+									"protocol": "{{http}}",
+									"host": [
+										"{{domain}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"monitoring",
+										"unit",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.15.8"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 26 Apr 2021 15:37:08 GMT"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "58"
+								},
+								{
+									"key": "X-RateLimit-Reset",
+									"value": "49"
+								},
+								{
+									"key": "Authorization",
+									"value": "token"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"uid\": \"5551234567890\",\n        \"unit_id\": 1,\n        \"unit_name\": null,\n        \"vehicle_id\": 1,\n        \"vehicle_reg_no\": \"ABC 123 GP\",\n        \"vehicle_fleet_no\": null,\n        \"vehicle_icon_name\": null,\n        \"vehicle_group_name\": null,\n        \"driver_id\": null,\n        \"token\": \"token\",\n        \"telemetry\": null\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Monitor Unit By Serial No",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{http}}://{{domain}}/api/v1/monitoring/unit/by-serial-no/{{serial_no}}",
+							"protocol": "{{http}}",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"monitoring",
+								"unit",
+								"by-serial-no",
+								"{{serial_no}}"
 							]
 						}
 					},
