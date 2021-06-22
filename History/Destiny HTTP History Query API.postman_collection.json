@@ -703,12 +703,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://www.destiny.test/api/v1/history/status/units",
-							"protocol": "http",
+							"raw": "{{http}}://{{domain}}/api/v1/history/status/units",
+							"protocol": "{{http}}",
 							"host": [
-								"www",
-								"destiny",
-								"test"
+								"{{domain}}"
 							],
 							"path": [
 								"api",
