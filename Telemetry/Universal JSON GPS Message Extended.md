@@ -1,7 +1,5 @@
 # Universal JSON Message Extended Data Structure v1
 
-Please see the diagram for 
-
 After we receive data from our Gateways, we further process it and
 add additional information to every message. This then becomes
 the *Extended* data structure for GPS messages.
@@ -150,12 +148,15 @@ Below is an example of an extended GPS message:
       "id": 1,
       "client_id": 1,
       "reg_no": "ABC 123 GP",
-      "fleet_no": "A13"
+      "fleet_no": "A13",
+      "vin": "1HGBH41JXMN109186",
+      "engine_no": "52WVC10338"
     },
     "driver": {
       "id": 1,
       "tag_no": "1234567890",
-      "name": "John Doe"
+      "name": "John Doe",
+      "used_tag": true
     }
 }
 ```
@@ -206,7 +207,9 @@ Example 1 - Unit is Allocated to Vehicle:
     "id": 1,
     "client_id": 1,
     "reg_no": "ABC 123 GP",
-    "fleet_no": "A13"
+    "fleet_no": "A13",
+    "vin": "1HGBH41JXMN109186",
+    "engine_no": "52WVC10338"
   }
 }
 ```
@@ -225,43 +228,59 @@ If a driver is set as the default driver for a vehicle, or a driver
 used a tag as identification, then the driver field will include
 the relevant data.
 
-Example 1 - Default driver allocated but no tag used
+Example 1 - Default driver allocated to vehicle but without a tag no.
 
 ```json
 {
   "driver": {
     "id": 1,
     "tag_no": null,
-    "name": "John Doe"
+    "name": "John Doe",
+    "used_tag": false
   }
 }
 ```
 
-Example 2 - Driver used a tag
+Example 2 - Default driver allocated with tag no. but tag wasn't used
 
 ```json
 {
   "driver": {
     "id": 1,
     "tag_no": "1234567890",
-    "name": "John Doe"
+    "name": "John Doe",
+    "used_tag": false
   }
 }
 ```
 
-Example 3 - An unknown tag was used (no driver found for tag) 
+Example 3 - Driver used a tag
+
+```json
+{
+  "driver": {
+    "id": 1,
+    "tag_no": "1234567890",
+    "name": "John Doe",
+    "used_tag": true
+  }
+}
+```
+
+Example 4 - An unknown tag was used (no driver found for tag) 
 
 ```json
 {
   "driver": {
     "id": null,
     "tag_no": "1234567890",
-    "name": null
+    "name": null,
+    "used_tag": true
   }
 }
 ```
 
-Example 4 - No default driver and no tag used
+Example 5 - No default driver and no tag used
 
 ```json
 {
