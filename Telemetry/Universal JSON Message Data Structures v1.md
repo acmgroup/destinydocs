@@ -51,7 +51,7 @@ identification (e.g. IMEI) along with the message.
 
 ## Message Type: heartbeat
 
-Some units transmits a "heartbeat" packet at regular intervals
+Some units transmit a "heartbeat" packet at regular intervals
 to keep the TCP connection alive.
 
 ```json
@@ -334,7 +334,7 @@ software should not rely on individual sensors being found consistently
 or at all in the array of sensors.
 
 Sensors may have a third element in the array which identifies an error
-code received from the sensor. It coult therefore be assumed that if
+code received from the sensor. It could therefore be assumed that if
 a third element is provided that the sensor may be faulty and have
 submitted an error code.
 
