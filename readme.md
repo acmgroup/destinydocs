@@ -117,4 +117,5 @@ download the [Postman collection](SSE/Destiny%20SSE%20Guide.postman_collection.z
 - [Standard Event Codes.csv](Telemetry/Standard%20Event%20Codes.csv)
 - [Standard Event Codes.xlsx](Telemetry/Standard%20Event%20Codes.xlsx)
 - [Standard Event Codes.ods](Telemetry/Standard%20Event%20Codes.ods)
+- [Standard Event Code Icons](Telemetry/Event%20Code%20Icons.md)
 - [Unit Sensor Javascript Example](Telemetry/unitSensors.js)

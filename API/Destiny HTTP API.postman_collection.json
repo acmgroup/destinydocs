@@ -448,6 +448,13 @@
 								"v1",
 								"auth",
 								"login"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": null,
+									"disabled": true
+								}
 							]
 						},
 						"description": "Performs a user login request. If successful an HTTP code `200 OK` will be returned together with a new authorization token. Look at the `Authorization` header in the response, it will contain something like `bearer eyJ0eXAiOiJKV1...`. \n\n> **Important:** This token must be cached by you and supplied with each subsequent requests to the API through the `Authorization` HTTP header.\n\n> **Important:** The token is refreshed every few minutes by the API server. When any request is made by you and you receive the `Authorization` header, update your cache with the new token and then send the new token with each subsequent request. The old token does not immediately expire and is valid for 7 days."
@@ -2156,7 +2163,7 @@
 					]
 				},
 				{
-					"name": "Get User Profiles",
+					"name": "Get User Profile",
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -5124,6 +5131,166 @@
 							"body": "{\n    \"data\": {\n        \"id\": 1,\n        \"partner_id\": 1,\n        \"partner\": {\n            \"id\": 1,\n            \"name\": \"Partner Name\"\n        },\n        \"agency_id\": null,\n        \"agency\": null,\n        \"client_id\": 1,\n        \"client\": {\n            \"id\": 1,\n            \"name\": \"Client Name\"\n        },\n        \"imei\": \"5551234567890\",\n        \"serial_no\": \"65G4423\",\n        \"stock_no\": null,\n        \"name\": null,\n        \"unit_type_code\": \"acmtech\",\n        \"unit_type_name\": \"ACMTech\",\n        \"unit_model_code\": \"acmtrack_1\",\n        \"unit_model_name\": \"ACMTrack v1\",\n        \"unit_status_code\": \"factory\",\n        \"unit_status_name\": \"Factory\",\n        \"unit_group_id\": 1,\n        \"unit_group\": {\n            \"id\": 1,\n            \"name\": \"Unit Group\"\n        },\n        \"ignition\": \"input_01\",\n        \"fixed_latitude\": null,\n        \"fixed_longitude\": null,\n        \"vehicle_id\": 1,\n        \"assigned_as\": \"primary\",\n        \"vehicle\": {\n            \"id\": 1,\n            \"reg_no\": \"ABC 123 GP\",\n            \"fleet_no\": \"5551234\",\n            \"assigned_as\": \"primary\"\n        },\n        \"timezone\": \"UTC\",\n        \"op_timezone\": \"auto\",\n        \"user_full_name\": \"User Name\",\n        \"user_id\": 6,\n        \"created_at\": \"2021-04-22T14:18:11+02:00\",\n        \"updated_at\": \"2021-04-23T08:58:12+02:00\",\n        \"flags\": {\n            \"ign_connected\": true,\n            \"allow_geo_lookups\": true,\n            \"auto_correct_direction\": true,\n            \"perform_post_processing\": true,\n            \"post_process_trip_stops\": true\n        },\n        \"system\": {\n            \"idling\": {\n                \"enabled\": true,\n                \"event_idle_stop\": \"ENG_IDLE:STOP\",\n                \"speed_less_than\": \"1 kmh\",\n                \"event_idle_start\": \"ENG_IDLE:START\"\n            },\n            \"trip_stop\": {\n                \"time\": \"5 minutes\",\n                \"event\": \"TRIP_STOP\",\n                \"enabled\": true\n            },\n            \"trip_start\": {\n                \"event\": \"TRIP_START\",\n                \"speed\": \"10 kmh\",\n                \"enabled\": true,\n                \"distance\": \"50 meters\"\n            },\n            \"gps_spiking\": {\n                \"event\": \"GPS_SPIKE\",\n                \"speed\": \"250 kmh\",\n                \"enabled\": true\n            },\n            \"gps_drifting\": {\n                \"event\": \"GPS_DRIFTING\",\n                \"speed\": \"10 kmh\",\n                \"radius\": \"50 meters\",\n                \"enabled\": true\n            },\n            \"comms_failure\": {\n                \"after\": \"60 seconds\",\n                \"event\": \"NO_COMMS\",\n                \"enabled\": true,\n                \"report_every\": \"24 hours\",\n                \"restored_event\": \"COMMS_OK\"\n            },\n            \"faulty_ignition\": {\n                \"event\": \"IGN_FAULTY\",\n                \"enabled\": true\n            }\n        },\n        \"sensors\": [],\n        \"standard_inputs\": [],\n        \"auxiliary_inputs\": [],\n        \"event_conversions\": [],\n        \"notes\": [\n            {\n                \"id\": 23,\n                \"user_id\": 6,\n                \"user_full_name\": \"User Name\",\n                \"created_at\": \"2021-04-22T15:51:01+02:00\",\n                \"note\": \"This is an additional note.\"\n            }\n        ],\n        \"attachments\": [],\n        \"photos\": [],\n        \"partners\": [\n            {\n                \"id\": 1,\n                \"name\": \"Partner Name\"\n            }\n        ],\n        \"agencies\": [\n            {\n                \"id\": 1,\n                \"name\": \"Agency Name\"\n            }\n        ],\n        \"clients\": [\n            {\n                \"id\": 2,\n                \"name\": \"Agency Client Name 2\"\n            },\n            {\n                \"id\": 1,\n                \"name\": \"Client Name\"\n            }\n        ],\n        \"unit_types\": [\n            {\n                \"code\": \"acmtech\",\n                \"name\": \"ACMTech\"\n            },\n            {\n                \"code\": \"calamp\",\n                \"name\": \"Calamp\"\n            },\n            {\n                \"code\": \"gosafe\",\n                \"name\": \"Gosafe\"\n            },\n            {\n                \"code\": \"queclink\",\n                \"name\": \"Queclink\"\n            },\n            {\n                \"code\": \"teltonika\",\n                \"name\": \"Teltonika\"\n            },\n            {\n                \"code\": \"gt06\",\n                \"name\": \"GT06\"\n            },\n            {\n                \"code\": \"wist\",\n                \"name\": \"Wist\"\n            },\n            {\n                \"code\": \"cobd\",\n                \"name\": \"CObd\"\n            },\n            {\n                \"code\": \"sigfox\",\n                \"name\": \"SigFox\"\n            }\n        ],\n        \"unit_models\": {\n            \"acmtech\": [\n                {\n                    \"code\": \"acmtrack_1\",\n                    \"name\": \"ACMTrack v1\"\n                },\n                {\n                    \"code\": \"acmtrack_2\",\n                    \"name\": \"ACMTrack v2\"\n                }\n            ],\n            \"calamp\": [\n                {\n                    \"code\": \"atu_620\",\n                    \"name\": \"ATU-620\"\n                },\n                {\n                    \"code\": \"ttu_700\",\n                    \"name\": \"TTU-720\"\n                },\n                {\n                    \"code\": \"ttu_1200\",\n                    \"name\": \"TTU-1200\"\n                },\n                {\n                    \"code\": \"ttu_2830\",\n                    \"name\": \"TTU-2830\"\n                },\n                {\n                    \"code\": \"ttu_2840\",\n                    \"name\": \"TTU-2840 XTREME\"\n                },\n                {\n                    \"code\": \"lmu_200\",\n                    \"name\": \"LMU-200\"\n                },\n                {\n                    \"code\": \"lmu_300\",\n                    \"name\": \"LMU-300\"\n                },\n                {\n                    \"code\": \"lmu_303x\",\n                    \"name\": \"LMU-303-X\"\n                },\n                {\n                    \"code\": \"lmu_400\",\n                    \"name\": \"LMU-400\"\n                },\n                {\n                    \"code\": \"lmu_600\",\n                    \"name\": \"LMU-600\"\n                },\n                {\n                    \"code\": \"lmu_700\",\n                    \"name\": \"LMU-700\"\n                },\n                {\n                    \"code\": \"lmu_800\",\n                    \"name\": \"LMU-800\"\n                },\n                {\n                    \"code\": \"lmu_900\",\n                    \"name\": \"LMU-900\"\n                },\n                {\n                    \"code\": \"lmu_1100\",\n                    \"name\": \"LMU-1100\"\n                },\n                {\n                    \"code\": \"lmu_1200\",\n                    \"name\": \"LMU-1200\"\n                },\n                {\n                    \"code\": \"lmu_2010\",\n                    \"name\": \"LMU-2010\"\n                },\n                {\n                    \"code\": \"lmu_2030\",\n                    \"name\": \"LMU-2030\"\n                },\n                {\n                    \"code\": \"lmu_2100\",\n                    \"name\": \"LMU-2100\"\n                },\n                {\n                    \"code\": \"lmu_2600\",\n                    \"name\": \"LMU-2600\"\n                },\n                {\n                    \"code\": \"lmu_3200\",\n                    \"name\": \"LMU-3200\"\n                },\n                {\n                    \"code\": \"lmu_4200\",\n                    \"name\": \"LMU-4200\"\n                },\n                {\n                    \"code\": \"lmu_4520\",\n                    \"name\": \"LMU-4250\"\n                },\n                {\n                    \"code\": \"lmu_5530\",\n                    \"name\": \"LMU-5530\"\n                },\n                {\n                    \"code\": \"mdt_7p\",\n                    \"name\": \"MDT-7P\"\n                }\n            ],\n            \"gosafe\": [\n                {\n                    \"code\": \"g1s\",\n                    \"name\": \"G1S\"\n                },\n                {\n                    \"code\": \"g2p\",\n                    \"name\": \"G2P\"\n                },\n                {\n                    \"code\": \"g3a\",\n                    \"name\": \"G3A\"\n                },\n                {\n                    \"code\": \"g3c\",\n                    \"name\": \"G3C\"\n                },\n                {\n                    \"code\": \"g3s\",\n                    \"name\": \"G3S\"\n                },\n                {\n                    \"code\": \"g6s\",\n                    \"name\": \"G6S\"\n                },\n                {\n                    \"code\": \"g7s\",\n                    \"name\": \"G7S\"\n                },\n                {\n                    \"code\": \"g79w\",\n                    \"name\": \"G79W\"\n                }\n            ],\n            \"queclink\": [\n                {\n                    \"code\": \"gl200\",\n                    \"name\": \"GL200\"\n                },\n                {\n                    \"code\": \"gl300\",\n                    \"name\": \"GL300\"\n                },\n                {\n                    \"code\": \"gl300vc\",\n                    \"name\": \"GL300VC\"\n                },\n                {\n                    \"code\": \"gl300w\",\n                    \"name\": \"GL300W\"\n                },\n                {\n                    \"code\": \"gl500\",\n                    \"name\": \"GL500\"\n                },\n                {\n                    \"code\": \"gl505\",\n                    \"name\": \"GL505\"\n                },\n                {\n                    \"code\": \"gl520\",\n                    \"name\": \"GL520\"\n                },\n                {\n                    \"code\": \"gl3000w\",\n                    \"name\": \"GL3000W\"\n                }\n            ],\n            \"teltonika\": [\n                {\n                    \"code\": \"fm36m1\",\n                    \"name\": \"FM36M1\"\n                },\n                {\n                    \"code\": \"fm3001\",\n                    \"name\": \"FM3001\"\n                },\n                {\n                    \"code\": \"fm3612\",\n                    \"name\": \"FM3612\"\n                },\n                {\n                    \"code\": \"fm6300\",\n                    \"name\": \"FM6300\"\n                },\n                {\n                    \"code\": \"fmb001\",\n                    \"name\": \"FMB001\"\n                },\n                {\n                    \"code\": \"fmb002\",\n                    \"name\": \"FMB002\"\n                },\n                {\n                    \"code\": \"fmb003\",\n                    \"name\": \"FMB003\"\n                },\n                {\n                    \"code\": \"fmb010\",\n                    \"name\": \"FMB010\"\n                },\n                {\n                    \"code\": \"fmb020\",\n                    \"name\": \"FMB020\"\n                },\n                {\n                    \"code\": \"fmb110\",\n                    \"name\": \"FMB110\"\n                },\n                {\n                    \"code\": \"fmb120\",\n                    \"name\": \"FMB120\"\n                },\n                {\n                    \"code\": \"fmb122\",\n                    \"name\": \"FMB122\"\n                },\n                {\n                    \"code\": \"fmb125\",\n                    \"name\": \"FMB125\"\n                },\n                {\n                    \"code\": \"fmb130\",\n                    \"name\": \"FMB130\"\n                },\n                {\n                    \"code\": \"fmb140\",\n                    \"name\": \"FMB140\"\n                },\n                {\n                    \"code\": \"fmb202\",\n                    \"name\": \"FMB202\"\n                },\n                {\n                    \"code\": \"fmb204\",\n                    \"name\": \"FMB204\"\n                },\n                {\n                    \"code\": \"fmb208\",\n                    \"name\": \"FMB208\"\n                },\n                {\n                    \"code\": \"fmb630\",\n                    \"name\": \"FMB630\"\n                },\n                {\n                    \"code\": \"fmb640\",\n                    \"name\": \"FMB640\"\n                },\n                {\n                    \"code\": \"fmb900\",\n                    \"name\": \"FMB900\"\n                },\n                {\n                    \"code\": \"fmb920\",\n                    \"name\": \"FMB920\"\n                },\n                {\n                    \"code\": \"fmb964\",\n                    \"name\": \"FMB964\"\n                },\n                {\n                    \"code\": \"fmc001\",\n                    \"name\": \"FMC001\"\n                },\n                {\n                    \"code\": \"fmc125\",\n                    \"name\": \"FMC125\"\n                },\n                {\n                    \"code\": \"fmc130\",\n                    \"name\": \"FMC130\"\n                },\n                {\n                    \"code\": \"fmc640\",\n                    \"name\": \"FMC640\"\n                },\n                {\n                    \"code\": \"fmm001\",\n                    \"name\": \"FMM001\"\n                },\n                {\n                    \"code\": \"fmm125\",\n                    \"name\": \"FMM125\"\n                },\n                {\n                    \"code\": \"fmm130\",\n                    \"name\": \"FMM130\"\n                },\n                {\n                    \"code\": \"fmm640\",\n                    \"name\": \"FMM640\"\n                },\n                {\n                    \"code\": \"fmu125\",\n                    \"name\": \"FMU125\"\n                },\n                {\n                    \"code\": \"fmu126\",\n                    \"name\": \"FMU126\"\n                },\n                {\n                    \"code\": \"fmu130\",\n                    \"name\": \"FMU130\"\n                },\n                {\n                    \"code\": \"fmt100\",\n                    \"name\": \"FMT100\"\n                },\n                {\n                    \"code\": \"msp500\",\n                    \"name\": \"MSP500\"\n                },\n                {\n                    \"code\": \"mtb100\",\n                    \"name\": \"MTB100\"\n                },\n                {\n                    \"code\": \"tmt250\",\n                    \"name\": \"TMT250\"\n                }\n            ],\n            \"gt06\": [\n                {\n                    \"code\": \"gt06\",\n                    \"name\": \"GT06\"\n                }\n            ],\n            \"wist\": [\n                {\n                    \"code\": \"wist\",\n                    \"name\": \"Wist\"\n                }\n            ],\n            \"cobd\": [\n                {\n                    \"code\": \"cobd\",\n                    \"name\": \"CObd\"\n                }\n            ],\n            \"sigfox\": [\n                {\n                    \"code\": \"foxy\",\n                    \"name\": \"Foxy\"\n                }\n            ]\n        },\n        \"unit_statuses\": [\n            {\n                \"code\": \"factory\",\n                \"name\": \"Factory\"\n            },\n            {\n                \"code\": \"pre_stock_pending\",\n                \"name\": \"Pre-stock Pending\"\n            },\n            {\n                \"code\": \"post_stock_pending\",\n                \"name\": \"Post-stock Pending\"\n            },\n            {\n                \"code\": \"ready\",\n                \"name\": \"Ready\"\n            },\n            {\n                \"code\": \"pre_active\",\n                \"name\": \"Pre-Active\"\n            },\n            {\n                \"code\": \"active\",\n                \"name\": \"Active\"\n            },\n            {\n                \"code\": \"maintenance\",\n                \"name\": \"Maintenance\"\n            }\n        ],\n        \"config_templates\": [],\n        \"sensor_data\": [],\n        \"timezones\": {\n            \"Africa/Johannesburg\": \"Africa/Johannesburg\",\n            \"UTC\": \"UTC (GMT+00)\"\n        },\n        \"units_of_measurement\": [\n            {\n                \"unit\": \"celsius\",\n                \"symbol\": \"°C\",\n                \"description\": \"°C [Celsius]\"\n            },\n            {\n                \"unit\": \"fahrenheit\",\n                \"symbol\": \"°F\",\n                \"description\": \"°F [Fahrenheit]\"\n            },\n            {\n                \"unit\": \"litre\",\n                \"symbol\": \"l\",\n                \"description\": \"ℓ [Litre]\"\n            },\n            {\n                \"unit\": \"gallon_us\",\n                \"symbol\": \"gal (US)\",\n                \"description\": \"Gallons [US]\"\n            },\n            {\n                \"unit\": \"gallon_uk\",\n                \"symbol\": \"gal (UK)\",\n                \"description\": \"Gallons [UK]]\"\n            },\n            {\n                \"unit\": \"percent\",\n                \"symbol\": \"%\",\n                \"description\": \"% [Percentage]\"\n            },\n            {\n                \"unit\": \"psi\",\n                \"symbol\": \"psi\",\n                \"description\": \"Psi\"\n            },\n            {\n                \"unit\": \"bar\",\n                \"symbol\": \"bar\",\n                \"description\": \"Bar\"\n            },\n            {\n                \"unit\": \"pascal\",\n                \"symbol\": \"Pa\",\n                \"description\": \"Pascal\"\n            },\n            {\n                \"unit\": \"rpm\",\n                \"symbol\": \"RPM\",\n                \"description\": \"RPM\"\n            },\n            {\n                \"unit\": \"count\",\n                \"symbol\": \"#\",\n                \"description\": \"Count\"\n            }\n        ]\n    }\n}"
 						}
 					]
+				},
+				{
+					"name": "Get Unit Comms Status (Detailed)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "text/csv",
+								"type": "default",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{http}}://{{domain}}/api/v1/units/status/detailed",
+							"protocol": "{{http}}",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"units",
+								"status",
+								"detailed"
+							]
+						},
+						"description": "Returns the current status of all accessable units."
+					},
+					"response": []
+				},
+				{
+					"name": "Get Unit Comms Status Summary (Grouped by Client)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "text/csv",
+								"type": "default",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{http}}://{{domain}}/api/v1/units/status/summary/clients",
+							"protocol": "{{http}}",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"units",
+								"status",
+								"summary",
+								"clients"
+							]
+						},
+						"description": "Returns the current status of all accessable units."
+					},
+					"response": []
+				},
+				{
+					"name": "Get Unit Comms Status (By Client)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{http}}://{{domain}}/api/v1/units/comms-status/summary/by-clients/1,2,3",
+							"protocol": "{{http}}",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"units",
+								"comms-status",
+								"summary",
+								"by-clients",
+								"1,2,3"
+							]
+						},
+						"description": "Requests a summary of unit communication status for a specific clients. The clients id's can be provided as comma separated values. The returned data contains the total number of units active, inactive, offline or that have never communicated to the server. The totals are updated every 10 minutes."
+					},
+					"response": []
+				},
+				{
+					"name": "Get Unit Comms Status (By Agency)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{http}}://{{domain}}/api/v1/units/comms-status/summary/by-agencies/1,2,3",
+							"protocol": "{{http}}",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"units",
+								"comms-status",
+								"summary",
+								"by-agencies",
+								"1,2,3"
+							]
+						},
+						"description": "Requests a summary of unit communication status for a specific agencies. The agency id's can be provided as comma separated values. The returned data contains the total number of units active, inactive, offline or that have never communicated to the server. The totals are updated every 10 minutes."
+					},
+					"response": []
+				},
+				{
+					"name": "Get Unit Comms Status (By Partner)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{http}}://{{domain}}/api/v1/units/comms-status/summary/by-partners/1,2,3",
+							"protocol": "{{http}}",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"units",
+								"comms-status",
+								"summary",
+								"by-partners",
+								"1,2,3"
+							]
+						},
+						"description": "Requests a summary of unit communication status for a specific partners. The partner id's can be provided as comma separated values. The returned data contains the total number of units active, inactive, offline or that have never communicated to the server. The totals are updated every 10 minutes."
+					},
+					"response": []
+				},
+				{
+					"name": "Get Unit Comms Status Totals",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{http}}://{{domain}}/api/v1/units/comms-status/summary/totals",
+							"protocol": "{{http}}",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"units",
+								"comms-status",
+								"summary",
+								"totals"
+							]
+						},
+						"description": "Requests a summary of unit communication status for a specific partners. The partner id's can be provided as comma separated values. The returned data contains the total number of units active, inactive, offline or that have never communicated to the server. The totals are updated every 10 minutes."
+					},
+					"response": []
 				},
 				{
 					"name": "Update Units Basic",
@@ -8670,11 +8837,58 @@
 			"item": [
 				{
 					"name": "Find Vehicles",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let template = ",
+									"`",
+									"<style type=\"text/css\">",
+									"        .tftable {font-size:12px;color:#333333;width:100%;border-width: 1px;border-color: #87ceeb;border-collapse: collapse;}",
+									"        .tftable th {font-size:12px;background-color:#87ceeb;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;text-align:left;}",
+									"        .tftable tr {background-color:#ffffff;}",
+									"        .tftable td {font-size:12px;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;}",
+									"        .tftable tr:hover {background-color:#e0ffff;}",
+									"    </style>",
+									"    ",
+									"    <table class=\"tftable\" border=\"1\">",
+									"        <tr>",
+									"            <th>Id</th>",
+									"            <th>Registration No.</th>",
+									"            <th>Assignment</th>",
+									"        </tr>",
+									"        ",
+									"        {{#each response.data}}",
+									"            <tr id=row_{{@key}} onClick=\"handleClick(this.id)\">",
+									"                <td id={{@key}}>{{id}}</td>",
+									"                <td>",
+									"                    {{reg_no}}<br>",
+									"                    Fleet No: {{fleet_no}}",
+									"                </td>",
+									"                <td>",
+									"                    Partner: {{partner.name}}<br>",
+									"                    Agency: {{agency.name}}<br>",
+									"                    Client: {{client.name}}<br>",
+									"                </td>",
+									"            </tr>",
+									"        {{/each}}",
+									"    </table>",
+									"`",
+									"",
+									"pm.visualizer.set(template, {",
+									"    response: pm.response.json()",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{http}}://{{domain}}/api/v1/vehicles",
+							"raw": "{{http}}://{{domain}}/api/v1/vehicles?_query=HX&order_by=id&limit=3",
 							"protocol": "{{http}}",
 							"host": [
 								"{{domain}}"
@@ -8683,6 +8897,20 @@
 								"api",
 								"v1",
 								"vehicles"
+							],
+							"query": [
+								{
+									"key": "_query",
+									"value": "HX"
+								},
+								{
+									"key": "order_by",
+									"value": "id"
+								},
+								{
+									"key": "limit",
+									"value": "3"
+								}
 							]
 						}
 					},
@@ -13640,99 +13868,6 @@
 			"name": "Drivers",
 			"item": [
 				{
-					"name": "Drivers Listing By Client",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{http}}://{{domain}}/api/v1/drivers/listing/by-client/1",
-							"protocol": "{{http}}",
-							"host": [
-								"{{domain}}"
-							],
-							"path": [
-								"api",
-								"v1",
-								"drivers",
-								"listing",
-								"by-client",
-								"1"
-							]
-						}
-					},
-					"response": [
-						{
-							"name": "200 OK",
-							"originalRequest": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "{{http}}://{{domain}}/api/v1/drivers/listing/by-client/1",
-									"protocol": "{{http}}",
-									"host": [
-										"{{domain}}"
-									],
-									"path": [
-										"api",
-										"v1",
-										"drivers",
-										"listing",
-										"by-client",
-										"1"
-									]
-								}
-							},
-							"status": "OK",
-							"code": 200,
-							"_postman_previewlanguage": "json",
-							"header": [
-								{
-									"key": "Server",
-									"value": "nginx/1.15.8"
-								},
-								{
-									"key": "Content-Type",
-									"value": "application/json"
-								},
-								{
-									"key": "Transfer-Encoding",
-									"value": "chunked"
-								},
-								{
-									"key": "Connection",
-									"value": "keep-alive"
-								},
-								{
-									"key": "Cache-Control",
-									"value": "no-cache, private"
-								},
-								{
-									"key": "Date",
-									"value": "Wed, 28 Apr 2021 10:39:23 GMT"
-								},
-								{
-									"key": "X-RateLimit-Limit",
-									"value": "60"
-								},
-								{
-									"key": "X-RateLimit-Remaining",
-									"value": "59"
-								},
-								{
-									"key": "X-RateLimit-Reset",
-									"value": "60"
-								},
-								{
-									"key": "Authorization",
-									"value": "token"
-								}
-							],
-							"cookie": [],
-							"body": "{\n    \"data\": [\n        {\n            \"id\": 1,\n            \"name\": \"Driver\"\n        }\n    ]\n}"
-						}
-					]
-				},
-				{
 					"name": "Drivers Listing",
 					"request": {
 						"method": "GET",
@@ -13814,6 +13949,87 @@
 								{
 									"key": "Authorization",
 									"value": "token"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": [\n        {\n            \"id\": 1,\n            \"name\": \"Driver\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Drivers Listing By Client",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{http}}://{{domain}}/api/v1/drivers/listing/by-client/1",
+							"protocol": "{{http}}",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"drivers",
+								"listing",
+								"by-client",
+								"1"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200 OK",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{http}}://{{domain}}/api/v1/drivers/listing/by-client/1",
+									"protocol": "{{http}}",
+									"host": [
+										"{{domain}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"drivers",
+										"listing",
+										"by-client",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.15.8"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 30 Dec 2021 13:55:56 GMT"
+								},
+								{
+									"key": "Authorization",
+									"value": "bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJ3d3cuZGVzdGlueS50ZXN0IiwianRpIjoiMzg0ZWEyOGU2M2RmZTNiZWNlYWUxMTc1NjI0N2RhZDciLCJpYXQiOjE2NDA4NzI1NTYsIm5iZiI6MTY0MDg3MjU1NiwiZXhwIjoxNjQwODczMTU2LCJzdWIiOiI0Iiwib2F0IjoxNjQwODY0NjQxfQ.T1Wd3zLbFgD-x-TvV8VWWD6P0KG8xLL5Lp_3kF1zT4Q"
 								}
 							],
 							"cookie": [],
@@ -13906,7 +14122,7 @@
 								}
 							],
 							"cookie": [],
-							"body": "{\n    \"data\": {\n        \"partners\": [\n            {\n                \"id\": 3,\n                \"name\": \"Next Partner Name\"\n            },\n            {\n                \"id\": 1,\n                \"name\": \"Partner Name\"\n            }\n        ]\n    }\n}"
+							"body": "{\n    \"data\": {\n        \"partners\": [\n            {\n                \"id\": 1,\n                \"name\": \"Partner Name\"\n            },\n            {\n                \"id\": 2,\n                \"name\": \"Next Partner Name\"\n            }\n        ]\n    }\n}"
 						}
 					]
 				},
@@ -15233,6 +15449,929 @@
 							],
 							"cookie": [],
 							"body": "{\n    \"notices\": [\n        \"Created Driver: Driver\"\n    ],\n    \"data\": {\n        \"id\": 2,\n        \"name\": \"Driver\",\n        \"contact_no\": null,\n        \"alt_contact_no\": null,\n        \"national_id\": null,\n        \"tag_no\": null,\n        \"partner\": {\n            \"id\": 1,\n            \"name\": \"Partner Name\"\n        },\n        \"agency\": null,\n        \"client\": {\n            \"id\": 1,\n            \"name\": \"Client Name\"\n        },\n        \"drv_license_prev_date\": null,\n        \"drv_license_exp_date\": null,\n        \"pdp_license_prev_date\": null,\n        \"pdp_license_exp_date\": null,\n        \"spc_license_prev_date\": null,\n        \"spc_license_exp_date\": null,\n        \"created_at\": \"2021-04-28T13:12:30+02:00\",\n        \"updated_at\": null,\n        \"notes\": [],\n        \"attachments\": [],\n        \"photos\": []\n    }\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Event Profiles",
+			"item": [
+				{
+					"name": "Add Event Profile",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"partner_id\": null,\n    \"agency_id\": null,\n    \"client_id\": null,\n    \"channel\": \"client\",\n    \"name\": \"TESTING\",\n    \"enabled\": true,\n    \"event_profile_events\": [\n        {\n            \"event_code\": \"Test\",\n            \"replacement_code\": null,\n            \"enabled\": true,\n            \"forwarding\": [\n                {\n                    \"type\": \"sms\",\n                    \"enabled\": true,\n                    \"destination\": [\"+275551234\", \"+275556655\"],\n                    \"limits\": { \"hourly\": 10, \"daily\": 100 },\n                    \"hourly_reached_warning\": true,\n                    \"daily_reached_warning\": true,\n                    \"template\": \"Hi Peter, {{code}} was received from {{source}}, please respond!\"\n                }\n            ],\n            \"message\": \"Test message for event profile events\",\n            \"importance\": \"low\",\n            \"alert_level\": 5,\n            \"color\": \"#FF0000\",\n            \"icon_url\": null,\n            \"state\": null,\n            \"ticket\": false,\n            \"data_fields\": [\n                {\n                    \"key\": \"imei\",\n                    \"label\": \"IMEI\",\n                    \"value\": \"350123456789\",\n                    \"url\": \"http://www.somesite.net/#!/units/4564\"\n                }\n            ],\n            \"pools\": [\"TESTPOOL\"]\n        }\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{http}}://{{domain}}/api/v1/event-profiles",
+							"protocol": "{{http}}",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"event-profiles"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Event Profile",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{http}}://{{domain}}/api/v1/event-profiles/1",
+							"protocol": "{{http}}",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"event-profiles",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Event Profile",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"partner_id\": 1,\n    \"agency_id\": null,\n    \"client_id\": null,\n    \"channel\": \"monitored\",\n    \"name\": \"Event Profile\",\n    \"enabled\": true\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{http}}://{{domain}}/api/v1/event-profiles/1",
+							"protocol": "{{http}}",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"event-profiles",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Find Event Profile",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{http}}://{{domain}}/api/v1/event-profiles",
+							"protocol": "{{http}}",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"event-profiles"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get A Event Profile",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{http}}://{{domain}}/api/v1/event-profiles/10",
+							"protocol": "{{http}}",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"event-profiles",
+								"10"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Event Profiles Listing",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{http}}://{{domain}}/api/v1/event-profiles/listing",
+							"protocol": "{{http}}",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"event-profiles",
+								"listing"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Event Profile Event",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"event_code\": \"Duplicate\",\n    \"replacement_code\": null,\n    \"enabled\": true,\n    \"forwarding\": [\n        {\n            \"type\": \"sms\",\n            \"enabled\": true,\n            \"destination\": [\"+275551234\", \"+275556655\"],\n            \"limits\": { \"hourly\": 10, \"daily\": 100 },\n            \"hourly_reached_warning\": true,\n            \"daily_reached_warning\": true,\n            \"template\": \"Hi Peter, {{code}} was received from {{source}}, please respond!\"\n        }\n    ],\n    \"message\": \"Test message for event profile events\",\n    \"importance\": \"low\",\n    \"alert_level\": 5,\n    \"color\": \"#FF0000\",\n    \"icon_url\": null,\n    \"state\": null,\n    \"ticket\": false,\n    \"data_fields\": [\n        {\n            \"key\": \"imei\",\n            \"label\": \"IMEI\",\n            \"value\": \"350123456789\",\n            \"url\": \"http://www.somesite.net/#!/units/4564\"\n        }\n    ],\n    \"pools\": [\"TESTPOOL\"]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{http}}://{{domain}}/api/v1/event-profiles/5/events",
+							"protocol": "{{http}}",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"event-profiles",
+								"5",
+								"events"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Updated Event Profile Event",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"event_code\": \"Duplicate\",\n    \"replacement_code\": null,\n    \"enabled\": true,\n    \"forwarding\": [\n        {\n            \"type\": \"sms\",\n            \"enabled\": true,\n            \"destination\": [\"+275551234\", \"+275556655\"],\n            \"limits\": { \"hourly\": 10, \"daily\": 100 },\n            \"hourly_reached_warning\": true,\n            \"daily_reached_warning\": true,\n            \"template\": \"Hi Peter, {{code}} was received from {{source}}, please respond!\"\n        }\n    ],\n    \"message\": \"Test message for event profile events\",\n    \"importance\": \"low\",\n    \"alert_level\": 5,\n    \"color\": \"#FF0000\",\n    \"icon_url\": null,\n    \"state\": null,\n    \"ticket\": false,\n    \"data_fields\": [\n        {\n            \"key\": \"imei\",\n            \"label\": \"IMEI\",\n            \"value\": \"350123456789\",\n            \"url\": \"http://www.somesite.net/#!/units/4564\"\n        }\n    ],\n    \"pools\": [\"TESTPOOL\"]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{http}}://{{domain}}/api/v1/event-profiles/6/events/10",
+							"protocol": "{{http}}",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"event-profiles",
+								"6",
+								"events",
+								"10"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Event Profile Event",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{http}}://{{domain}}/api/v1/event-profiles/1/events/1",
+							"protocol": "{{http}}",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"event-profiles",
+								"1",
+								"events",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Event Profile Events Listing",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{http}}://{{domain}}/api/v1/event-profiles/11/events/listing",
+							"protocol": "{{http}}",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"event-profiles",
+								"11",
+								"events",
+								"listing"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Gateway Routes",
+			"item": [
+				{
+					"name": "Get Gateway Routes Listing",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{http}}://{{domain}}/api/v1/gateways/routes/listing",
+							"protocol": "{{http}}",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"gateways",
+								"routes",
+								"listing"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200 OK",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{http}}://{{domain}}/api/v1/gateways/routes/listing",
+									"protocol": "{{http}}",
+									"host": [
+										"{{domain}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"gateways",
+										"routes",
+										"listing"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.15.8"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 30 Dec 2021 11:48:37 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": [\n        {\n            \"id\": 1,\n            \"name\": \"Sample Gateway Route\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Get Gateway Route Create Form Data",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{http}}://{{domain}}/api/v1/gateways/routes/create",
+							"protocol": "{{http}}",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"gateways",
+								"routes",
+								"create"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200 OK",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{http}}://{{domain}}/api/v1/gateways/routes/create",
+									"protocol": "{{http}}",
+									"host": [
+										"{{domain}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"gateways",
+										"routes",
+										"create"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.15.8"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 30 Dec 2021 12:01:01 GMT"
+								},
+								{
+									"key": "Authorization",
+									"value": "bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJ3d3cuZGVzdGlueS50ZXN0IiwianRpIjoiYTg2YmY4MzBkOTkwNjUzZTExMzBiM2UyMTIyMzI4YWYiLCJpYXQiOjE2NDA4NjU2NjEsIm5iZiI6MTY0MDg2NTY2MSwiZXhwIjoxNjQwODY2MjYxLCJzdWIiOiI0Iiwib2F0IjoxNjQwODY0NjQxfQ.CaMYdjXtriM58LdLrJ2JaSImQnY0qrI3gRSrokXj_ZU"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"partners\": [\n            {\n                \"id\": 1,\n                \"name\": \"Partner Name\"\n            },\n            {\n                \"id\": 2,\n                \"name\": \"Next Partner Name\"\n            }\n        ]\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Get Gateway Route Edit Form Data",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{http}}://{{domain}}/api/v1/gateways/routes/1/edit",
+							"protocol": "{{http}}",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"gateways",
+								"routes",
+								"1",
+								"edit"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200 OK",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{http}}://{{domain}}/api/v1/gateways/routes/1/edit",
+									"protocol": "{{http}}",
+									"host": [
+										"{{domain}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"gateways",
+										"routes",
+										"1",
+										"edit"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.15.8"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 30 Dec 2021 12:05:40 GMT"
+								},
+								{
+									"key": "Authorization",
+									"value": "bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJ3d3cuZGVzdGlueS50ZXN0IiwianRpIjoiNjk3MTlkMjM3MjM4ZmQxZGQ5ZDdkYjFmMjlmOGNlMzIiLCJpYXQiOjE2NDA4NjU5NDAsIm5iZiI6MTY0MDg2NTk0MCwiZXhwIjoxNjQwODY2NTQwLCJzdWIiOiI0Iiwib2F0IjoxNjQwODY0NjQxfQ.2M96KWSVAW7QsewfQY2nSFGYVWF7HjWfAPXrrpvQ8Zo"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"id\": 1,\n        \"name\": \"Example Gateway Route\",\n        \"partner\": {\n            \"id\": 1,\n            \"name\": \"Partner Name\"\n        },\n        \"agency\": {\n            \"id\": 1,\n            \"name\": \"Agency Name\"\n        },\n        \"client\": {\n            \"id\": 2,\n            \"name\": \"Client Name\"\n        },\n        \"routes\": [\n            {\n                \"key\": \"gws.gps.001.{identifier}\",\n                \"type\": \"gps\",\n                \"broker\": \"default\"\n            },\n            {\n                \"key\": \"gws.gps.example.{identifier}\",\n                \"type\": \"gps\",\n                \"broker\": \"example\"\n            }\n        ],\n        \"created_at\": \"2021-12-27T14:17:00+02:00\",\n        \"updated_at\": null,\n        \"partners\": [\n            {\n                \"id\": 1,\n                \"name\": \"Partner Name\"\n            },\n            {\n                \"id\": 2,\n                \"name\": \"Next Partner Name\"\n            }\n        ]\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Get A Gateway Route",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{http}}://{{domain}}/api/v1/gateways/routes/1",
+							"protocol": "{{http}}",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"gateways",
+								"routes",
+								"1"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200 OK",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{http}}://{{domain}}/api/v1/gateways/routes/1",
+									"protocol": "{{http}}",
+									"host": [
+										"{{domain}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"gateways",
+										"routes",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.15.8"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 30 Dec 2021 12:11:31 GMT"
+								},
+								{
+									"key": "Authorization",
+									"value": "bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJ3d3cuZGVzdGlueS50ZXN0IiwianRpIjoiYjZlMTI0ZGVmMDQwNGQxZDg1NThjY2YwMTJhMGUyNTUiLCJpYXQiOjE2NDA4NjYyOTEsIm5iZiI6MTY0MDg2NjI5MSwiZXhwIjoxNjQwODY2ODkxLCJzdWIiOiI0Iiwib2F0IjoxNjQwODY0NjQxfQ.crPa4HtkOSdC60Uy7QAHa-x-wSQ2-cIstrn43DfalIY"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"id\": 1,\n        \"name\": \"Example Gateway Route\",\n        \"partner\": {\n            \"id\": 1,\n            \"name\": \"Partner Name\"\n        },\n        \"agency\": {\n            \"id\": 1,\n            \"name\": \"Agency Name\"\n        },\n        \"client\": {\n            \"id\": 2,\n            \"name\": \"Client Name\"\n        },\n        \"routes\": [\n            {\n                \"key\": \"gws.gps.001.{identifier}\",\n                \"type\": \"gps\",\n                \"broker\": \"default\"\n            },\n            {\n                \"key\": \"gws.gps.example.{identifier}\",\n                \"type\": \"gps\",\n                \"broker\": \"example\"\n            }\n        ],\n        \"created_at\": \"2021-12-27T14:17:00+02:00\",\n        \"updated_at\": null\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Find Gateway Routes",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{http}}://{{domain}}/api/v1/gateways/routes",
+							"protocol": "{{http}}",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"gateways",
+								"routes"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200 OK",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{http}}://{{domain}}/api/v1/gateways/routes",
+									"protocol": "{{http}}",
+									"host": [
+										"{{domain}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"gateways",
+										"routes"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.15.8"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 30 Dec 2021 12:18:20 GMT"
+								},
+								{
+									"key": "Authorization",
+									"value": "bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJ3d3cuZGVzdGlueS50ZXN0IiwianRpIjoiMzc5OTNlMDUxODA5MzQ0ODYxYzNhZTEwYWU1YTkyYTciLCJpYXQiOjE2NDA4NjY3MDAsIm5iZiI6MTY0MDg2NjcwMCwiZXhwIjoxNjQwODY3MzAwLCJzdWIiOiI0Iiwib2F0IjoxNjQwODY0NjQxfQ.1f0X0fwgcfKWRCw5-zy88x-lBurN7HpDoOsCkYWN6v4"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": [\n        {\n            \"id\": 1,\n            \"name\": \"Example Gateway Route\",\n            \"partner\": {\n                \"id\": 1,\n                \"name\": \"Partner Name\"\n            },\n            \"agency\": null,\n            \"client\": {\n                \"id\": 2,\n                \"name\": \"Client Name\"\n            },\n            \"created_at\": \"2021-12-27T14:17:00+02:00\",\n            \"updated_at\": null\n        }\n    ],\n    \"pagination\": {\n        \"current_page\": 1,\n        \"per_page\": 30,\n        \"prev_page_url\": null,\n        \"next_page_url\": null,\n        \"first_item\": 1,\n        \"last_item\": 1\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Update Existing Gateway Route",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Example Gateway Route\",\n    \"partner_id\": 1,\n    \"agency_id\": null,\n    \"client_id\": 1,\n    \"routes\": [\n        {\n            \"key\": \"gws.gps.001.{identifier}\",\n            \"type\": \"gps\",\n            \"broker\": \"default\"\n        },\n        {\n            \"key\": \"gws.gps.example.{identifier}\",\n            \"type\": \"gps\",\n            \"broker\": \"example\"\n        }\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{http}}://{{domain}}/api/v1/gateways/routes/1",
+							"protocol": "{{http}}",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"gateways",
+								"routes",
+								"1"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200 OK",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"Gullwing\",\n    \"partner_id\": 1,\n    \"agency_id\": 1,\n    \"client_id\": 2,\n    \"routes\": [\n        {\n            \"key\": \"gws.gps.001.{identifier}\",\n            \"type\": \"gps\",\n            \"broker\": \"default\"\n        },\n        {\n            \"key\": \"gws.gps.gullwing.{identifier}\",\n            \"type\": \"gps\",\n            \"broker\": \"gullwing\"\n        }\n    ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{http}}://{{domain}}/api/v1/gateways/routes/1",
+									"protocol": "{{http}}",
+									"host": [
+										"{{domain}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"gateways",
+										"routes",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.15.8"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 30 Dec 2021 12:51:47 GMT"
+								},
+								{
+									"key": "Authorization",
+									"value": "bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJ3d3cuZGVzdGlueS50ZXN0IiwianRpIjoiODMxYmM4M2IzMDY1NmEyOGIwZTVhN2E5NmJiOTA3YjUiLCJpYXQiOjE2NDA4Njg3MDcsIm5iZiI6MTY0MDg2ODcwNywiZXhwIjoxNjQwODY5MzA3LCJzdWIiOiI0Iiwib2F0IjoxNjQwODY0NjQxfQ.Tevr0IAotrk2zyv1K5DBWtyDZ0sAUgTKkgRU59lGLVo"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"notices\": [\n        \"Updated Gateway Routing Configuration: Example Gateway Route\"\n    ],\n    \"data\": {\n        \"id\": 1,\n        \"name\": \"Example Gateway Route\",\n        \"partner\": {\n            \"id\": 1,\n            \"name\": \"Partner Name\"\n        },\n        \"agency\": null,\n        \"client\": {\n            \"id\": 2,\n            \"name\": \"Client Name\"\n        },\n        \"routes\": [\n            {\n                \"key\": \"gws.gps.001.{identifier}\",\n                \"type\": \"gps\",\n                \"broker\": \"default\"\n            },\n            {\n                \"key\": \"gws.gps.example.{identifier}\",\n                \"type\": \"gps\",\n                \"broker\": \"example\"\n            }\n        ],\n        \"created_at\": \"2021-12-30T14:48:53+02:00\",\n        \"updated_at\": \"2021-12-30T14:51:47+02:00\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Add Gateway Route",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Example Gateway Route\",\n    \"partner_id\": 1,\n    \"agency_id\": null,\n    \"client_id\": 1,\n    \"routes\": [\n        {\n            \"key\": \"gws.gps.001.{identifier}\",\n            \"type\": \"gps\",\n            \"broker\": \"default\"\n        },\n        {\n            \"key\": \"gws.gps.example.{identifier}\",\n            \"type\": \"gps\",\n            \"broker\": \"example\"\n        }\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{http}}://{{domain}}/api/v1/gateways/routes",
+							"protocol": "{{http}}",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"gateways",
+								"routes"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200 OK",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"Example Gateway Route\",\n    \"partner_id\": 1,\n    \"agency_id\": null,\n    \"client_id\": 1,\n    \"routes\": [\n        {\n            \"key\": \"gws.gps.001.{identifier}\",\n            \"type\": \"gps\",\n            \"broker\": \"default\"\n        },\n        {\n            \"key\": \"gws.gps.example.{identifier}\",\n            \"type\": \"gps\",\n            \"broker\": \"example\"\n        }\n    ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{http}}://{{domain}}/api/v1/gateways/routes",
+									"protocol": "{{http}}",
+									"host": [
+										"{{domain}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"gateways",
+										"routes"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.15.8"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 30 Dec 2021 12:48:53 GMT"
+								},
+								{
+									"key": "Authorization",
+									"value": "bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJ3d3cuZGVzdGlueS50ZXN0IiwianRpIjoiMjhlNzdhZmVhYmFkNjQyNjVjMmViM2YxNmM5Y2NjNjUiLCJpYXQiOjE2NDA4Njg1MzMsIm5iZiI6MTY0MDg2ODUzMywiZXhwIjoxNjQwODY5MTMzLCJzdWIiOiI0Iiwib2F0IjoxNjQwODY0NjQxfQ.PgQcGDST2CYxRDi1-3_brwYVTW0wjW0vvTMdu6wDpsE"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"notices\": [\n        \"Created Gateway Routing Configuration: Example Gateway Route\"\n    ],\n    \"data\": {\n        \"id\": 1,\n        \"name\": \"Example Gateway Route\",\n        \"partner\": {\n            \"id\": 1,\n            \"name\": \"Partner Name\"\n        },\n        \"agency\": null,\n        \"client\": {\n            \"id\": 2,\n            \"name\": \"Client Name\"\n        },\n        \"routes\": [\n            {\n                \"key\": \"gws.gps.001.{identifier}\",\n                \"type\": \"gps\",\n                \"broker\": \"default\"\n            },\n            {\n                \"key\": \"gws.gps.example.{identifier}\",\n                \"type\": \"gps\",\n                \"broker\": \"example\"\n            }\n        ],\n        \"created_at\": \"2021-12-30T14:48:53+02:00\",\n        \"updated_at\": null\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete Gateway Route",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{http}}://{{domain}}/api/v1/gateways/routes/1",
+							"protocol": "{{http}}",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"gateways",
+								"routes",
+								"1"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200 OK",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{http}}://{{domain}}/api/v1/gateways/routes/1",
+									"protocol": "{{http}}",
+									"host": [
+										"{{domain}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"gateways",
+										"routes",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.15.8"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 30 Dec 2021 12:56:17 GMT"
+								},
+								{
+									"key": "Authorization",
+									"value": "bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJ3d3cuZGVzdGlueS50ZXN0IiwianRpIjoiZDVmOWRiZTAwZDRlMzE4YTU2ZDViY2E5NWI2MmZkMTUiLCJpYXQiOjE2NDA4Njg5NzYsIm5iZiI6MTY0MDg2ODk3NiwiZXhwIjoxNjQwODY5NTc2LCJzdWIiOiI0Iiwib2F0IjoxNjQwODY0NjQxfQ.6TzJs-x5ki9zxBu28Kl2s-G-OM84bMKkOEzDYHbSrZo"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"notices\": [\n        \"Deleted Gateway Routing Configuration: Example Gateway Route\"\n    ],\n    \"data\": {\n        \"id\": 1,\n        \"name\": \"Example Gateway Route\",\n        \"partner\": {\n            \"id\": 1,\n            \"name\": \"Partner Name\"\n        },\n        \"agency\": {\n            \"id\": 1,\n            \"name\": \"Agency Name\"\n        },\n        \"client\": {\n            \"id\": 2,\n            \"name\": \"Client Name\"\n        },\n        \"routes\": [\n            {\n                \"key\": \"gws.gps.001.{identifier}\",\n                \"type\": \"gps\",\n                \"broker\": \"default\"\n            },\n            {\n                \"key\": \"gws.gps.example.{identifier}\",\n                \"type\": \"gps\",\n                \"broker\": \"example\"\n            }\n        ],\n        \"created_at\": \"2021-12-27T14:17:00+02:00\",\n        \"updated_at\": null\n    }\n}"
 						}
 					]
 				}

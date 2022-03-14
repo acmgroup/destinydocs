@@ -46,9 +46,9 @@ Most requests to the API requires a previously supplied token to be passed
 along in the `Authorization` header. Please see the Authentication section 
 for more details.
 
-Field         | Description | Example
------------   | ----------- | -------
-Authorization | JWT token   | `Authorization: bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.e...`
+| Field         | Description | Example                                                           |
+|---------------|-------------|-------------------------------------------------------------------|
+| Authorization | JWT token   | `Authorization: bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.e...` |
 
 # Responses
 
@@ -98,25 +98,25 @@ X-RateLimit-Reset: 60
 
 The following HTTP response headers are returned in most cases:
 
-Field         | Description  | Example
-------------- | ------------ | -------
-Access-Control-Allow-Credentials | Tells browsers whether to expose the response to frontend JavaScript code when the request's credentials mode (Request.credentials) is include. | `Access-Control-Allow-Credentials: true`
-Access-Control-Allow-Headers | Used in response to a preflight request which includes the Access-Control-Request-Headers to indicate which HTTP headers can be used during the actual request. | `Access-Control-Allow-Headers: Content-Type, Authorization, X-Requested-With`
-Access-Control-Allow-Methods | Specifies the method or methods allowed when accessing the resource in response to a preflight request. | `Access-Control-Allow-Methods: POST, GET, OPTIONS, PUT, DELETE`
-Access-Control-Allow-Origin  | Indicates whether the response can be shared with requesting code from the given origin. | `Access-Control-Allow-Origin: *`
-Access-Control-Max-Age       | Indicates how long the results of a preflight request can be cached. | `Access-Control-Max-Age: 86400`
-Authorization | JWT token.                                                                       | `Authorization: bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.e...`
-Cache-Control | Result is not cached.                                                            | `Cache-Control: no-cache`
-Connection    | The TCP connection type.                                                         | `Connection: keep-alive`
-Content-Encoding | Lets the client know how to decode in order to obtain the media-type referenced by the Content-Type header.
-Content-Type  | The HTTP body mime content type.                                                 | `Content-Type: application/json`
-Date          | The original request's timestamp                                                 | `Date: Mon, 01 Feb 2016 12:49:26 GMT`
-Server        | The web server name/version.                                                     | `Server: nginx/1.8.0`
-Transfer-Encoding | The method of encoding used by the server.                                   | `Transfer-Encoding: chunked`
-Vary          | Tells downstream proxies how to handle caching.                                  | `Vary: Origin`
-X-RateLimit-Limit | The total number of requests that can be made over a specified time.         | `X-RateLimit-Limit: 30`
-X-RateLimit-Remaining | The remaining number of requests that can be made over a specified time. | `X-RateLimit-Remaining: 29`
-X-RateLimit-Reset | How many seconds remaining before the request counter is reset.              | `X-RateLimit-Reset: 117`
+| Field                            | Description                                                                                                                                                     | Example                                                                       |
+|----------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------|
+| Access-Control-Allow-Credentials | Tells browsers whether to expose the response to frontend JavaScript code when the request's credentials mode (Request.credentials) is include.                 | `Access-Control-Allow-Credentials: true`                                      |
+| Access-Control-Allow-Headers     | Used in response to a preflight request which includes the Access-Control-Request-Headers to indicate which HTTP headers can be used during the actual request. | `Access-Control-Allow-Headers: Content-Type, Authorization, X-Requested-With` |
+| Access-Control-Allow-Methods     | Specifies the method or methods allowed when accessing the resource in response to a preflight request.                                                         | `Access-Control-Allow-Methods: POST, GET, OPTIONS, PUT, DELETE`               |
+| Access-Control-Allow-Origin      | Indicates whether the response can be shared with requesting code from the given origin.                                                                        | `Access-Control-Allow-Origin: *`                                              |
+| Access-Control-Max-Age           | Indicates how long the results of a preflight request can be cached.                                                                                            | `Access-Control-Max-Age: 86400`                                               |
+| Authorization                    | JWT token.                                                                                                                                                      | `Authorization: bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.e...`             |
+| Cache-Control                    | Result is not cached.                                                                                                                                           | `Cache-Control: no-cache`                                                     |
+| Connection                       | The TCP connection type.                                                                                                                                        | `Connection: keep-alive`                                                      |
+| Content-Encoding                 | Lets the client know how to decode in order to obtain the media-type referenced by the Content-Type header.                                                     |                                                                               |
+| Content-Type                     | The HTTP body mime content type.                                                                                                                                | `Content-Type: application/json`                                              |
+| Date                             | The original request's timestamp                                                                                                                                | `Date: Mon, 01 Feb 2016 12:49:26 GMT`                                         |
+| Server                           | The web server name/version.                                                                                                                                    | `Server: nginx/1.8.0`                                                         |
+| Transfer-Encoding                | The method of encoding used by the server.                                                                                                                      | `Transfer-Encoding: chunked`                                                  |
+| Vary                             | Tells downstream proxies how to handle caching.                                                                                                                 | `Vary: Origin`                                                                |
+| X-RateLimit-Limit                | The total number of requests that can be made over a specified time.                                                                                            | `X-RateLimit-Limit: 30`                                                       |
+| X-RateLimit-Remaining            | The remaining number of requests that can be made over a specified time.                                                                                        | `X-RateLimit-Remaining: 29`                                                   |
+| X-RateLimit-Reset                | How many seconds remaining before the request counter is reset.                                                                                                 | `X-RateLimit-Reset: 117`                                                      |
 
 ### Rate Limiting
 
@@ -134,13 +134,13 @@ The following JSON objects, arrays and values are common in all HTTP
 responses. With the exception of the `data` property all others are only 
 sent when applicable.
 
-Field       | Type    | Description | Example
----------   | ------- | ----------- | --------
-notices     | array   | An array of strings that may contain general notices/feedback for the user. | `"notices": ["Record saved successfully."]`
-warnings    | array   | An array of strings that may contain general warnings for the user.         | `"warnings": ["Some issue prevented you to do that"]`
-warn_fields | array   | An array of *objects* that may contain warnings that are related to specific fields. | `[{"email": "Your email address is required"}, ...]`
-errors      | array   | An array of strings that may contain general errors for the user.           | `"errors": ["Something went wrong"]`
-data        | object/array | An object or array of objects containing the data that was requested.  | `"data": {"id": 1, "name": "John"}`
+| Field       | Type         | Description                                                                          | Example                                               |
+|-------------|--------------|--------------------------------------------------------------------------------------|-------------------------------------------------------|
+| notices     | array        | An array of strings that may contain general notices/feedback for the user.          | `"notices": ["Record saved successfully."]`           |
+| warnings    | array        | An array of strings that may contain general warnings for the user.                  | `"warnings": ["Some issue prevented you to do that"]` |
+| warn_fields | array        | An array of *objects* that may contain warnings that are related to specific fields. | `[{"email": "Your email address is required"}, ...]`  |
+| errors      | array        | An array of strings that may contain general errors for the user.                    | `"errors": ["Something went wrong"]`                  |
+| data        | object/array | An object or array of objects containing the data that was requested.                | `"data": {"id": 1, "name": "John"}`                   |
 
 ## Pagination and Collections of Data
 
@@ -156,24 +156,26 @@ object will also be provided. Please see provided JSON example as well as
 the table below for details regarding the pagination object.
 
 ```json
-"pagination": {
- "current_page": 1,
- "per_page": 30,
- "prev_page_url": null,
- "next_page_url": "https://www.dummydomain.net/api/v1/users?page=2",
- "first_item": 1,
- "last_item": 30
+{
+   "pagination": {
+      "current_page": 1,
+      "per_page": 30,
+      "prev_page_url": null,
+      "next_page_url": "https://www.dummydomain.net/api/v1/users?page=2",
+      "first_item": 1,
+      "last_item": 30
+   }
 }
 ```
 
-Field             | Type        | Description
------------------ | ----------- | ----------- 
-current_page      | integer     | The current page of data that the server returned.
-per_page          | integer     | The number of records/entries returned per page.
-prev_page_url     | string/null | The url of the previous page or `null` if there isn't a previous page available.
-next_page_url     | string/null | The url of the next page or `null` if there isn't another page available.
-first_item        | integer     | The first item number on the page, for example on page 1 it will be 1 and page two it will be 31.
-last_item         | integer     | The last item number on the page, for example on page 1 it will be 30 and page two it will be 60.
+| Field         | Type        | Description                                                                                       |
+|---------------|-------------|---------------------------------------------------------------------------------------------------|
+| current_page  | integer     | The current page of data that the server returned.                                                |
+| per_page      | integer     | The number of records/entries returned per page.                                                  |
+| prev_page_url | string/null | The url of the previous page or `null` if there isn't a previous page available.                  |
+| next_page_url | string/null | The url of the next page or `null` if there isn't another page available.                         |
+| first_item    | integer     | The first item number on the page, for example on page 1 it will be 1 and page two it will be 31. |
+| last_item     | integer     | The last item number on the page, for example on page 1 it will be 30 and page two it will be 60. |
 
 An API client can request a specified page by adding a `page=x` argument to 
 the url, for example: `GET https://www.dummydomain.net/api/v1/users?page=2`
@@ -195,19 +197,19 @@ following codes are returned it means that the server will not apply/commit
 any database changes and that if possible the problem must be resolved, and 
 the client must retry the request again.
 
-Error | Description
------ | ----------- 
-400   | **Bad Request:** The server cannot or will not process the request due to something that is perceived to be a client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing).
-401   | **Unauthorized:** Similar to 403 Forbidden, but specifically returned when authentication is required and has failed or has not yet been provided.
-403   | **Forbidden:** The request was a valid request, but the server is refusing to respond to it possibly due to a security violation. Unlike a 401 Unauthorized response, authenticating will make no difference.
-404   | **Not Found:** The requested resource could not be found.
-405   | **Method Not Allowed:** A request was made of a resource using a request method not supported by that resource; for example, using GET on a form which requires data to be presented via POST, or using PUT on a read-only resource.
-419   | **Authentication Timeout:** A previously valid token have expired. The client should re-direct to the login page.
-425   | **User Not Found:** May be returned during authentication related requests. The client should re-direct to the login page.
-422   | **Unprocessable Entity:** The request was well-formed but was unable to be followed due to semantic errors, e.g. a field missing or not filled in by the user.
-429   | **Too Many Requests:** Too many requests were made over a specified amount of time, see the `X-RateLimit` headers.
-498   | **Token Invalid:** The authentication token provided is malformed or invalid. The client should re-direct to the login page.
-499   | **Token Required:** The authentication token was not provided when it was required. The client should re-direct to the login page.
+| Error | Description                                                                                                                                                                                                                          |
+|-------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| 400   | **Bad Request:** The server cannot or will not process the request due to something that is perceived to be a client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing).          |
+| 401   | **Unauthorized:** Similar to 403 Forbidden, but specifically returned when authentication is required and has failed or has not yet been provided.                                                                                   |
+| 403   | **Forbidden:** The request was a valid request, but the server is refusing to respond to it possibly due to a security violation. Unlike a 401 Unauthorized response, authenticating will make no difference.                        |
+| 404   | **Not Found:** The requested resource could not be found.                                                                                                                                                                            |
+| 405   | **Method Not Allowed:** A request was made of a resource using a request method not supported by that resource; for example, using GET on a form which requires data to be presented via POST, or using PUT on a read-only resource. |
+| 419   | **Authentication Timeout:** A previously valid token have expired. The client should re-direct to the login page.                                                                                                                    |
+| 425   | **User Not Found:** May be returned during authentication related requests. The client should re-direct to the login page.                                                                                                           |
+| 422   | **Unprocessable Entity:** The request was well-formed but was unable to be followed due to semantic errors, e.g. a field missing or not filled in by the user.                                                                       |
+| 429   | **Too Many Requests:** Too many requests were made over a specified amount of time, see the `X-RateLimit` headers.                                                                                                                   |
+| 498   | **Token Invalid:** The authentication token provided is malformed or invalid. The client should re-direct to the login page.                                                                                                         |
+| 499   | **Token Required:** The authentication token was not provided when it was required. The client should re-direct to the login page.                                                                                                   |
 
 ## Server Error Codes 5xx
 
@@ -306,10 +308,10 @@ curl -i \
      https://www.dummydomain.net/api/v1/auth/login
 ```
 
-Field             | Type        | Description
------------------ | ----------- | ----------- 
-username          | string      | The user's username or email address.
-password          | string      | The user's password.
+| Field    | Type   | Description                           |
+|----------|--------|---------------------------------------|
+| username | string | The user's username or email address. |
+| password | string | The user's password.                  |
 
 **Successful Server Response:**
 

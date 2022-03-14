@@ -386,6 +386,13 @@
 								"date",
 								"{{from_date}}",
 								"all"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": "",
+									"disabled": true
+								}
 							]
 						}
 					},
@@ -691,19 +698,14 @@
 						}
 					},
 					"response": []
-				}
-			]
-		},
-		{
-			"name": "Unit Status",
-			"item": [
+				},
 				{
-					"name": "Get Unit Status",
+					"name": "Get Unit Comms Status History (By Client)",
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{http}}://{{domain}}/api/v1/history/status/units",
+							"raw": "{{http}}://{{domain}}/api/v1/history/comms-history/units/by-client/{{client_id}}/from/{{from_date}}/to/{{to_date}}",
 							"protocol": "{{http}}",
 							"host": [
 								"{{domain}}"
@@ -712,11 +714,228 @@
 								"api",
 								"v1",
 								"history",
-								"status",
-								"units"
+								"comms-history",
+								"units",
+								"by-client",
+								"{{client_id}}",
+								"from",
+								"{{from_date}}",
+								"to",
+								"{{to_date}}"
 							]
 						},
-						"description": "Returns the current status of all accessable units."
+						"description": "Requests the daily recordings of unit communications for a specific client and between two dates. The returned data contains 10 minute intervals of the total number of units active, inactive, offline or that have never communicated to the server at that point in time.\n\n*Note: The from_date and to_date parameters must be UTC based.*"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Unit Comms Status History (By Agency)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{http}}://{{domain}}/api/v1/history/comms-history/units/by-agency/{{client_id}}/from/{{from_date}}/to/{{to_date}}",
+							"protocol": "{{http}}",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"history",
+								"comms-history",
+								"units",
+								"by-agency",
+								"{{client_id}}",
+								"from",
+								"{{from_date}}",
+								"to",
+								"{{to_date}}"
+							]
+						},
+						"description": "Requests the daily recordings of unit communications for a specific agency and between two dates. The returned data contains 10 minute intervals of the total number of units active, inactive, offline or that have never communicated to the server at that point in time.\n\n*Note: The from_date and to_date parameters must be UTC based.*"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Unit Comms Status History (By Partner)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{http}}://{{domain}}/api/v1/history/comms-history/units/by-partner/{{client_id}}/from/{{from_date}}/to/{{to_date}}",
+							"protocol": "{{http}}",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"history",
+								"comms-history",
+								"units",
+								"by-partner",
+								"{{client_id}}",
+								"from",
+								"{{from_date}}",
+								"to",
+								"{{to_date}}"
+							]
+						},
+						"description": "Requests the daily recordings of unit communications for a specific partner and between two dates. The returned data contains 10 minute intervals of the total number of units active, inactive, offline or that have never communicated to the server at that point in time.\n\n*Note: The from_date and to_date parameters must be UTC based.*"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Unit Comms Status History Totals",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{http}}://{{domain}}/api/v1/history/comms-history/units/totals/from/{{from_date}}/to/{{to_date}}?XDEBUG_SESSION_START=PHPSTORM",
+							"protocol": "{{http}}",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"history",
+								"comms-history",
+								"units",
+								"totals",
+								"from",
+								"{{from_date}}",
+								"to",
+								"{{to_date}}"
+							],
+							"query": [
+								{
+									"key": "XDEBUG_SESSION_START",
+									"value": "PHPSTORM"
+								}
+							]
+						},
+						"description": "Requests the daily recordings of unit communications between two dates. The returned data contains 10 minute intervals of the total number of units active, inactive, offline or that have never communicated to the server at that point in time.\n\n*Note: The from_date and to_date parameters must be UTC based.*"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Unit Comms Status History Since (By Client)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{http}}://{{domain}}/api/v1/history/comms-history/units/by-client/{{client_id}}/since/date/{{from_date}}/time/{{from_time}}",
+							"protocol": "{{http}}",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"history",
+								"comms-history",
+								"units",
+								"by-client",
+								"{{client_id}}",
+								"since",
+								"date",
+								"{{from_date}}",
+								"time",
+								"{{from_time}}"
+							]
+						},
+						"description": "Requests the daily recordings of unit communications for a specific client since a given date and time. The returned data contains 10 minute intervals of the total number of units active, inactive, offline or that have never communicated to the server at that point in time.\n\n*Note: The from_date and to_date parameters must be UTC based.*"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Unit Comms Status History Since (By Agency)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{http}}://{{domain}}/api/v1/history/comms-history/units/by-agency/{{client_id}}/since/date/{{from_date}}/time/{{from_time}}",
+							"protocol": "{{http}}",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"history",
+								"comms-history",
+								"units",
+								"by-agency",
+								"{{client_id}}",
+								"since",
+								"date",
+								"{{from_date}}",
+								"time",
+								"{{from_time}}"
+							]
+						},
+						"description": "Requests the daily recordings of unit communications for a specific agency since a given date and time. The returned data contains 10 minute intervals of the total number of units active, inactive, offline or that have never communicated to the server at that point in time.\n\n*Note: The from_date and to_date parameters must be UTC based.*"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Unit Comms Status History Since (By Partner)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{http}}://{{domain}}/api/v1/history/comms-history/units/by-partner/{{client_id}}/since/date/{{from_date}}/time/{{from_time}}",
+							"protocol": "{{http}}",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"history",
+								"comms-history",
+								"units",
+								"by-partner",
+								"{{client_id}}",
+								"since",
+								"date",
+								"{{from_date}}",
+								"time",
+								"{{from_time}}"
+							]
+						},
+						"description": "Requests the daily recordings of unit communications for a specific partner since a given date and time. The returned data contains 10 minute intervals of the total number of units active, inactive, offline or that have never communicated to the server at that point in time.\n\n*Note: The from_date and to_date parameters must be UTC based.*"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Unit Comms Status History (Since) Totals",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{http}}://{{domain}}/api/v1/history/comms-history/units/totals/since/date/{{from_date}}/time/{{from_time}}",
+							"protocol": "{{http}}",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"history",
+								"comms-history",
+								"units",
+								"totals",
+								"since",
+								"date",
+								"{{from_date}}",
+								"time",
+								"{{from_time}}"
+							]
+						},
+						"description": "Requests the daily recordings of unit communications since a given date and time. The returned data contains 10 minute intervals of the total number of units active, inactive, offline or that have never communicated to the server at that point in time.\n\n*Note: The from_date and to_date parameters must be UTC based.*"
 					},
 					"response": []
 				}
@@ -856,6 +1075,108 @@
 								{
 									"key": "limit",
 									"value": "20"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Event History",
+			"item": [
+				{
+					"name": "Get Recent Event History",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{http}}://{{domain}}/api/v1/history/events/pools/{{pool_id}}/recent/hours/24",
+							"protocol": "{{http}}",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"history",
+								"events",
+								"pools",
+								"{{pool_id}}",
+								"recent",
+								"hours",
+								"24"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Recent Event Counts",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{http}}://{{domain}}/api/v1/history/events/pools/{{pool_id}}/totals/hours/24",
+							"protocol": "{{http}}",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"history",
+								"events",
+								"pools",
+								"{{pool_id}}",
+								"totals",
+								"hours",
+								"24"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Event Summaries",
+			"item": [
+				{
+					"name": "Get Vehicle Event Counts Over Period",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{http}}://{{domain}}/api/v1/history/summary/events/pools/{{pool_id}}/vehicles/period/from/{{from_date}}/time/{{from_time}}/to/{{to_date}}/time/{{to_time}}?XDEBUG_SESSION_START=PHPSTORM",
+							"protocol": "{{http}}",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"history",
+								"summary",
+								"events",
+								"pools",
+								"{{pool_id}}",
+								"vehicles",
+								"period",
+								"from",
+								"{{from_date}}",
+								"time",
+								"{{from_time}}",
+								"to",
+								"{{to_date}}",
+								"time",
+								"{{to_time}}"
+							],
+							"query": [
+								{
+									"key": "XDEBUG_SESSION_START",
+									"value": "PHPSTORM"
 								}
 							]
 						}
