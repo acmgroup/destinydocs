@@ -5,21 +5,28 @@
   <meta charset="UTF-8">
   <title>SSE Javascript Example</title>
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <style>
+    body { font-family: "Arial", serif; }
+    .code { margin-left: 15px; font-family: "Monaco", monospace; font-size: x-small}
+  </style>
 </head>
 <body>
+  <h1 style="color: #455a64">Welcome to the Destiny SSE Unit Subscription Example!</h1>
+  <p id="output"></p>
 <script>
   // IMPORTANT: This demonstration does not show anything on the browser window,
   // instead, everything is logged to the browser's console.
 
-  // Set the base url so we do not have to provide the full url for every request
+  // Set the base url, so we do not have to provide the full url for every request
+  // Set the base url, so we do not have to provide the full url for every request
   axios.defaults.baseURL = 'http://www.dummydomain.net/'
 
   // Provide your username and password here:
   const USERNAME = 'demo'
   const PASSWORD = 'demo'
 
-  // This is the id of the GPS unit we want to listen to
-  const UNIT_ID = 1
+  // This is the database id's of the GPS unit we want to listen to
+  const UNIT_IDS = [1]
 
   // The SSE server will send us a stream_id soon after our connection
   // have been established, it essentially identifies our connection.
@@ -33,6 +40,30 @@
   //------------------------------------------------------------
 
   /**
+   * Performs the login request and returns with a promise
+   *
+   * @param {String} username
+   * @param {String} password
+   *
+   * @return {Promise}
+   */
+  const login = (username, password) => {
+    logInfo(`Logging in...`)
+    logCode(`POST /api/v1/auth/login`)
+    logCode(`{ "username": "${username}", "password": "*********" }`)
+    return axios.post(`/api/v1/auth/login`, {
+      username: username,
+      password: password
+    })
+      .then(updateBearerToken)
+      .catch((error) => {
+        // Oops, our login request failed, perhaps incorrect username or password?
+        console.error(error)
+        logError(error)
+      })
+  }
+
+  /**
    * Update our authorization header if the API server sends
    * a new bearer token.
    *
@@ -42,6 +73,9 @@
    */
   const updateBearerToken = (response) => {
     if (response.headers.hasOwnProperty('authorization')) {
+      logSuccess(`Login successful`)
+      logCode(`HTTP ${response.status} ${response.statusText}: ` + JSON.stringify(response.data.data).slice(0, 80) + '...')
+      logCode(``)
       // Tell axios to automatically transmit the Authorization header the
       // next time we send a request:
       axios.defaults.headers.common['authorization'] = response.headers['authorization']
@@ -51,28 +85,7 @@
   }
 
   /**
-   * Performs the login request and returns with a promise
-   *
-   * @param {String} username
-   * @param {String} password
-   *
-   * @return {Promise}
-   */
-  const login = (username, password) => {
-    console.log('HTTP POST: Logging in...')
-    return axios.post(`/api/v1/auth/login`, {
-      username: username,
-      password: password
-    })
-      .then(updateBearerToken)
-      .catch((error) => {
-        // Oops, our login request failed, perhaps incorrect username or password?
-        console.log(error)
-      })
-  }
-
-  /**
-   * Setup the event source (SSE connection) with all the callback
+   * Set up the event source (SSE connection) with all the callback
    * functions provided in the options object.
    */
   const setupEventSource = (options = {}) => {
@@ -89,22 +102,23 @@
     // Creates and returns instance of the EventSource, the URL
     // at which the SSE server listens is passed through also.
     // The connection will be established automatically.
-    console.info(`EventSource: Establishing EventSource connection...`)
+    logEvent(`EventSource: Establishing EventSource connection...`)
+    logCode(`let eventSource = new EventSource(encodeURI('${axios.defaults.baseURL}sse/connect'))`)
     let eventSource = new EventSource(
       encodeURI(`${axios.defaults.baseURL}sse/connect`)
     )
 
-    // Setup the EventSource onopen event handler
+    // Set up the EventSource onopen event handler
     if (sseOptions.eventSourceOnOpen instanceof Function) {
       eventSource.onopen = sseOptions.eventSourceOnOpen
     }
 
-    // Setup the EventSource onerror event handler
+    // Set up the EventSource onerror event handler
     if (sseOptions.eventSourceOnError instanceof Function) {
       eventSource.onerror = sseOptions.eventSourceOnError
     }
 
-    // Setup the EventSource onmessage event handler
+    // Set up the EventSource onmessage event handler
     if (sseOptions.eventSourceOnMessage instanceof Function) {
       eventSource.onmessage = (event) => {
         // Convert the event data to JSON
@@ -113,7 +127,7 @@
         switch (message.type) {
           case 'stream_id':
             if (sseOptions.onStreamId instanceof Function) {
-              sseOptions.onStreamId(message.stream_id)
+              sseOptions.onStreamId(message)
             }
             break
 
@@ -133,7 +147,7 @@
             break
 
           default:
-            console.error('EventSource: Unknown SSE event type: ' + message.type)
+            logEvent('EventSource: Unknown SSE event type: ' + message.type)
         }
       }
     }
@@ -174,9 +188,36 @@
    * @return {Promise}
    */
   const requestUnitSubToken = (unitId) => {
-    console.log('HTTP GET: Requesting unit subscription token...')
+    logInfo(`Requesting unit subscription token for unit id: ${unitId}...`)
+    logCode(`GET /api/v1/monitoring/unit/${unitId}`)
     return axios.get(`/api/v1/monitoring/unit/${unitId}`)
-      .then(response => response.data.data)
+      .then((response) => {
+        if (response.data.data.telemetry === null) {
+          logSuccess(`Subscription Token Received: ` +
+            `IMEI: ${response.data.data.imei}, ` +
+            `Serial No.: ${response.data.data.serial_no}`)
+        } else {
+          logSuccess(`Subscription Token Received: ` +
+            `IMEI: ${response.data.data.imei}, ` +
+            `Serial No.: ${response.data.data.serial_no}, ` +
+            `timestamp = ${response.data.data.telemetry.gps.local_time}, ` +
+            `lat = ${response.data.data.telemetry.gps.latitude}, ` +
+            `lng = ${response.data.data.telemetry.gps.longitude}`)
+        }
+
+        logCode(`HTTP ${response.status} ${response.statusText}: ` +
+          JSON.stringify(response.data.data).slice(0, 80) + '...')
+        logCode('')
+
+        return response.data.data
+      })
+      .catch((error) => {
+        console.log(error)
+        logError(`Unit token request failed: ${error.message}`)
+        logCode(`HTTP ${error.response.status} ${error.response.statusText}: ` +
+          JSON.stringify(error.response.data))
+        logCode('')
+      })
   }
 
   /**
@@ -188,11 +229,94 @@
    * @return {Promise}
    */
   const sseSubscribe = (stream_id, token) => {
-    console.log('HTTP POST: Subscribing unit...')
+    logInfo('Subscribing for unit telemetry...')
+    logCode(`POST /sse/telemetry/subscribe/${stream_id}/${token}`.slice(0, 80) + '...')
     return axios.post(`/sse/telemetry/subscribe/${stream_id}/${token}`).then((response) => {
-      console.log('HTTP RESPONSE: Unit subscription successful, token received...')
+      logSuccess(`Unit subscription successful, token received...`)
+      logCode(`HTTP ${response.status} ${response.statusText}: ` + JSON.stringify(response.data))
+      logCode('')
       return response
     })
+    .catch((error) => {
+      console.log(error)
+      logError(`Unit subscription request failed: ${error.message}`)
+      logCode(`HTTP ${error.response.status} ${error.response.statusText}: ` +
+        JSON.stringify(error.response.data))
+      logCode('')
+    })
+  }
+
+  /**
+   * Outputs an info message to the console and the page.
+   *
+   * @param {String} text
+   */
+  const logInfo = (text) => {
+    log(text, 'info', '#0097a7')
+  }
+
+  /**
+   * Outputs an error message to the console and the page.
+   *
+   * @param {Object} error
+   */
+  const logError = (error) => {
+    log(JSON.stringify(error), 'error', '#d32f2f')
+  }
+
+  /**
+   * Outputs a success message to the console and the page.
+   *
+   * @param {String} text
+   */
+  const logSuccess = (text) => {
+    log(text, 'info', '#388e3c')
+  }
+
+  /**
+   * Outputs an event message to the console and the page.
+   *
+   * @param {String} text
+   */
+  const logEvent = (text) => {
+    log(text, 'info', '#455a64')
+  }
+
+  /**
+   * Outputs text to the console and the page.
+   *
+   * @param {String} text
+   * @param {String} type 'info', 'error'
+   * @param {String} color
+   * */
+  const log = (text, type, color) => {
+    if (type === 'error') {
+      console.error(text)
+    } else {
+      console.info(text)
+    }
+
+    let span = document.getElementById('output').appendChild(document.createElement('span'))
+    span.style.color = color
+    if (text === '') {
+      span.appendChild(document.createTextNode(''))
+    } else {
+      span.appendChild(document.createTextNode('> ' + text))
+    }
+    document.getElementById('output').appendChild(document.createElement('br'))
+  }
+
+  /**
+   * Print a line of "code"
+   *
+   * @param code
+   */
+  const logCode = (code) => {
+    console.log(code)
+    let span = document.getElementById('output').appendChild(document.createElement('span'))
+    span.classList.add('code')
+    span.appendChild(document.createTextNode(code))
+    document.getElementById('output').appendChild(document.createElement('br'))
   }
 
   //-----------------------------------------
@@ -205,46 +329,76 @@
     // Connect to the SSE server...
     eventSource = setupEventSource({
       // Native EventSource event handlers
-      eventSourceOnOpen: () => { console.info(`EventSource: connection successful.`) },
-      eventSourceOnError: (err) => { console.error(`EventSource: Error occurred!`, err) },
-      eventSourceOnMessage: (event) => { console.info(`EventSource: New Event received`, event) },
+      eventSourceOnOpen: () => {
+        logEvent(`EventSource: connection successful.`)
+        logEvent(``)
+      },
+
+      eventSourceOnError: (event) => {
+        logError(`EventSource: A connection error occurred.`)
+        console.log(event)
+      },
+
+      eventSourceOnMessage: (event) => {
+        logEvent(`EventSource: New Event received: `)
+        console.log(event)
+      },
 
       // Server-sent event handler for 'stream_id' events
-      onStreamId: (new_stream_id) => {
-        stream_id = new_stream_id // Update the global stream_id (declared at the top of the script)
-        console.info(`Event: [stream_id] event received, stream_id = ${stream_id}`)
+      onStreamId: (message) => {
+        stream_id = message.stream_id // Update the global stream_id (declared at the top of the script)
+        logEvent(`EventSource: [stream_id] event received`)
+        logCode(JSON.stringify(message))
+        logCode(``)
       },
 
       // Server-sent event handler for 'ping' events
       onPing: () => {
-        console.info(`Event: [ping] event received`)
+        logEvent(`EventSource: [ping] event received`)
         // Send back a pong through the HTTP API, include our
         // previously received stream_id
-        console.log('Sending pong...')
-        axios.post(`/sse/pong/${stream_id}`)
+        logInfo('Returning [pong]...')
+        logCode(`POST /sse/pong/${stream_id}`)
+        axios.post(`/sse/pong/${stream_id}`).then((response) => {
+          logSuccess(`HTTP ${response.status} ${response.statusText}: ` +
+            `[pong] submitted successfully, connection will remain alive...`)
+          logCode(`HTTP ${response.status} ${response.statusText}`)
+          logCode(``)
+        })
       },
 
       // Server-sent event handler for 'gps' events
-      onGps: (gps) => {
-        console.info(`Event: [gps] event received`, gps)
+      onGps: (message) => {
+        console.log(message)
+        logEvent(`EventSource: [gps] telemetry received: ` +
+          `IMEI: ${message.device.imei}, ` +
+          `Serial No.: ${message.device.serial_no}, ` +
+          `timestamp: ${message.gps.local_time}, ` +
+          `lat: ${message.gps.latitude}, ` +
+          `lng: ${message.gps.longitude}`
+        )
       }
     })
 
-    // We are connected to the SSE server but we still need a
+    // We are connected to the SSE server, but we still need a
     // stream_id which the server will automatically send shortly
     // after we connected.
     stream_id = await waitForStreamId()
-      .catch(() => { console.error(`Timeout reached while waiting for stream_id`) })
+      .catch(() => { logError(`ERROR: Timeout reached while waiting for stream_id`) })
 
     if (stream_id) {
-      // Now get a subscription token for the unit
-      const subscription = await requestUnitSubToken(UNIT_ID)
+      // Loop through the units that requires subscriptions...
+      for (const unitId of UNIT_IDS) {
+        // Now get a subscription token for the unit
+        const subscription = await requestUnitSubToken(unitId)
 
-      // Now that we have a token for the unit we can finally subscribe
-      // to start receiving GPS messages for the unit.
-      await sseSubscribe(stream_id, subscription.token)
+        // Now that we have a token for the unit we can subscribe
+        // to start receiving GPS messages for the unit.
+        await sseSubscribe(stream_id, subscription.token)
+      }
 
-      console.log('ALL IS READY: Waiting for incoming GPS data...')
+      logInfo('ALL IS READY: Waiting for incoming GPS data...')
+      logInfo('')
     }
   })()
 </script>
