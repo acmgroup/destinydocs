@@ -82,7 +82,7 @@ let stream_id
 // IMPORTANT: Your SSE client will automatically try and reconnect if 
 // the connection drops at some point in the future.
 let eventSource = new EventSource(
-  encodeURI(`${url}/sse/telemetry/connect`)
+  encodeURI(`${url}/sse/connect`)
 )
 
 // The onopen event will be called if the connection was successful.
@@ -112,7 +112,7 @@ eventSource.onmessage = (event) => {
       console.log('SSE Event: ping received')
       // Send back a pong through the HTTP API, include our
       // previously received stream_id
-      axios.post(`${url}/sse/telemetry/pong/${stream_id}`)
+      axios.post(`${url}/sse/pong/${stream_id}`)
       break
 
     case 'gps':

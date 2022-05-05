@@ -91,7 +91,7 @@
     // The connection will be established automatically.
     console.info(`EventSource: Establishing EventSource connection...`)
     let eventSource = new EventSource(
-      encodeURI(`${axios.defaults.baseURL}sse/telemetry/connect`)
+      encodeURI(`${axios.defaults.baseURL}sse/connect`)
     )
 
     // Setup the EventSource onopen event handler
@@ -221,7 +221,7 @@
         // Send back a pong through the HTTP API, include our
         // previously received stream_id
         console.log('Sending pong...')
-        axios.post(`/sse/telemetry/pong/${stream_id}`)
+        axios.post(`/sse/pong/${stream_id}`)
       },
 
       // Server-sent event handler for 'gps' events
