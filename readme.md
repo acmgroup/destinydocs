@@ -1,6 +1,6 @@
 # Destiny API Documentation
 
-This repository is an accumulation of the documentation for our range
+This repository is a collection of documentation for our range
 of API's falling within the Destiny range of software solutions 
 and services.
 
@@ -11,9 +11,9 @@ system. Based on a review of your requirements we would typically
 agree on one or more methods of integration. We essentially have
 two sets of solutions, let's take a look at these options:
 
-# HTTP REST API's
+# Integration Option 1: HTTP REST API's
 
-We have 4 APIs with which you can access and manage data.
+We have 4 HTTP APIs with which you can access and manage data.
 
 1. **HTTP REST API v1:** Our REST API provides functionality to
    manage and access the data such as Users, Clients, Vehicles, 
@@ -21,40 +21,55 @@ We have 4 APIs with which you can access and manage data.
 
 2. **HTTP SSE**: SSE (Server-sent Events) is similar to other
    Publisher/Subscriber WebSocket solutions out there and can be
-   used to receive messages live from our backend. SSE is built
-   into most modern browsers. Most popular programming languages also
-   have one or more SSE client/server libraries available. See more
-   below.
+   used to receive messages live from our backend to a browser or 
+   mobile application. SSE is built into most modern browsers. 
+   Most popular programming languages also have one or more SSE 
+   client/server libraries available. See more below.
 
 3. **HTTP History Query API**: Provides the ability to query previously
-   captured historical telemetry data. Since we capture a lot of data from
-   devices on a daily basis, we also need to be able to easily extract the
-   exact data we require for our needs. This API allows for just that. See
-   more below.
+   captured telemetry, trip and event data. See more below.
 
 4. **HTTP Reporting API**: Provides the ability to run pre-made reports 
    asynchronously with progress feedback.
 
-# Message Queueing
+# Integration Option 2: Live Message Queueing
 
 If you are building highly customised solutions where you'd like to capture
 all telemetry data into your own databases and at large scale, you may want 
 to look at one of our Message Queuing solutions.
 
-1. **GWS:** GWS, or Gateways Services Allows you to receive 
+1. **GWS:** GWS, or ACM Gateway Services Allows you to receive 
    messages directly from our messaging gateways. These gateways 
-   communicate directly with hardware devices. This is the most direct 
-   route to the devices you want to monitor. We also refer to this as
-   *Stage 1* in our backend services. Stage 1 converts the raw data 
-   from various types of devices and protocols to our own 
-   [Universal GPS JSON Message Data Structure](Telemetry/Universal%20JSON%20Message%20Data%20Structures%20v1.md).
+   communicate directly with hardware devices such as GPS tracking
+   units and pass it along to other services down the pipeline. 
+   This is the most direct route to the devices you want to 
+   monitor.
+
+   We also refer to this as *Stage 1* in our backend services. 
+   Stage 1 converts the raw data from various types of devices and 
+   protocols to our own [Universal GPS JSON Message Data Structure](Telemetry/Universal%20JSON%20Message%20Data%20Structures%20v1.md).
    
 2. **LDPS:** LDPS, or Live Date Processing Services is our **Stage 2** system, 
-   here we process the newly received data and add additional information 
+   here we further process the newly received data and add additional information 
    to the message such as active drivers, reverse geolocation, zone detection
-   and more. Stage 2 adds additional data to the Universal GPS JSON Messages
+   and more. Stage 2 adds additional data to the Universal GPS JSON Messages,
    which we call 
    [Extended Universal JSON GPS Messages](Telemetry/Universal%20JSON%20GPS%20Message%20Extended.md).
+
+Both the GWS and LDPS services can pass messages to third party clients 
+live via message queues.
+
+Our Message Queueing solution typically run through the popular
+[RabbitMQ Message Broker](https://www.rabbitmq.com/) service using
+the AMQP 0-9-1 protocol. This allows for the distribution of telemetry,
+trip and event data to multiple client applications concurrently. 
+
+We do provide source code examples which can be used to develop your own
+client application from. Our [C# based RabbitMQ client](https://github.com/acmgroup/GPSReceiverExample)
+application is such an example. 
+
+We may provide additional examples for other programming languages upon
+request.
    
 # Available Documentation
 
