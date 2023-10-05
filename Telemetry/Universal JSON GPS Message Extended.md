@@ -314,6 +314,14 @@ When a safe-zone is created on a moving asset, the safe-zone will
 only be enabled once the asset becomes stationary (i.e. a trip 
 stop is detected).
 
+Safe-zone's will only trigger once if an asset moves outside its
+radius. Thereafter, the user must create a new safe-zone to 
+re-enable it.
+
+Only one safe-zone can be active on an asset. If for example a
+`private` safe-zone is created while a `monitored` safe-zone is
+active, the `private` safe-zone will override the existing one.
+
 Example 1 - An enabled safe-zone
 
 ```json
@@ -362,7 +370,7 @@ Example 2 - If a safe-zone have never been created on the asset:
   - `"clear"`: An internal state that can be ignored as it shouldn't
     ever be transmitted along with the telemetry message.
 * `created_at` (IS8601 string): The safe-zone's creation timestamp.
-* `disabled_at` (IS8601 string): The safe-zone's disabled timestamp 
-  (if applicable).
-* `triggered_at` (IS8601 string): The safe-zone's triggered timestamp
-  (if applicable).
+* `disabled_at` (IS8601 string|null): The safe-zone's disabled timestamp 
+  (if applicable), `null` if not disabled.
+* `triggered_at` (IS8601 string|null): The safe-zone's triggered timestamp
+  (if applicable), `null` if not triggered.
