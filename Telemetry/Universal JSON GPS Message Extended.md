@@ -157,6 +157,16 @@ Below is an example of an extended GPS message:
       "tag_no": "1234567890",
       "name": "John Doe",
       "used_tag": true
+    },
+    "safe_zone": {
+      "latitude": -25.711470,
+      "longitude": 28.152464,
+      "radius": 85,
+      "mode": "private",
+      "state": "enabled",
+      "created_at": "2018-02-16T13:51:30+00:00",
+      "disabled_at": null,
+      "triggered_at": null
     }
 }
 ```
@@ -287,3 +297,72 @@ Example 5 - No default driver and no tag used
   "driver": null
 }
 ```
+
+## safe_zone
+
+Safe zones places a protective circular area or geo-fence around an
+asset. When the asset moves outside the radius before disabling
+the safe-zone, an alarm can be triggered to notify relevant people
+of the event.
+
+The `safe_zone` property can be null. When a safe zone is created
+by a user, the previous telemetry message that was received from 
+the device will be re-transmitted and the additional `safe_zone`
+data will be included with the message.
+
+When a safe-zone is created on a moving asset, the safe-zone will
+only be enabled once the asset becomes stationary (i.e. a trip 
+stop is detected).
+
+Example 1 - An enabled safe-zone
+
+```json
+{
+  "safe_zone": {
+    "latitude": -25.711470,
+    "longitude": 28.152464,
+    "radius": 85,
+    "mode": "private",
+    "state": "enabled",
+    "created_at": "2018-02-16T13:51:30+00:00",
+    "disabled_at": null,
+    "triggered_at": null
+  }
+}
+```
+
+Example 2 - If a safe-zone have never been created on the asset:
+
+```json
+{
+  "safe_zone": null
+}
+```
+
+### safe_zone Fields
+
+* `latitude` (float): The latitude of the center-point of the safe-zone 
+* `longitude` (float): The longitude of the center-point of the safe-zone
+* `radius` (int): The radius in meters of the safe-zone.
+* `mode` (string): The mode can be `"private"` or `"monitored"`.
+  - `"private"`: Safe-zone messages will be transmitted to one
+    or more configured mobile apps of users. The control-room
+    will not respond to alarms for `"private"` safe-zones.
+  - `"monitored"`: Safe-zone messages will still be transmitted to
+    one or more configured mobile apps of users, but the 
+    control-room will also receive alarms and respond appropriately.
+* `state` (string): The safe-zone state can be one of the following:
+  - `"created"`: The safe-zone is created but not enabled. It will
+    be enabled once the asset becomes stationary.
+  - `"enabled"`: The safe-zone is enabled and an alarm will trigger
+    if the asset moves outside its radius.
+  - `"triggered"`: The asset moved outside the radius of the 
+    safe-zone and an alarm was triggered.
+  - `"disabled"`: The safe-zone was disabled by a user or the system.
+  - `"clear"`: An internal state that can be ignored as it shouldn't
+    ever be transmitted along with the telemetry message.
+* `created_at` (IS8601 string): The safe-zone's creation timestamp.
+* `disabled_at` (IS8601 string): The safe-zone's disabled timestamp 
+  (if applicable).
+* `triggered_at` (IS8601 string): The safe-zone's triggered timestamp
+  (if applicable).
