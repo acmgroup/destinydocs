@@ -29,12 +29,17 @@ Below is an example of an extended GPS message:
       "error": null
     },
     "device": {
+        "id": 2045,
         "identifier": "imei",
         "imei": "359568052512345",
         "serial_no": null,
-        "firm_ver": null,
+        "stock_no": null,
+        "name": "Primary unit for ABC 123 GP",
+        "firm_ver": "V2.20",
         "type": "teltonika",
-        "model": null
+        "model": "fmb920",
+        "status": "active",
+        "assigned_as": "primary"
     },
     "network": {
         "remote_ipv4": "192.168.0.5",
@@ -53,7 +58,6 @@ Below is an example of an extended GPS message:
             "rssi": [],
             "rcpi": [],
             "ta": [],
-            "bs_count": [],
             "signal_lvl": 4,
             "signal_str": 80,
             "data_mode": null,
@@ -74,16 +78,40 @@ Below is an example of an extended GPS message:
             "imsi": null
         }
     ],
+    "day_trip_no": 3,
+    "active_trip": {
+      "distance_km": 15.7,
+      "max_speed": 124.2,
+      "avg_speed": 98.4,
+      "start_address": "27 Porcupine Street, Stellenbosch, Western Cape 7130, South Africa",
+      "started_at": "2018-02-16T15:32:30+02:00",
+      "durations": {
+        "total": "00:19:00",
+        "driving": "00:17:25",
+        "idling": "00:01:35",
+        "engine": "00:19:00",
+        "speeding": "00:00:15"
+      }
+    },
     "gps": {
         "timestamp": "2018-02-16T13:51:30+00:00",
         "timezone": "Africa\/Johannesburg",
         "local_time": "2018-02-16T15:51:30+02:00",
         "latitude": -25.711470,
         "longitude": 28.152464,
-        "distance_km": 0.003,
         "altitude": 1047.0,
         "speed": 17.5,
         "heading": 112.0,
+        "address": "15 Capybara Street, Somerset West, Western Cape 7130, South Africa",
+        "zones": [
+          {
+            "id": 3,
+            "name": "Main Depot",
+            "inside": true,
+            "events": ["ZONE:ENTER"]
+          }
+        ],
+        "stationary_from": null,
         "satellites": 8,
         "activity": "driving",
         "odometer": 0,
@@ -102,7 +130,8 @@ Below is an example of an extended GPS message:
             "2d",
             "logged",
             "invalid_time"
-        ]
+        ],
+        "distance_km": 0.003
     },
   "events": [
       ["ZONE:ENTER:1"],
@@ -164,6 +193,7 @@ Below is an example of an extended GPS message:
       "radius": 85,
       "mode": "private",
       "state": "enabled",
+      "address": "15 Capybara Street, Somerset West, Western Cape 7130, South Africa",
       "created_at": "2018-02-16T13:51:30+00:00",
       "disabled_at": null,
       "triggered_at": null
@@ -189,11 +219,48 @@ this message:
 }
 ```
 
+## device
+
+The following additional properties are added to the `device`
+object: `id`, `stock_no`, `name`, `status`, `assigned_as`. 
+
+```json
+{
+  "device": {
+    "id": 2045,
+    "identifier": "imei",
+    "imei": "359568052512345",
+    "serial_no": null,
+    "stock_no": null,
+    "name": "Primary unit for ABC 123 GP",
+    "firm_ver": "V2.20",
+    "type": "teltonika",
+    "model": "fmb920",
+    "status": "active",
+    "assigned_as": "primary"
+  }
+}
+```
+
+### `device` Extended Properties
+
+*Note: Please see the [Universal GPS JSON Message Data Structure](Universal%20JSON%20Message%20Data%20Structures%20v1.md) 
+document for an explanation of the standard properties.*
+
+* `id` (int): The database id of the device.
+* `stock_no` (string|null): The stock no. of the device.
+* `name` (string|null): The name of the device.
+* `status` (string|null): The device's status code. Examples are:
+  `"factory"`, `"pre_stock_pending"`, `"post_stock_pending"`,
+  `"ready"`, `"pre_active"`, `"active"`, `"maintenance"`.
+* `assigned_as` (int|null): If the device is assigned to a vehicle
+  this may be `"primary"`, `"backup_1"` or `"backup_2"`.
+
 ## gps timezone + local_time
 
-Within the `gps` section, two additional fields indicate the timezone
-used at the point of recording the message as well as the local timestamp
-when the message was recorded.
+Within the `gps` section, two additional properties indicate the 
+timezone used at the point of recording the message as well as 
+the local timestamp when the message was recorded.
 
 ```json
 {
@@ -203,6 +270,82 @@ when the message was recorded.
   }
 }
 ```
+
+## gps address
+
+Within the `gps` section, the address field may contain the area
+and road name while the device is moving or a reverse-geolocated 
+address if it is parked. It may be `null` if the server was unable 
+to perform a reverse-geolocation request.
+
+```json
+{
+  "gps": {
+    "address": "15 Capybara Street, Somerset West, Western Cape 7130, South Africa"
+  }
+}
+```
+
+## gps zones
+
+If the device entered, is inside or exited one or more 
+pre-created zones, the `zones` array will list the details of 
+these zones.
+
+```json
+{
+  "gps": {
+    "zones": [
+      {
+        "id": 3,
+        "name": "Main Depot",
+        "inside": true,
+        "events": ["ZONE:ENTER"]
+      }
+    ]
+  }
+}
+```
+
+Each element of the zone array is an object with the following
+properties:
+
+### `zone` Properties
+
+* `id` (int): The database id of the zone.
+* `name` (string): The name of the zone.
+* `inside` (boolean): Whether the device is inside the zone.
+* `events` (array of strings): Events that were triggered when
+  entering or exiting the zone.
+
+## gps stationary_from
+
+The `stationary_from` property is only set if the device is
+currently stationary (i.e. a trip stop was detected) and contains
+the **local** timestamp when the device became stationary. If the
+device is not stationary the property will be set to `null`.
+
+```json
+{
+  "gps": {
+    "stationary_from": "2018-02-16T13:51:33+00:00"
+  }
+}
+```
+
+## gps distance_km
+
+Contains the distance between the location and the previous
+location or null if no prior location was recorded.
+
+```json
+{
+  "gps": {
+    "distance_km": 0.003
+  }
+}
+```
+
 ## vehicle
 
 Contains the vehicle identification of the vehicle that is linked to the
@@ -298,6 +441,65 @@ Example 5 - No default driver and no tag used
 }
 ```
 
+## day_trip_no
+
+This property contains the number of trips recorded for the
+day and is incremented whenever a trip start is detected. The
+property can be `null` if trip detection can not be performed
+on the device or no trips have ever been detected for the device.
+
+```json
+{
+  "day_trip_no": 3
+}
+```
+
+## active_trip
+
+The `active_trip` property is an object that contains the details
+about the trip in progress. If not trip is in progress the
+property's value will be `null`.
+
+```json
+{
+  "active_trip": {
+    "distance_km": 15.7,
+    "max_speed": 124.2,
+    "avg_speed": 98.4,
+    "start_address": "27 Porcupine Street, Stellenbosch, Western Cape 7130, South Africa",
+    "started_at": "2018-02-16T15:32:30+02:00",
+    "durations": {
+      "total": "00:19:00",
+      "driving": "00:17:25",
+      "idling": "00:01:35",
+      "engine": "00:19:00",
+      "speeding": "00:00:15"
+    }
+  }
+}
+```
+
+### `active_trip` Properties
+
+* `distance_km` (float): The active trip distance.
+* `max_speed` (float): The maximum speed (in km/h) reached by
+  the vehicle during the active trip.
+* `avg_speed` (float): The average speed (in km/h) recorded 
+   during the active trip.
+* `start_address` (string|null): The address where the trip was
+  started.
+* `started_at` (ISO-8601 string): The local timestamp when the
+  trip was started.
+* `durations` (object): An object containing various duration values
+  for the active trip, each providing a duration in hours, minutes
+  and seconds in the format "HH:MM:SS". These properties may
+  be `null`.
+  - `total` (string|null): Total duration of the active trip.
+  - `driving` (string|null): Duration of the vehicle/asset moving.
+  - `idling` (string|null): Duration of the vehicle idling.
+  - `engine` (string|null): Duration of engine running.
+  - `speeding` (string|null): Duration of vehicle/asset speeding.
+
 ## safe_zone
 
 Safe zones places a protective circular area or geo-fence around an
@@ -314,9 +516,10 @@ When a safe-zone is created on a moving asset, the safe-zone will
 only be enabled once the asset becomes stationary (i.e. a trip 
 stop is detected).
 
-Safe-zone's will only trigger once if an asset moves outside its
-radius. Thereafter, the user must create a new safe-zone to 
-re-enable it.
+Safe-zone's will only trigger **once** if an asset moves outside 
+its radius. Thereafter, the user must create a new safe-zone to 
+re-enable it. While the safe-zone is in a `'triggered'` state,
+it will be transmitted along with follow-up telemetry messages.
 
 Only one safe-zone can be active on an asset. If for example a
 `private` safe-zone is created while a `monitored` safe-zone is
@@ -332,6 +535,7 @@ Example 1 - An enabled safe-zone
     "radius": 85,
     "mode": "private",
     "state": "enabled",
+    "address": "15 Capybara Street, Somerset West, Western Cape 7130, South Africa",
     "created_at": "2018-02-16T13:51:30+00:00",
     "disabled_at": null,
     "triggered_at": null
@@ -347,7 +551,7 @@ Example 2 - If a safe-zone have never been created on the asset:
 }
 ```
 
-### safe_zone Fields
+### `safe_zone` Properties
 
 * `latitude` (float): The latitude of the center-point of the safe-zone 
 * `longitude` (float): The longitude of the center-point of the safe-zone
@@ -369,6 +573,11 @@ Example 2 - If a safe-zone have never been created on the asset:
   - `"disabled"`: The safe-zone was disabled by a user or the system.
   - `"clear"`: An internal state that can be ignored as it shouldn't
     ever be transmitted along with the telemetry message.
+* `address` (string|null): The address or area where the safe-zone
+  was enabled. This will typically be the same address that was
+  detected when the device became in a parked state. This may be
+  `null` if no address was available or the safe-zone is still in
+  the `"created"` state and have not been enabled yet.
 * `created_at` (IS8601 string): The safe-zone's creation timestamp.
 * `disabled_at` (IS8601 string|null): The safe-zone's disabled timestamp 
   (if applicable), `null` if not disabled.
