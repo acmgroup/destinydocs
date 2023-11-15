@@ -207,19 +207,19 @@ are generated:
 ## Primary Fields
 
 * message_ver (int): The JSON message structure version
-* message_type (string): register, gps, history, status, event, heartbeat
+* message_type (string): This will always be `"telemetry"` for telemetry messages.
 * gateway (string): The domain which received the message from the unit
 * port (int): The server TCP/UDP the unit connected to.
 * transmission (string): Transmission type: tcp, udp, http, https, sms
 * timestamp (IS8601 string): The timestamp when the message was received at the gateway
-* source: The message source, e.g. device, 3rd_party_service
-* seq_no: Sequence number, usually provided by the unit
-* valid: Whether the Gateway validated this as a "valid" message, i.e.
+* source (string): The message source, e.g. `"device"`, `"3rd_party_service"`
+* seq_no (int): Sequence number, usually provided by the unit
+* valid (bool): Whether the Gateway validated this as a "valid" message, i.e.
   anyone reading the data can use it as a valid position. It is recommended
   that if valid is false, that the message is either discarded, or
   stored but not used in any calculations/processing.
-* activity: Can be any of the following: unknown, still, walking,
-  running, driving, parked, idling, moving
+* activity (string): Can be any of the following: `"unknown"`, `"still"`, `"walking"`,
+  `"running"`, `"driving"`, `"parked"`, `"idling"`, `"moving"`
 
 ## Device Fields (device)
 

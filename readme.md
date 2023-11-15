@@ -13,7 +13,8 @@ two sets of solutions, let's take a look at these options:
 
 # Integration Option 1: HTTP REST API's
 
-We have 4 HTTP APIs with which you can access and manage data.
+We have 4 HTTP APIs with which you can access and manage data. Each
+API serves a unique purpose.
 
 1. **HTTP REST API v1:** Our REST API provides functionality to
    manage and access the data such as Users, Clients, Vehicles, 
@@ -41,9 +42,9 @@ to look at one of our Message Queuing solutions.
 1. **GWS:** GWS, or ACM Gateway Services Allows you to receive 
    messages directly from our messaging gateways. These gateways 
    communicate directly with hardware devices such as GPS tracking
-   units and pass it along to other services down the pipeline. 
-   This is the most direct route to the devices you want to 
-   monitor.
+   units (typically over TCP/UDP) and pass it along to other services
+   down the pipeline. This is the most direct route to the devices you
+   want to monitor.
 
    We also refer to this as *Stage 1* in our backend services. 
    Stage 1 converts the raw data from various types of devices and 
@@ -61,8 +62,11 @@ live via message queues.
 
 Our Message Queueing solution typically run through the popular
 [RabbitMQ Message Broker](https://www.rabbitmq.com/) service using
-the AMQP 0-9-1 protocol. This allows for the distribution of telemetry,
-trip and event data to multiple client applications concurrently. 
+the AMQP 0-9-1 protocol. This allows for the distribution of 
+[telemetry](Telemetry/Universal%20JSON%20Message%20Data%20Structures%20v1.md),
+[trip](Telemetry/Trip%20Telemetry%20Data%20Structures.md) and 
+[event](Telemetry/Event Message JSON Structure v1.md) data to multiple client 
+applications concurrently. 
 
 We do provide source code examples which can be used to develop your own
 client application from. Our [C# based RabbitMQ client](https://github.com/acmgroup/GPSReceiverExample)
@@ -127,6 +131,7 @@ download the [Postman collection](SSE/Destiny%20SSE%20Guide.postman_collection.z
 **Telemetry Data:**
 - [Universal JSON Message Data Structures v1](Telemetry/Universal%20JSON%20Message%20Data%20Structures%20v1.md)
 - [Universal JSON GPS Message (Extended)](Telemetry/Universal%20JSON%20GPS%20Message%20Extended.md)
+- [Event Message JSON Structure v1](Telemetry/Event%20Message%20JSON%20Structure%20v1.md)
 - [Trip Telemetry Data Structures](Telemetry/Trip%20Telemetry%20Data%20Structures.md)
 - [Telemetry Summary Data Structures](Telemetry/Telemetry%20Summary%20Data%20Structures.md)
 - [Standard Event Codes.csv](Telemetry/Standard%20Event%20Codes.csv)
