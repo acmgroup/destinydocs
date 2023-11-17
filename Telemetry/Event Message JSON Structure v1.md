@@ -108,12 +108,14 @@ Event message such as the one below.
     {
       "key": "driver_tag_no",
       "label": "Driver Tag No.",
-      "value": "553G432"
+      "value": "553G432",
+      "url": null
     },
     {
       "key": "zone_name",
       "label": "Zone Name",
-      "value": "Home Depot"
+      "value": "Home Depot",
+      "url": null
     }
   ],
   "pools": [
@@ -366,12 +368,14 @@ See the example below:
     {
       "key": "driver_tag_no",
       "label": "Driver Tag No.",
-      "value": "553G432"
+      "value": "553G432",
+      "url": null
     },
     {
       "key": "zone_name",
       "label": "Zone Name",
-      "value": "Home Depot"
+      "value": "Home Depot",
+      "url": null
     }
   ]
 }
