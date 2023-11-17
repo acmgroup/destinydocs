@@ -65,7 +65,7 @@ Our Message Queueing solution typically run through the popular
 the AMQP 0-9-1 protocol. This allows for the distribution of 
 [telemetry](Telemetry/Universal%20JSON%20Message%20Data%20Structures%20v1.md),
 [trip](Telemetry/Trip%20Telemetry%20Data%20Structures.md) and 
-[event](Telemetry/Event Message JSON Structure v1.md) data to multiple client 
+[event](Telemetry/Event%20Message%20JSON%20Structure%20v1.md) data to multiple client 
 applications concurrently. 
 
 We do provide source code examples which can be used to develop your own
