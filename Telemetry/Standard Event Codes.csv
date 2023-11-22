@@ -1,3 +1,5 @@
+Updated,2023-11-22,,Version 1.3
+,,,
 Category,Code,Code Notes,Device Notes
 Panic,PANIC,Panic button pressed,
 ,PANIC:EMERGENCY,Emergency Behaviour,GoSafe Only
@@ -12,6 +14,9 @@ Zones,ZONE:ENTER,,
 ,ZONE:ENTER:x,x = A zone number,
 ,ZONE:EXIT:x,x = A zone number,
 ,ZONE:UNKNOWN_EVENT,,
+,ZONE:SAFEZONE:ENABLED,,
+,ZONE:SAFEZONE:DISABLED,,
+,ZONE:SAFEZONE:ALARM,,
 Idling,IDLING:START,,
 ,IDLING:END,,
 Towing,TOWING:START,,
@@ -29,12 +34,13 @@ ACC,ACC:ON,Ignition turned to ACC,
 Battery,BATTERY:CONNECTED,Normally refers to external battery,
 ,BATTERY:DISCONNECTED,Normally refers to external battery,
 ,BATTERY:LOW,Normally refers to internal battery,LKGps and Foxy Only
-,BATTERY:ABNORMAL:EXT,EXT = External Battery,GoSafe Only
-,BATTERY:OK:EXT,EXT = External Battery,GoSafe Only
+,BATTERY:ABNORMAL:EXT,EXT = External Battery,
+,BATTERY:OK:EXT,EXT = External Battery,
 ,BATTERY:ABNORMAL:INT,INT = Internal Battery,GoSafe Only
 ,BATTERY:OK:INT,INT = Internal Battery,GoSafe Only
 ,BATTERY:CHARGING:INT,INT = Internal Battery,GoSafe Only
 ,BATTERY:DISCHARGING:INT,INT = Internal Battery,GoSafe Only
+,BATTERY:SHUNTING,,DMT Only
 Accidents,COLLISION,,
 ,COLLISION:DETECTED,,Teltonika Only
 ,COLLISION:LIMITED_NOCALIB,Limited crash trace (device not calibrated),Teltonika Only
@@ -66,6 +72,16 @@ Alarms,ALARM,A programmable generic alarm event occurred.,
 ,ALARM:VIBRATION,,LKGps Only
 ,ALARM:MOVEMENT:NONE,,Foxy Only
 ,ALARM:HARDWARE:FAULT,,
+,ALARM:TAMPERING,,
+Buttons,BUTTON:ALARM:CLICK,Alarm button pressed,Teltonika Only
+,BUTTON:ALARM:DOUBLE_CLICK,Alarm button double pressed,
+,BUTTON:ALARM:HOLD,Alarm button long pressed,
+,BUTTON:POWER:CLICK,Power button pressed,
+,BUTTON:POWER:DOUBLE_CLICK,Power button double clicked,
+,BUTTON:POWER:HOLD,Power button long pressed,
+,BUTTON:x:CLICK,"x = 1 to 3, i.e. Button 1, 2, or 3 pressed",
+,BUTTON:x:DOUBLE_CLICK,"x = 1 to 3, i.e. Button 1, 2, or 3 double clicked",
+,BUTTON:x:HOLD,"x = 1 to 3, i.e. Button 1, 2, or 3 long pressed",
 Tags,TAG:ENTERING,,GoSafe Only
 ,TAG:LEAVING,,GoSafe Only
 ,TAG:RF_PAIRED,Tag is RF paired,GoSafe Only
@@ -115,3 +131,5 @@ Other,DIN2_AIN2,Generates after spec DIN2/AIN2 scenario,Teltonika Only
 ,GYRO_AXIS,,Teltonika Only
 ,RS232,,Teltonika Only
 ,MOVEMENT:DETECTED,,C-Obd Only
+,MOVEMENT:UNAUTHORIZED,,CalAmp Only
+,RECOVERY_MODE,,DMT Only
