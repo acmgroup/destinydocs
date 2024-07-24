@@ -11622,7 +11622,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{http}}://{{domain}}/api/v1/vehicles/status/location/by-client/{{client_id}}",
+							"raw": "{{http}}://{{domain}}/api/v1/vehicles/status/location/by-client/{{client_id}}?unit_assigned_as=primary",
 							"protocol": "{{http}}",
 							"host": [
 								"{{domain}}"
@@ -11635,8 +11635,15 @@
 								"location",
 								"by-client",
 								"{{client_id}}"
+							],
+							"query": [
+								{
+									"key": "unit_assigned_as",
+									"value": "primary"
+								}
 							]
-						}
+						},
+						"description": "Returns the latest location status data for each vehicle under a specific client or clients.\n\nFollowing are two examples for using this request:\n\n1. Returns the location status data for all clients accessable to the user of the API: `/api/v1/vehicles/status/location/by-client/all`\n2. Returns the location status data for the client id `555`. If the user of the API is a client level user, the id will be ignored and only accessable data will be returned: `/api/v1/vehicles/status/location/by-client/555`\n    \n\n_Note: If it seems that you are receiving duplicate records it is because a vehicle may be fitted with multiple GPS device/tracking units. In order to only see the data of the primary device (recommended as backup devices often have less data available) you can add the_ `?unit_assigned_as=primary` _filtering parameter, for example_:\n\n```\n/api/v1/vehicles/status/location/by-client/all?unit_assigned_as=primary\n\n ```\n\nThe request returns an array of objects having the following fields:\n\n- `id (int)`: The vehicle's database id.\n- `reg_no (string)`: Vehicle's registration number.\n- `fleet_no (string|null)`: Vehicle's fleet number.\n- `vehicle_make (string|null)`: Vehicle's make.\n- `vehicle_model (string|null)`: Vehicle's model.\n- `client_name (string)`: Client/customer name.\n- `driver_name (string|null)`: Active or assigned Driver name.\n- `vehicle_group_name (string|null)`: Vehicle's group name.\n- `unit_assigned_as (string)`: Can be `primary`, `backup_1, backup_2.`\n- `local_time (ISO 8601 date and time string|null)`: The local time of the GPS recording, local meaning the timezone where the GPS device finds itself in. It can be null if no GPS data has been captured by the device yet.\n- `timezone (string)`: The configured/active timezone of the GPS device.\n- `latitude (float)`: The decimal latitude in degrees.\n- `longitude (float)`: The decimal longitude in degrees.\n- `speed (int|float)`: The current GPS speed in km/h.\n- `heading (int|float)`: The current GPS heading in degrees where 0 = North.\n- `gps_fix (array of strings)`: Can be an empty array or have a combination of the following values: `\"fixed\", \"predicted\", \"diff_corrected\", \"last_known\", \"2d\", \"logged\", \"invalid_time\", \"on_no_fix\", \"sleep\"`. In most cases the array will be empty or only contain `\"on_no_fix\"` if there is no GPS fix.\n- `odometer (int)`: Odometer in meters. This is currently only availble if the GPS device is configured to supply the odometer, returns 0 if no odometer is available.\n- `address (int|null)`: Current address of the vehicle if available.\n- `hours_behind (float)`: Can be used to determine how long ago the device transmitted a GPS location, the device's timezone is taken into account.\n- `comms_status_code (string)`: Current communication status. Can be `\"online\", \"inactive\", \"offline\", \"never\"`."
 					},
 					"response": [
 						{
@@ -11695,7 +11702,7 @@
 								}
 							],
 							"cookie": [],
-							"body": "{\n  \"data\": [\n    {\n      \"id\": 1,\n      \"reg_no\": \"ABC123GP\",\n      \"fleet_no\": null,\n      \"vehicle_group_name\": null,\n      \"unit_assigned_as\": \"primary\",\n      \"local_time\": \"2022-01-14T14:08:02+02:00\",\n      \"timezone\": \"Africa/Johannesburg\",\n      \"latitude\": -26.574441,\n      \"longitude\": 27.877545,\n      \"speed\": 0,\n      \"address\": null,\n      \"hours_behind\": 0.0,\n      \"comms_status_code\": \"online\"\n    },\n    {\n      \"id\": 2,\n      \"reg_no\": \"ABC555GP\",\n      \"fleet_no\": null,\n      \"vehicle_group_name\": null,\n      \"unit_assigned_as\": \"primary\",\n      \"local_time\": \"2022-01-14T14:07:35+02:00\",\n      \"timezone\": \"Africa/Johannesburg\",\n      \"latitude\": -28.344227,\n      \"longitude\": 31.298598,\n      \"speed\": 14,\n      \"address\": null,\n      \"hours_behind\": 0.0,\n      \"comms_status_code\": \"online\"\n    },\n    {\n      \"id\": 3,\n      \"reg_no\": \"DEF321GP\",\n      \"fleet_no\": null,\n      \"vehicle_group_name\": null,\n      \"unit_assigned_as\": \"primary\",\n      \"local_time\": \"2022-01-14T14:07:13+02:00\",\n      \"timezone\": \"Africa/Johannesburg\",\n      \"latitude\": -26.028498,\n      \"longitude\": 27.947467,\n      \"speed\": 0,\n      \"address\": null,\n      \"hours_behind\": 0.0,\n      \"comms_status_code\": \"online\"\n    }\n  ]\n}"
+							"body": "{\n  \"data\": [\n    {\n        \"id\": 1,\n        \"reg_no\": \"ABC123GP\",\n        \"fleet_no\": \"001\",\n        \"vehicle_make\": \"Toyota\",\n        \"vehicle_model\": \"Fortuner\",\n        \"client_name\": \"ACM Technology\",\n        \"driver_name\": \"John Doe\",\n        \"vehicle_group_name\": \"Internal Fleet\",\n        \"unit_assigned_as\": \"primary\",\n        \"local_time\": \"2024-07-24T08:51:07+02:00\",\n        \"timezone\": \"Africa/Johannesburg\",\n        \"latitude\": -26.084087,\n        \"longitude\": 27.937792,\n        \"speed\": 14,\n        \"heading\": 351,\n        \"gps_fix\": [\"fixed\"],\n        \"odometer\": 12345,\n        \"address\": \"15 Street X, Suburb, City\",\n        \"hours_behind\": 0.01,\n        \"comms_status_code\": \"online\"\n    },\n    {\n        \"id\": 2,\n        \"reg_no\": \"ABC555GP\",\n        \"fleet_no\": null,\n        \"vehicle_make\": null,\n        \"vehicle_model\": null,\n        \"client_name\": \"ACM Technology\",\n        \"driver_name\": null,\n        \"vehicle_group_name\": \"Internal Fleet\",\n        \"unit_assigned_as\": \"backup_1\",\n        \"local_time\": \"2024-07-24T07:43:12+02:00\",\n        \"timezone\": \"Africa/Johannesburg\",\n        \"latitude\": -28.344227,\n        \"longitude\": 31.298598,\n        \"speed\": 0,\n        \"heading\": 25,\n        \"gps_fix\": [],\n        \"odometer\": null,\n        \"address\": \"25 Street X, Suburb, City\",\n        \"hours_behind\": 2.6,\n        \"comms_status_code\": \"offline\"\n    },\n    {\n        \"id\": 3,\n        \"reg_no\": \"DEF321GP\",\n        \"fleet_no\": null,\n        \"vehicle_make\": null,\n        \"vehicle_model\": null,\n        \"client_name\": \"ACM Technology\",\n        \"driver_name\": null,\n        \"vehicle_group_name\": null,\n        \"unit_assigned_as\": \"primary\",\n        \"local_time\": \"2024-07-24T08:50:55+02:00\",\n        \"timezone\": \"Africa/Johannesburg\",\n        \"latitude\": -26.028498,\n        \"longitude\": 27.947467,\n        \"speed\": 120.4,\n        \"heading\": 227,\n        \"gps_fix\": [\"fixed\"],\n        \"odometer\": null,\n        \"address\": \"102 Street X, Suburb, City\",\n        \"hours_behind\": 0.02,\n        \"comms_status_code\": \"online\"\n    }\n  ]\n}"
 						}
 					]
 				},
@@ -11725,7 +11732,8 @@
 									"value": "primary"
 								}
 							]
-						}
+						},
+						"description": "Returns the latest location status data for each vehicle under a specific vehicle group.\n\n_Note: If it seems that you are receiving duplicate records it is because a vehicle may be fitted with multiple GPS device/tracking units. In order to only see the data of the primary device (recommended as backup devices often have less data available) you can add the_ `?unit_assigned_as=primary` _filtering parameter, for example:_\n\n```\n/api/v1/vehicles/status/location/by-client/all?unit_assigned_as=primary\n\n ```\n\nThe request returns an array of objects having the following fields:\n\n- `id (int)`: The vehicle's database id.\n    \n- `reg_no (string)`: Vehicle's registration number.\n    \n- `fleet_no (string|null)`: Vehicle's fleet number.\n    \n- `vehicle_make (string|null)`: Vehicle's make.\n    \n- `vehicle_model (string|null)`: Vehicle's model.\n    \n- `client_name (string)`: Client/customer name.\n    \n- `driver_name (string|null)`: Active or assigned Driver name.\n    \n- `vehicle_group_name (string|null)`: Vehicle's group name.\n    \n- `unit_assigned_as (string)`: Can be `primary`, `backup_1, backup_2.`\n    \n- `local_time (ISO 8601 date and time string|null)`: The local time of the GPS recording, local meaning the timezone where the GPS device finds itself in. It can be null if no GPS data has been captured by the device yet.\n    \n- `timezone (string)`: The configured/active timezone of the GPS device.\n    \n- `latitude (float)`: The decimal latitude in degrees.\n    \n- `longitude (float)`: The decimal longitude in degrees.\n    \n- `speed (int|float)`: The current GPS speed in km/h.\n    \n- `heading (int|float)`: The current GPS heading in degrees where 0 = North.\n    \n- `gps_fix (array of strings)`: Can be an empty array or have a combination of the following values: `\"fixed\", \"predicted\", \"diff_corrected\", \"last_known\", \"2d\", \"logged\", \"invalid_time\", \"on_no_fix\", \"sleep\"`. In most cases the array will be empty or only contain `\"on_no_fix\"` if there is no GPS fix.\n    \n- `odometer (int)`: Odometer in meters. This is currently only availble if the GPS device is configured to supply the odometer, returns 0 if no odometer is available.\n    \n- `address (int|null)`: Current address of the vehicle if available.\n    \n- `hours_behind (float)`: Can be used to determine how long ago the device transmitted a GPS location, the device's timezone is taken into account.\n    \n- `comms_status_code (string)`: Current communication status. Can be `\"online\", \"inactive\", \"offline\", \"never\"`."
 					},
 					"response": [
 						{
@@ -11790,7 +11798,7 @@
 								}
 							],
 							"cookie": [],
-							"body": "{\n  \"data\": [\n    {\n      \"id\": 1,\n      \"reg_no\": \"ABC123GP\",\n      \"fleet_no\": null,\n      \"vehicle_group_name\": null,\n      \"unit_assigned_as\": \"primary\",\n      \"local_time\": \"2022-01-14T14:08:02+02:00\",\n      \"timezone\": \"Africa/Johannesburg\",\n      \"latitude\": -26.574441,\n      \"longitude\": 27.877545,\n      \"speed\": 0,\n      \"address\": null,\n      \"hours_behind\": 0.0,\n      \"comms_status_code\": \"online\"\n    },\n    {\n      \"id\": 2,\n      \"reg_no\": \"ABC555GP\",\n      \"fleet_no\": null,\n      \"vehicle_group_name\": null,\n      \"unit_assigned_as\": \"primary\",\n      \"local_time\": \"2022-01-14T14:07:35+02:00\",\n      \"timezone\": \"Africa/Johannesburg\",\n      \"latitude\": -28.344227,\n      \"longitude\": 31.298598,\n      \"speed\": 14,\n      \"address\": null,\n      \"hours_behind\": 0.0,\n      \"comms_status_code\": \"online\"\n    },\n    {\n      \"id\": 3,\n      \"reg_no\": \"DEF321GP\",\n      \"fleet_no\": null,\n      \"vehicle_group_name\": null,\n      \"unit_assigned_as\": \"primary\",\n      \"local_time\": \"2022-01-14T14:07:13+02:00\",\n      \"timezone\": \"Africa/Johannesburg\",\n      \"latitude\": -26.028498,\n      \"longitude\": 27.947467,\n      \"speed\": 0,\n      \"address\": null,\n      \"hours_behind\": 0.0,\n      \"comms_status_code\": \"online\"\n    }\n  ]\n}"
+							"body": "{\n  \"data\": [\n    {\n        \"id\": 1,\n        \"reg_no\": \"ABC123GP\",\n        \"fleet_no\": \"001\",\n        \"vehicle_make\": \"Toyota\",\n        \"vehicle_model\": \"Fortuner\",\n        \"client_name\": \"ACM Technology\",\n        \"driver_name\": \"John Doe\",\n        \"vehicle_group_name\": \"Internal Fleet\",\n        \"unit_assigned_as\": \"primary\",\n        \"local_time\": \"2024-07-24T08:51:07+02:00\",\n        \"timezone\": \"Africa/Johannesburg\",\n        \"latitude\": -26.084087,\n        \"longitude\": 27.937792,\n        \"speed\": 14,\n        \"heading\": 351,\n        \"gps_fix\": [\"fixed\"],\n        \"odometer\": 12345,\n        \"address\": \"15 Street X, Suburb, City\",\n        \"hours_behind\": 0.01,\n        \"comms_status_code\": \"online\"\n    },\n    {\n        \"id\": 2,\n        \"reg_no\": \"ABC555GP\",\n        \"fleet_no\": null,\n        \"vehicle_make\": null,\n        \"vehicle_model\": null,\n        \"client_name\": \"ACM Technology\",\n        \"driver_name\": null,\n        \"vehicle_group_name\": \"Internal Fleet\",\n        \"unit_assigned_as\": \"backup_1\",\n        \"local_time\": \"2024-07-24T07:43:12+02:00\",\n        \"timezone\": \"Africa/Johannesburg\",\n        \"latitude\": -28.344227,\n        \"longitude\": 31.298598,\n        \"speed\": 0,\n        \"heading\": 25,\n        \"gps_fix\": [],\n        \"odometer\": null,\n        \"address\": \"25 Street X, Suburb, City\",\n        \"hours_behind\": 2.6,\n        \"comms_status_code\": \"offline\"    \n    },\n    {\n        \"id\": 3,\n        \"reg_no\": \"DEF321GP\",\n        \"fleet_no\": null,\n        \"vehicle_make\": null,\n        \"vehicle_model\": null,\n        \"client_name\": \"ACM Technology\",\n        \"driver_name\": null,\n        \"vehicle_group_name\": null,\n        \"unit_assigned_as\": \"primary\",\n        \"local_time\": \"2024-07-24T08:50:55+02:00\",\n        \"timezone\": \"Africa/Johannesburg\",\n        \"latitude\": -26.028498,\n        \"longitude\": 27.947467,\n        \"speed\": 120.4,\n        \"heading\": 227,\n        \"gps_fix\": [\"fixed\"],\n        \"odometer\": null,\n        \"address\": \"102 Street X, Suburb, City\",\n        \"hours_behind\": 0.02,\n        \"comms_status_code\": \"online\"\n    }\n  ]\n}"
 						}
 					]
 				},
@@ -11800,7 +11808,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{http}}://{{domain}}/api/v1/vehicles/status/trip/by-client/{{client_id}}",
+							"raw": "{{http}}://{{domain}}/api/v1/vehicles/status/trip/by-client/{{client_id}}?unit_assigned_as=primary",
 							"protocol": "{{http}}",
 							"host": [
 								"{{domain}}"
@@ -11813,8 +11821,15 @@
 								"trip",
 								"by-client",
 								"{{client_id}}"
+							],
+							"query": [
+								{
+									"key": "unit_assigned_as",
+									"value": "primary"
+								}
 							]
-						}
+						},
+						"description": "Returns the latest location and current trip status data (if trip in progress) for each vehicle under a specific client or clients.\n\nFollowing are two examples for using this request:\n\n1. Returns the location status data for all clients accessable to the user of the API: `/api/v1/vehicles/status/trip/by-client/all`\n2. Returns the location status data for the client id `555`. If the user of the API is a client level user, the id will be ignored and only accessable data will be returned: `/api/v1/vehicles/status/trip/by-client/555`\n    \n\n_Note: If it seems that you are receiving duplicate records it is because a vehicle may be fitted with multiple GPS device/tracking units. In order to only see the data of the primary device (recommended as backup devices often have less data available) you can add the_ `?unit_assigned_as=primary` _filtering parameter, for example_:\n\n```\n/api/v1/vehicles/status/location/by-client/all?unit_assigned_as=primary\n\n ```\n\nThe request returns an array of objects having the following fields:\n\n- `id (int)`: The vehicle's database id.\n- `reg_no (string)`: Vehicle's registration number.\n- `fleet_no (string|null)`: Vehicle's fleet number.\n- `vehicle_make (string|null)`: Vehicle's make.\n- `vehicle_model (string|null)`: Vehicle's model.\n- `client_name (string)`: Client/customer name.\n- `driver_name (string|null)`: Active or assigned Driver name.\n- `vehicle_group_name (string|null)`: Vehicle's group name.\n- `unit_assigned_as (string)`: Can be `primary`, `backup_1, backup_2.`\n- `local_time (ISO 8601 date and time string|null)`: The local time of the GPS recording, local meaning the timezone where the GPS device finds itself in. It can be null if no GPS data has been captured by the device yet.\n- `timezone (string)`: The configured/active timezone of the GPS device.\n- `latitude (float)`: The decimal latitude in degrees.\n- `longitude (float)`: The decimal longitude in degrees.\n- `speed (int|float)`: The current GPS speed in km/h.\n- `heading (int|float)`: The current GPS heading in degrees where 0 = North.\n- `gps_fix (array of strings)`: Can be an empty array or have a combination of the following values: `\"fixed\", \"predicted\", \"diff_corrected\", \"last_known\", \"2d\", \"logged\", \"invalid_time\", \"on_no_fix\", \"sleep\"`. In most cases the array will be empty or only contain `\"on_no_fix\"` if there is no GPS fix.\n- `odometer (int)`: Odometer in meters. This is currently only availble if the GPS device is configured to supply the odometer, returns 0 if no odometer is available.\n- `address (int|null)`: Current address of the vehicle if available.\n- `hours_behind (float)`: Can be used to determine how long ago the device transmitted a GPS location, the device's timezone is taken into account.\n- `comms_status_code (string)`: Current communication status. Can be `\"online\", \"inactive\", \"offline\", \"never\"`.\n- day_trip_no (int): The trip number of the day if a trip is active.\n- active_trip (Object|null): The active trip data object if a trip is active, null if no trip is active.\n    \n\nThe `active_trip` object contains the following fields and sub-fields:\n\n- `avg_speed (float)`: The average speed of the active trip in km/h.\n    \n- `max_speed (float|int)`: The maximum speed in km/h reached during the active trip.\n    \n- `started_at (ISO 8601 date and time string|null)`: The local time when the GPS trip started.\n    \n- `distance_km (float)`: The distance travelled in the active trip.\n    \n- `start_address (string|null)`: The starting address of the active trip.\n    \n- `durations (Object)`: The various durations in \"HH:MM:SS\" recorded during the active trip."
 					},
 					"response": [
 						{
@@ -11873,7 +11888,7 @@
 								}
 							],
 							"cookie": [],
-							"body": "{\n  \"data\": [\n    {\n      \"id\": 1,\n      \"reg_no\": \"ABC123GP\",\n      \"fleet_no\": null,\n      \"vehicle_group_name\": null,\n      \"unit_assigned_as\": \"primary\",\n      \"local_time\": \"2022-07-01T16:22:40+02:00\",\n      \"timezone\": \"Africa/Johannesburg\",\n      \"latitude\": -26.083788,\n      \"longitude\": 27.9113,\n      \"speed\": 16,\n      \"address\": null,\n      \"hours_behind\": 0.0,\n      \"comms_status_code\": \"online\",\n      \"day_trip_no\": 74,\n      \"active_trip\": {\n        \"avg_speed\": 16.637,\n        \"durations\": {\n          \"total\": \"00:03:39\",\n          \"engine\": \"00:03:39\",\n          \"idling\": \"00:00:00\",\n          \"driving\": \"00:03:39\",\n          \"speeding\": \"00:00:00\"\n        },\n        \"max_speed\": 27,\n        \"started_at\": \"2022-07-01T16:19:01+02:00\",\n        \"distance_km\": 1.0913,\n        \"start_address\": \"15 Sunday Road, Somewhere, Some City, Gauteng 1234, South Africa\"\n      }\n    },\n    {\n      \"id\": 2,\n      \"reg_no\": \"ABC555GP\",\n      \"fleet_no\": null,\n      \"vehicle_group_name\": null,\n      \"unit_assigned_as\": \"primary\",\n      \"local_time\": \"2022-07-01T16:22:40+02:00\",\n      \"timezone\": \"Africa/Johannesburg\",\n      \"latitude\": -26.083788,\n      \"longitude\": 27.9113,\n      \"speed\": 16,\n      \"address\": null,\n      \"hours_behind\": 0.0,\n      \"comms_status_code\": \"online\",\n      \"day_trip_no\": 15,\n      \"active_trip\": null\n    },\n    {\n      \"id\": 3,\n      \"reg_no\": \"DEF123GP\",\n      \"fleet_no\": null,\n      \"vehicle_group_name\": null,\n      \"unit_assigned_as\": \"primary\",\n      \"local_time\": \"2022-07-01T16:22:40+02:00\",\n      \"timezone\": \"Africa/Johannesburg\",\n      \"latitude\": -26.083788,\n      \"longitude\": 27.9113,\n      \"speed\": 16,\n      \"address\": null,\n      \"hours_behind\": 0.0,\n      \"comms_status_code\": \"online\",\n      \"day_trip_no\": 4,\n      \"active_trip\": null\n    }\n  ]\n}"
+							"body": "{\n  \"data\": [\n    {\n        \"id\": 1,\n        \"reg_no\": \"ABC123GP\",\n        \"fleet_no\": \"001\",\n        \"vehicle_make\": \"Toyota\",\n        \"vehicle_model\": \"Fortuner\",\n        \"client_name\": \"ACM Technology\",\n        \"driver_name\": \"John Doe\",\n        \"vehicle_group_name\": \"Internal Fleet\",\n        \"unit_assigned_as\": \"primary\",\n        \"local_time\": \"2024-07-24T08:51:07+02:00\",\n        \"timezone\": \"Africa/Johannesburg\",\n        \"latitude\": -26.084087,\n        \"longitude\": 27.937792,\n        \"speed\": 14,\n        \"heading\": 351,\n        \"gps_fix\": [\"fixed\"],\n        \"odometer\": 12345,\n        \"address\": \"15 Street X, Suburb, City\",\n        \"hours_behind\": 0.01,\n        \"comms_status_code\": \"online\",\n        \"day_trip_no\": 12,\n        \"active_trip\": {\n            \"avg_speed\": 16.637,\n            \"max_speed\": 27,\n            \"started_at\": \"2024-07-24T08:48:46+02:00\",\n            \"distance_km\": 1.0913,\n            \"start_address\": \"15 Street X, Suburb, City\",\n            \"durations\": {\n                \"total\": \"00:03:39\",\n                \"engine\": \"00:03:39\",\n                \"idling\": \"00:00:00\",\n                \"driving\": \"00:03:39\",\n                \"speeding\": \"00:00:00\"\n            }\n        }\n    },\n    {\n        \"id\": 2,\n        \"reg_no\": \"ABC555GP\",\n        \"fleet_no\": null,\n        \"vehicle_make\": null,\n        \"vehicle_model\": null,\n        \"client_name\": \"ACM Technology\",\n        \"driver_name\": null,\n        \"vehicle_group_name\": \"Internal Fleet\",\n        \"unit_assigned_as\": \"backup_1\",\n        \"local_time\": \"2024-07-24T07:43:12+02:00\",\n        \"timezone\": \"Africa/Johannesburg\",\n        \"latitude\": -28.344227,\n        \"longitude\": 31.298598,\n        \"speed\": 0,\n        \"heading\": 25,\n        \"gps_fix\": [],\n        \"odometer\": null,\n        \"address\": \"25 Street X, Suburb, City\",\n        \"hours_behind\": 2.6,\n        \"comms_status_code\": \"offline\",\n        \"day_trip_no\": 0,\n        \"active_trip\": null\n    },\n    {\n        \"id\": 3,\n        \"reg_no\": \"DEF321GP\",\n        \"fleet_no\": null,\n        \"vehicle_make\": null,\n        \"vehicle_model\": null,\n        \"client_name\": \"ACM Technology\",\n        \"driver_name\": null,\n        \"vehicle_group_name\": null,\n        \"unit_assigned_as\": \"primary\",\n        \"local_time\": \"2024-07-24T08:50:55+02:00\",\n        \"timezone\": \"Africa/Johannesburg\",\n        \"latitude\": -26.028498,\n        \"longitude\": 27.947467,\n        \"speed\": 120.4,\n        \"heading\": 227,\n        \"gps_fix\": [\"fixed\"],\n        \"odometer\": null,\n        \"address\": \"102 Street X, Suburb, City\",\n        \"hours_behind\": 0.02,\n        \"comms_status_code\": \"online\",\n        \"day_trip_no\": 4,\n        \"active_trip\": {\n            \"avg_speed\": 102.45,\n            \"max_speed\": 136.1,\n            \"started_at\": \"2024-07-24T07:40:00+02:00\",\n            \"distance_km\": 102.311,\n            \"start_address\": \"34 Street X, Suburb, City\",\n            \"durations\": {\n                \"total\": \"01:10:55\",\n                \"engine\": \"01:10:55\",\n                \"idling\": \"00:03:50\",\n                \"driving\": \"01:07:10\",\n                \"speeding\": \"00:02:21\"\n            }\n        }\n    }\n  ]\n}"
 						}
 					]
 				},
@@ -11897,7 +11912,8 @@
 								"by-vehicle-group",
 								"{{vehicle_group_id}}"
 							]
-						}
+						},
+						"description": "Returns the latest location and current active trip status data (if trip in progress) for each vehicle under a specific vehicle group.\n\n_Note: If it seems that you are receiving duplicate records it is because a vehicle may be fitted with multiple GPS device/tracking units. In order to only see the data of the primary device (recommended as backup devices often have less data available) you can add the_ `?unit_assigned_as=primary` _filtering parameter, for example_:\n\n```\n/api/v1/vehicles/status/trip/by-vehicle-group/555?unit_assigned_as=primary\n\n ```\n\nThe request returns an array of objects having the following fields:\n\n- `id (int)`: The vehicle's database id.\n- `reg_no (string)`: Vehicle's registration number.\n- `fleet_no (string|null)`: Vehicle's fleet number.\n- `vehicle_make (string|null)`: Vehicle's make.\n- `vehicle_model (string|null)`: Vehicle's model.\n- `client_name (string)`: Client/customer name.\n- `driver_name (string|null)`: Active or assigned Driver name.\n- `vehicle_group_name (string|null)`: Vehicle's group name.\n- `unit_assigned_as (string)`: Can be `primary`, `backup_1, backup_2.`\n- `local_time (ISO 8601 date and time string|null)`: The local time of the GPS recording, local meaning the timezone where the GPS device finds itself in. It can be null if no GPS data has been captured by the device yet.\n- `timezone (string)`: The configured/active timezone of the GPS device.\n- `latitude (float)`: The decimal latitude in degrees.\n- `longitude (float)`: The decimal longitude in degrees.\n- `speed (int|float)`: The current GPS speed in km/h.\n- `heading (int|float)`: The current GPS heading in degrees where 0 = North.\n- `gps_fix (array of strings)`: Can be an empty array or have a combination of the following values: `\"fixed\", \"predicted\", \"diff_corrected\", \"last_known\", \"2d\", \"logged\", \"invalid_time\", \"on_no_fix\", \"sleep\"`. In most cases the array will be empty or only contain `\"on_no_fix\"` if there is no GPS fix.\n- `odometer (int)`: Odometer in meters. This is currently only availble if the GPS device is configured to supply the odometer, returns 0 if no odometer is available.\n- `address (int|null)`: Current address of the vehicle if available.\n- `hours_behind (float)`: Can be used to determine how long ago the device transmitted a GPS location, the device's timezone is taken into account.\n- `comms_status_code (string)`: Current communication status. Can be `\"online\", \"inactive\", \"offline\", \"never\"`.\n- day_trip_no (int): The trip number of the day if a trip is active.\n- active_trip (Object|null): The active trip data object if a trip is active, null if no trip is active.\n    \n\nThe `active_trip` object contains the following fields and sub-fields:\n\n- `avg_speed (float)`: The average speed of the active trip in km/h.\n- `max_speed (float|int)`: The maximum speed in km/h reached during the active trip.\n- `started_at (ISO 8601 date and time string|null)`: The local time when the GPS trip started.\n- `distance_km (float)`: The distance travelled in the active trip.\n- `start_address (string|null)`: The starting address of the active trip.\n- `durations (Object)`: The various durations in \"HH:MM:SS\" recorded during the active trip."
 					},
 					"response": [
 						{
@@ -11956,7 +11972,7 @@
 								}
 							],
 							"cookie": [],
-							"body": "{\n  \"data\": [\n    {\n      \"id\": 1,\n      \"reg_no\": \"ABC123GP\",\n      \"fleet_no\": null,\n      \"vehicle_group_name\": null,\n      \"unit_assigned_as\": \"primary\",\n      \"local_time\": \"2022-07-01T16:22:40+02:00\",\n      \"timezone\": \"Africa/Johannesburg\",\n      \"latitude\": -26.083788,\n      \"longitude\": 27.9113,\n      \"speed\": 16,\n      \"address\": null,\n      \"hours_behind\": 0.0,\n      \"comms_status_code\": \"online\",\n      \"day_trip_no\": 74,\n      \"active_trip\": {\n        \"avg_speed\": 16.637,\n        \"durations\": {\n          \"total\": \"00:03:39\",\n          \"engine\": \"00:03:39\",\n          \"idling\": \"00:00:00\",\n          \"driving\": \"00:03:39\",\n          \"speeding\": \"00:00:00\"\n        },\n        \"max_speed\": 27,\n        \"started_at\": \"2022-07-01T16:19:01+02:00\",\n        \"distance_km\": 1.0913,\n        \"start_address\": \"15 Sunday Road, Somewhere, Some City, Gauteng 1234, South Africa\"\n      }\n    },\n    {\n      \"id\": 2,\n      \"reg_no\": \"ABC555GP\",\n      \"fleet_no\": null,\n      \"vehicle_group_name\": null,\n      \"unit_assigned_as\": \"primary\",\n      \"local_time\": \"2022-07-01T16:22:40+02:00\",\n      \"timezone\": \"Africa/Johannesburg\",\n      \"latitude\": -26.083788,\n      \"longitude\": 27.9113,\n      \"speed\": 16,\n      \"address\": null,\n      \"hours_behind\": 0.0,\n      \"comms_status_code\": \"online\",\n      \"day_trip_no\": 15,\n      \"active_trip\": null\n    },\n    {\n      \"id\": 3,\n      \"reg_no\": \"DEF123GP\",\n      \"fleet_no\": null,\n      \"vehicle_group_name\": null,\n      \"unit_assigned_as\": \"primary\",\n      \"local_time\": \"2022-07-01T16:22:40+02:00\",\n      \"timezone\": \"Africa/Johannesburg\",\n      \"latitude\": -26.083788,\n      \"longitude\": 27.9113,\n      \"speed\": 16,\n      \"address\": null,\n      \"hours_behind\": 0.0,\n      \"comms_status_code\": \"online\",\n      \"day_trip_no\": 4,\n      \"active_trip\": null\n    }\n  ]\n}"
+							"body": "{\n  \"data\": [\n    {\n        \"id\": 1,\n        \"reg_no\": \"ABC123GP\",\n        \"fleet_no\": \"001\",\n        \"vehicle_make\": \"Toyota\",\n        \"vehicle_model\": \"Fortuner\",\n        \"client_name\": \"ACM Technology\",\n        \"driver_name\": \"John Doe\",\n        \"vehicle_group_name\": \"Internal Fleet\",\n        \"unit_assigned_as\": \"primary\",\n        \"local_time\": \"2024-07-24T08:51:07+02:00\",\n        \"timezone\": \"Africa/Johannesburg\",\n        \"latitude\": -26.084087,\n        \"longitude\": 27.937792,\n        \"speed\": 14,\n        \"heading\": 351,\n        \"gps_fix\": [\"fixed\"],\n        \"odometer\": 12345,\n        \"address\": \"15 Street X, Suburb, City\",\n        \"hours_behind\": 0.01,\n        \"comms_status_code\": \"online\",\n        \"day_trip_no\": 12,\n        \"active_trip\": {\n            \"avg_speed\": 16.637,\n            \"max_speed\": 27,\n            \"started_at\": \"2024-07-24T08:48:46+02:00\",\n            \"distance_km\": 1.0913,\n            \"start_address\": \"15 Street X, Suburb, City\",\n            \"durations\": {\n                \"total\": \"00:03:39\",\n                \"engine\": \"00:03:39\",\n                \"idling\": \"00:00:00\",\n                \"driving\": \"00:03:39\",\n                \"speeding\": \"00:00:00\"\n            }\n        }\n    },\n    {\n        \"id\": 2,\n        \"reg_no\": \"ABC555GP\",\n        \"fleet_no\": null,\n        \"vehicle_make\": null,\n        \"vehicle_model\": null,\n        \"client_name\": \"ACM Technology\",\n        \"driver_name\": null,\n        \"vehicle_group_name\": \"Internal Fleet\",\n        \"unit_assigned_as\": \"backup_1\",\n        \"local_time\": \"2024-07-24T07:43:12+02:00\",\n        \"timezone\": \"Africa/Johannesburg\",\n        \"latitude\": -28.344227,\n        \"longitude\": 31.298598,\n        \"speed\": 0,\n        \"heading\": 25,\n        \"gps_fix\": [],\n        \"odometer\": null,\n        \"address\": \"25 Street X, Suburb, City\",\n        \"hours_behind\": 2.6,\n        \"comms_status_code\": \"offline\",\n        \"day_trip_no\": 0,\n        \"active_trip\": null\n    },\n    {\n        \"id\": 3,\n        \"reg_no\": \"DEF321GP\",\n        \"fleet_no\": null,\n        \"vehicle_make\": null,\n        \"vehicle_model\": null,\n        \"client_name\": \"ACM Technology\",\n        \"driver_name\": null,\n        \"vehicle_group_name\": null,\n        \"unit_assigned_as\": \"primary\",\n        \"local_time\": \"2024-07-24T08:50:55+02:00\",\n        \"timezone\": \"Africa/Johannesburg\",\n        \"latitude\": -26.028498,\n        \"longitude\": 27.947467,\n        \"speed\": 120.4,\n        \"heading\": 227,\n        \"gps_fix\": [\"fixed\"],\n        \"odometer\": null,\n        \"address\": \"102 Street X, Suburb, City\",\n        \"hours_behind\": 0.02,\n        \"comms_status_code\": \"online\",\n        \"day_trip_no\": 4,\n        \"active_trip\": {\n            \"avg_speed\": 102.45,\n            \"max_speed\": 136.1,\n            \"started_at\": \"2024-07-24T07:40:00+02:00\",\n            \"distance_km\": 102.311,\n            \"start_address\": \"34 Street X, Suburb, City\",\n            \"durations\": {\n                \"total\": \"01:10:55\",\n                \"engine\": \"01:10:55\",\n                \"idling\": \"00:03:50\",\n                \"driving\": \"01:07:10\",\n                \"speeding\": \"00:02:21\"\n            }\n        }\n    }\n  ]\n}"
 						}
 					]
 				}
@@ -15154,12 +15170,21 @@
 			"name": "Reports",
 			"item": [
 				{
-					"name": "Run Report",
+					"name": "Run Vehicle Debrief PDF Report (Detailed)",
 					"request": {
 						"method": "POST",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"report_mode\": \"pdf\",\n  \"vehicles\": [\n    {\n      \"id\": 1,\n      \"assigned_as\": \"primary\"\n    }\n  ],\n  \"date_range_type\": \"day\",\n  \"date_range_day\": \"2023-12-06\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
-							"raw": "{{http}}://{{domain}}/api/v1/reports/{type}",
+							"raw": "{{http}}://{{domain}}/api/v1/reports/debrief_detailed",
 							"protocol": "{{http}}",
 							"host": [
 								"{{domain}}"
@@ -15168,9 +15193,382 @@
 								"api",
 								"v1",
 								"reports",
-								"{type}"
+								"debrief_detailed"
 							]
-						}
+						},
+						"description": "Run a detailed debrief/trip report job on a specific vehicle and generate a PDF file.\n\n**Important**: This starts a background job which will run asynchronously, and as such the results of the report is not returned immediately. Instead, the front-end can use an SSE connection to get feedback on the report or alternatively poll the report status using the `Get Report by Id` request.\n\nDate range example 1:\n\n```\n\"date_range_type\": \"day\"\n\"date_range_day\": \"2023-12-06\"\n\n ```\n\nDate range example 2:\n\n```\n\"date_range_type\": \"month\"\n\"date_range_month\": \"2023-12\"\n\n ```\n\nDate range example 3:\n\n```\n\"date_range_type\": \"date_range\"\n\"date_range_from\": \"2023-12-01\"\n\"date_range_to\": \"2023-12-06\"\n\n ```"
+					},
+					"response": []
+				},
+				{
+					"name": "Run Client Fleet Debrief PDF Report (Summary)",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"report_mode\": \"pdf\",\n  \"client_id\": 1,\n  \"vehicles\": [],\n  \"vehicle_groups\": [],\n  \"date_range_type\": \"day\",\n  \"date_range_day\": \"2023-12-06\",\n  \"order_by\": \"reg_date\",\n  \"pdf_options\": \"show_veh_sub\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{http}}://{{domain}}/api/v1/reports/debrief_summary",
+							"protocol": "{{http}}",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"reports",
+								"debrief_summary"
+							]
+						},
+						"description": "Run a debrief/trip summary report job on a all the vehicles for the specified client and generate a PDF file.\n\n**Important**: This starts a background job which will run asynchronously, and as such the results of the report is not returned immediately. Instead, the front-end can use an SSE connection to get feedback on the report or alternatively poll the report status using the `Get Report by Id` request.\n\nDate range example 1:\n\n```\n\"date_range_type\": \"day\"\n\"date_range_day\": \"2023-12-06\"\n\n ```\n\nDate range example 2:\n\n```\n\"date_range_type\": \"month\"\n\"date_range_month\": \"2023-12\"\n\n ```\n\nDate range example 3:\n\n```\n\"date_range_type\": \"date_range\"\n\"date_range_from\": \"2023-12-01\"\n\"date_range_to\": \"2023-12-06\"\n\n ```\n\nOrdery By examples:\n\n```\n\"order_by\": \"reg_date\" // Vehicle Registration, Date\n\"order_by\": \"fleet_date\" // Fleet no., Date\n\n ```\n\nPDF Option examples:\n\n```\n\"pdf_options\": \"show_veh_sub\" // Show vehicle sub totals\n\"pdf_options\": \"show_sub_only\" // Show sub totals only\n\"pdf_options\": \"skip_veh_sub\" // Skip vehicle sub totals\n\n ```"
+					},
+					"response": []
+				},
+				{
+					"name": "Run Vehicle Group Debrief PDF Report (Summary)",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"report_mode\": \"pdf\",\n  \"client_id\": 1,\n  \"vehicle_groups\": [1],\n  \"date_range_type\": \"day\",\n  \"date_range_day\": \"2023-12-06\",\n  \"order_by\": \"reg_date\",\n  \"pdf_options\": \"show_veh_sub\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{http}}://{{domain}}/api/v1/reports/debrief_summary",
+							"protocol": "{{http}}",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"reports",
+								"debrief_summary"
+							]
+						},
+						"description": "Run a debrief/trip summary report job on a group of vehicles and generate a PDF file.\n\n**Important**: This starts a background job which will run asynchronously, and as such the results of the report is not returned immediately. Instead, the front-end can use an SSE connection to get feedback on the report or alternatively poll the report status using the `Get Report by Id` request.\n\nDate range example 1:\n\n```\n\"date_range_type\": \"day\"\n\"date_range_day\": \"2023-12-06\"\n\n ```\n\nDate range example 2:\n\n```\n\"date_range_type\": \"month\"\n\"date_range_month\": \"2023-12\"\n\n ```\n\nDate range example 3:\n\n```\n\"date_range_type\": \"date_range\"\n\"date_range_from\": \"2023-12-01\"\n\"date_range_to\": \"2023-12-06\"\n\n ```"
+					},
+					"response": []
+				},
+				{
+					"name": "Run Vehicle Analysis PDF Report",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"report_mode\": \"pdf\",\n  \"vehicles\": [\n      { \"id\": 122, \"assigned_as\": \"primary\" }\n  ],\n  \"date_range_type\": \"day\",\n  \"date_range_day\": \"2023-12-06\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{http}}://{{domain}}/api/v1/reports/vehicle_analysis",
+							"protocol": "{{http}}",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"reports",
+								"vehicle_analysis"
+							]
+						},
+						"description": "Run a vehicle analysis report job on a vehicle and generate a PDF file.\n\n**Important**: This starts a background job which will run asynchronously, and as such the results of the report is not returned immediately. Instead, the front-end can use an SSE connection to get feedback on the report or alternatively poll the report status using the `Get Report by Id` request.\n\nDate range example 1:\n\n```\n\"date_range_type\": \"day\"\n\"date_range_day\": \"2023-12-06\"\n\n ```\n\nDate range example 2:\n\n```\n\"date_range_type\": \"month\"\n\"date_range_month\": \"2023-12\"\n\n ```\n\nDate range example 3:\n\n```\n\"date_range_type\": \"date_range\"\n\"date_range_from\": \"2023-12-01\"\n\"date_range_to\": \"2023-12-06\"\n\n ```"
+					},
+					"response": []
+				},
+				{
+					"name": "Run Vehicle Position Log PDF Report",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"report_mode\": \"pdf\",\n  \"vehicles\": [\n      { \"id\": 1, \"assigned_as\": \"primary\" }\n  ],\n  \"date_range_type\": \"day\",\n  \"time_range_from\": \"00:00:00\",\n  \"time_range_to\": \"23:59:59\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{http}}://{{domain}}/api/v1/reports/position_log",
+							"protocol": "{{http}}",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"reports",
+								"position_log"
+							]
+						},
+						"description": "Run a Position Log report job on a vehicle and generate a PDF file.\n\n**Important**: This starts a background job which will run asynchronously, and as such the results of the report is not returned immediately. Instead, the front-end can use an SSE connection to get feedback on the report or alternatively poll the report status using the `Get Report by Id` request.\n\nNote that the \\`date_range_type\\` must be set to `day` for this report.\n\n```\n\"date_range_type\": \"day\"\n\"date_range_day\": \"2023-12-06\"\n\"time_range_from\": \"00:00:00\"\n\"time_range_to\": \"23:59:59\"\n\n ```"
+					},
+					"response": []
+				},
+				{
+					"name": "Run Unit Position Log PDF Report",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"report_mode\": \"pdf\",\n  \"units\": [1],\n  \"date_range_type\": \"day\",\n  \"time_range_from\": \"00:00:00\",\n  \"time_range_to\": \"23:59:59\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{http}}://{{domain}}/api/v1/reports/position_log",
+							"protocol": "{{http}}",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"reports",
+								"position_log"
+							]
+						},
+						"description": "Run a Position Log report job on a unit/device and generate a PDF file.\n\n**Important**: This starts a background job which will run asynchronously, and as such the results of the report is not returned immediately. Instead, the front-end can use an SSE connection to get feedback on the report or alternatively poll the report status using the `Get Report by Id` request.\n\nNote that the `date_range_type` must be set to `day` for this report.\n\n```\n\"date_range_type\": \"day\"\n\"date_range_day\": \"2023-12-06\"\n\"time_range_from\": \"00:00:00\"\n\"time_range_to\": \"23:59:59\"\n\n ```"
+					},
+					"response": []
+				},
+				{
+					"name": "Run Client Fleet Vehicle Expenditure PDF Report",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"report_mode\": \"pdf\",\n  \"client_id\": 1,\n  \"date_range_type\": \"month\",\n  \"date_range_month\": \"2023-12\",\n  \"group_by\": \"vehicle_date\",\n  \"order_by\": \"vehicle_reg_no\",\n  \"pdf_options\": \"show_summary\",\n  \"pdf_charts\": \"show\",\n  \"filters\": {\n      \"expense_category\": [\"fuel\", \"general\", \"installments\"],\n      \"expense_type\": [15, 18],\n      \"tax_deductible\": [\"not_tax_deductable\"]\n  }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{http}}://{{domain}}/api/v1/reports/vehicle_expenses",
+							"protocol": "{{http}}",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"reports",
+								"vehicle_expenses"
+							]
+						},
+						"description": "Run a Vehicle Expenditure report job on the whole fleet of vehicles for a selected client and generate a PDF file.\n\n**Important**: This starts a background job which will run asynchronously, and as such the results of the report is not returned immediately. Instead, the front-end can use an SSE connection to get feedback on the report or alternatively poll the report status using the `Get Report by Id` request.\n\nDate range example 1:\n\n```\n\"date_range_type\": \"day\"\n\"date_range_day\": \"2023-12-06\"\n\n ```\n\nDate range example 2:\n\n```\n\"date_range_type\": \"month\"\n\"date_range_month\": \"2023-12\"\n\n ```\n\nDate range example 3:\n\n```\n\"date_range_type\": \"date_range\"\n\"date_range_from\": \"2023-12-01\"\n\"date_range_to\": \"2023-12-06\"\n\n ```\n\nGroup by examples:\n\n```\n\"group_by\": \"vehicle_date\" // Vehicle and invoice date\n\"group_by\": \"invoice_date\" // Invoice date\n\n ```\n\nOrder By examples:\n\n```\n\"order_by\": \"vehicle_reg_no\"\n\"order_by\": \"vehicle_fleet_no\"\n\n ```\n\nPDF Option examples:\n\n```\n\"pdf_options\": \"show_summary\"\n\"pdf_options\": \"show_summary_only\"\n\"pdf_options\": \"no_summary\"\n\n ```\n\nPDF Chart examples:\n\n```\n\"pdf_charts\": \"show\"\n\"pdf_charts\": \"dont_show\"\n\n ```\n\nFilters:\n\nThe `expense_category` filters array can be empty or any combination of these values: `\"fuel\", \"general\", \"installments\".`\n\nThe `expense_type` filter can be an empty array, and if not, contains an array of id's of the various expense types saved under the client.\n\nThe `tax_deductable` filter can either be empty, `\"tax_deductable\"` or `\"not_tax_deductable\"`."
+					},
+					"response": []
+				},
+				{
+					"name": "Run Vehicle Expenditure PDF Report",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"report_mode\": \"pdf\",\n  \"client_id\": 2,\n  \"vehicles\": [{\"id\": 1, \"assigned_as\": \"primary\"}, {\"id\": 2, \"assigned_as\": \"primary\"}],\n  \"date_range_type\": \"month\",\n  \"date_range_month\": \"2023-12\",\n  \"group_by\": \"vehicle_date\",\n  \"order_by\": \"vehicle_reg_no\",\n  \"pdf_options\": \"show_summary\",\n  \"pdf_charts\": \"show\",\n  \"filters\": {\n      \"expense_category\": [\"fuel\", \"general\", \"installments\"],\n      \"expense_type\": [15, 18],\n      \"tax_deductible\": [\"not_tax_deductable\"]\n  }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{http}}://{{domain}}/api/v1/reports/vehicle_expenses",
+							"protocol": "{{http}}",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"reports",
+								"vehicle_expenses"
+							]
+						},
+						"description": "Run a Vehicle Expenditure report job on one or more vehicles for a selected client and generate a PDF file.\n\n**Important**: This starts a background job which will run asynchronously, and as such the results of the report is not returned immediately. Instead, the front-end can use an SSE connection to get feedback on the report or alternatively poll the report status using the `Get Report by Id` request.\n\nDate range example 1:\n\n```\n\"date_range_type\": \"day\"\n\"date_range_day\": \"2023-12-06\"\n\n ```\n\nDate range example 2:\n\n```\n\"date_range_type\": \"month\"\n\"date_range_month\": \"2023-12\"\n\n ```\n\nDate range example 3:\n\n```\n\"date_range_type\": \"date_range\"\n\"date_range_from\": \"2023-12-01\"\n\"date_range_to\": \"2023-12-06\"\n\n ```\n\nGroup by examples:\n\n```\n\"group_by\": \"vehicle_date\" // Vehicle and invoice date\n\"group_by\": \"invoice_date\" // Invoice date\n\n ```\n\nOrder By examples:\n\n```\n\"order_by\": \"vehicle_reg_no\"\n\"order_by\": \"vehicle_fleet_no\"\n\n ```\n\nPDF Option examples:\n\n```\n\"pdf_options\": \"show_summary\"\n\"pdf_options\": \"show_summary_only\"\n\"pdf_options\": \"no_summary\"\n\n ```\n\nPDF Chart examples:\n\n```\n\"pdf_charts\": \"show\"\n\"pdf_charts\": \"dont_show\"\n\n ```\n\nFilters:\n\nThe `expense_category` filters array can be empty or any combination of these values: `\"fuel\", \"general\", \"installments\".`\n\nThe `expense_type` filter can be an empty array, and if not, contains an array of id's of the various expense types saved under the client.\n\nThe `tax_deductable` filter can either be empty, `\"tax_deductable\"` or `\"not_tax_deductable\"`."
+					},
+					"response": []
+				},
+				{
+					"name": "Run Vehicle Group Expenditure PDF Report",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"report_mode\": \"pdf\",\n  \"client_id\": 1,\n  \"vehicle_groups\": [1, 2],\n  \"date_range_type\": \"month\",\n  \"date_range_month\": \"2023-12\",\n  \"group_by\": \"vehicle_date\",\n  \"order_by\": \"vehicle_reg_no\",\n  \"pdf_options\": \"show_summary\",\n  \"pdf_charts\": \"show\",\n  \"filters\": {\n      \"expense_category\": [\"fuel\", \"general\", \"installments\"],\n      \"expense_type\": [15, 18],\n      \"tax_deductible\": [\"not_tax_deductable\"]\n  }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{http}}://{{domain}}/api/v1/reports/vehicle_expenses",
+							"protocol": "{{http}}",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"reports",
+								"vehicle_expenses"
+							]
+						},
+						"description": "Run a Vehicle Expenditure report job on one or more vehicles groups for a selected client and generate a PDF file.\n\n**Important**: This starts a background job which will run asynchronously, and as such the results of the report is not returned immediately. Instead, the front-end can use an SSE connection to get feedback on the report or alternatively poll the report status using the `Get Report by Id` request.\n\nDate range example 1:\n\n```\n\"date_range_type\": \"day\"\n\"date_range_day\": \"2023-12-06\"\n\n ```\n\nDate range example 2:\n\n```\n\"date_range_type\": \"month\"\n\"date_range_month\": \"2023-12\"\n\n ```\n\nDate range example 3:\n\n```\n\"date_range_type\": \"date_range\"\n\"date_range_from\": \"2023-12-01\"\n\"date_range_to\": \"2023-12-06\"\n\n ```\n\nGroup by examples:\n\n```\n\"group_by\": \"vehicle_date\" // Vehicle and invoice date\n\"group_by\": \"invoice_date\" // Invoice date\n\n ```\n\nOrder By examples:\n\n```\n\"order_by\": \"vehicle_reg_no\"\n\"order_by\": \"vehicle_fleet_no\"\n\n ```\n\nPDF Option examples:\n\n```\n\"pdf_options\": \"show_summary\"\n\"pdf_options\": \"show_summary_only\"\n\"pdf_options\": \"no_summary\"\n\n ```\n\nPDF Chart examples:\n\n```\n\"pdf_charts\": \"show\"\n\"pdf_charts\": \"dont_show\"\n\n ```\n\nFilters:\n\nThe `expense_category` filters array can be empty or any combination of these values: `\"fuel\", \"general\", \"installments\".`\n\nThe `expense_type` filter can be an empty array, and if not, contains an array of id's of the various expense types saved under the client.\n\nThe `tax_deductable` filter can either be empty, `\"tax_deductable\"` or `\"not_tax_deductable\"`."
+					},
+					"response": []
+				},
+				{
+					"name": "Run Detailed Event PDF Report",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"report_mode\": \"pdf\",\n  \"pool_id\": 1,\n  \"date_range_type\": \"day\",\n  \"time_range_from\": \"00:00:00\",\n  \"time_range_to\": \"23:59:00\",\n  \"order_by\": \"timestamp\",\n  \"sort_order\": \"asc\",\n  \"pdf_options\": \"show_summary\",\n  \"filters\": {\n    \"event_code\": [\n      \"SPEEDING\"\n    ],\n    \"unit_type_code\": [\n      \"teltonika\"\n    ],\n    \"unit_model_code\": [],\n    \"unit_imei\": [],\n    \"unit_serial_no\": [],\n    \"unit_name\": [],\n    \"vehicle_reg_no\": [],\n    \"vehicle_fleet_no\": [],\n    \"driver_name\": [],\n    \"driver_tag_no\": []\n  }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{http}}://{{domain}}/api/v1/reports/events_pool_detailed",
+							"protocol": "{{http}}",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"reports",
+								"events_pool_detailed"
+							]
+						},
+						"description": "Run a Detailed Event report job on an event pool and generate a PDF file.\n\n**Important**: This starts a background job which will run asynchronously, and as such the results of the report is not returned immediately. Instead, the front-end can use an SSE connection to get feedback on the report or alternatively poll the report status using the `Get Report by Id` request.\n\nNote that the `date_range_type` must be set to `day` for the detailed event report.\n\n```\n\"date_range_type\": \"day\"\n\"date_range_day\": \"2023-12-06\"\n\"time_range_from\": \"00:00:00\"\n\"time_range_to\": \"23:59:59\"\n\n ```\n\nOrder By examples:\n\n```\n\"order_by\": \"vehicle_reg_no\"\n\"order_by\": \"gateway_time\"\n\"order_by\": \"stored_time\"\n\"order_by\": \"event_code\"\n\"order_by\": \"importance\"\n\"order_by\": \"alert_level\"\n\"order_by\": \"vehicle_reg_no\"\n\"order_by\": \"vehicle_fleet_no\"\n\"order_by\": \"driver_name\"\n\"order_by\": \"driver_tag_no\"\n\"order_by\": \"unit_imei\"\n\"order_by\": \"unit_serial_no\"\n\"order_by\": \"unit_name\"\n\"order_by\": \"unit_type_code\"\n\"order_by\": \"unit_model\"\n\n ```\n\nSort Order examples:\n\n```\n\"sort_order\": \"asc\"\n\"sort_order\": \"desc\"\n\n ```\n\nPDF Option examples:\n\n```\n\"pdf_options\": \"show_summary\"\n\"pdf_options\": \"show_summary_only\"\n\"pdf_options\": \"no_summary\"\n\n ```"
+					},
+					"response": []
+				},
+				{
+					"name": "Run Event Summary PDF Report",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"report_mode\": \"pdf\",\n  \"pool_id\": 1,\n  \"date_range_type\": \"month\",\n  \"date_range_month\": \"2023-12\",\n  \"summarize_by\": \"vehicles\",\n  \"order_by\": \"event_code\",\n  \"sort_order\": \"asc\",\n  \"pdf_options\": \"show_summary\",\n  \"filters\": {\n    \"event_code\": [\n      \"SPEEDING\"\n    ],\n    \"unit_type_code\": [\n      \"teltonika\"\n    ],\n    \"unit_model_code\": [],\n    \"unit_imei\": [],\n    \"unit_serial_no\": [],\n    \"unit_name\": [],\n    \"vehicle_reg_no\": [],\n    \"vehicle_fleet_no\": [],\n    \"driver_name\": [],\n    \"driver_tag_no\": []\n  }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{http}}://{{domain}}/api/v1/reports/events_pool_summary",
+							"protocol": "{{http}}",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"reports",
+								"events_pool_summary"
+							]
+						},
+						"description": "Run a Summary Event report job on an event pool and generate a PDF file.\n\n**Important**: This starts a background job which will run asynchronously, and as such the results of the report is not returned immediately. Instead, the front-end can use an SSE connection to get feedback on the report or alternatively poll the report status using the `Get Report by Id` request.\n\nDate range example 1:\n\n```\n\"date_range_type\": \"day\"\n\"date_range_day\": \"2023-12-06\"\n\n ```\n\nDate range example 2:\n\n```\n\"date_range_type\": \"month\"\n\"date_range_month\": \"2023-12\"\n\n ```\n\nDate range example 3:\n\n```\n\"date_range_type\": \"date_range\"\n\"date_range_from\": \"2023-12-01\"\n\"date_range_to\": \"2023-12-06\"\n\n ```\n\nOrder By examples:\n\n```\n\"order_by\": \"vehicle_reg_no\"\n\"order_by\": \"gateway_time\"\n\"order_by\": \"stored_time\"\n\"order_by\": \"event_code\"\n\"order_by\": \"importance\"\n\"order_by\": \"alert_level\"\n\"order_by\": \"vehicle_reg_no\"\n\"order_by\": \"vehicle_fleet_no\"\n\"order_by\": \"driver_name\"\n\"order_by\": \"driver_tag_no\"\n\"order_by\": \"unit_imei\"\n\"order_by\": \"unit_serial_no\"\n\"order_by\": \"unit_name\"\n\"order_by\": \"unit_type_code\"\n\"order_by\": \"unit_model\"\n\n ```\n\nSort Order examples:\n\n```\n\"sort_order\": \"asc\"\n\"sort_order\": \"desc\"\n\n ```\n\nPDF Option examples:\n\n```\n\"pdf_options\": \"show_summary\"\n\"pdf_options\": \"show_summary_only\"\n\"pdf_options\": \"no_summary\"\n\n ```"
+					},
+					"response": []
+				},
+				{
+					"name": "Run Detailed Unit Operational Status PDF Report",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"report_mode\": \"pdf\",\n  \"partner_id\": null,\n  \"agency_id\": null,\n  \"client_id\": 2,\n  \"filters\": {\n    \"comms_status_code\": [],\n    \"unit_type_code\": [],\n    \"unit_model_code\": [],\n    \"unit_status_code\": []\n  },\n  \"order_by\": \"partner_name,agency_name,client_name,!local_time\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{http}}://{{domain}}/api/v1/reports/status_units_detailed",
+							"protocol": "{{http}}",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"reports",
+								"status_units_detailed"
+							]
+						},
+						"description": "Run a Detailed Unit Operationl Status report job and generate a PDF file.\n\n**Important**: This starts a background job which will run asynchronously, and as such the results of the report is not returned immediately. Instead, the front-end can use an SSE connection to get feedback on the report or alternatively poll the report status using the `Get Report by Id` request.\n\nIf no `partner_id`, `agency_id` or `client_id` is provided or these three fields are `null`, then the report will return with all the accessable units available to the user.\n\nIf only a `partner_id` is provided, then all the units of that partner is returned.\n\nIf an `agency_id` is provided and no `client_id`, then all the units of that agency will be returned.\n\nIf only a `client_id` is provided, then all the units of that client will be returned.\n\nThe `comms_status_code` filter can be any one or combination of the following:\n\n```\n\"comms_status_code\": [\"active\"]\n\"comms_status_code\": [\"inactive\"]\n\"comms_status_code\": [\"offline\"]\n\"comms_status_code\": [\"never\"]\n\n ```\n\nFor example:\n\n```\n\"comms_status_code\": [\"active\", \"offline\"]\n\n ```\n\nPlease contact us for a list of `unit_type_code`, `unit_model_code` and `unit_status_code` codes:\n\nOrder By examples:\n\n```\n\"order_by\": \"vehicle_reg_no\"\n\"order_by\": \"partner_name,agency_name,client_name,!local_time\"  // Client, GPS Timestamp\n\"order_by\": \"partner_name,agency_name,client_name,comms_status_code\" // Client, Comms Status\n\"order_by\": \"!local_time\" // GPS Timestamp (descending order)\n\"order_by\": \"comms_status_code\" // Comms status code\n\n ```"
+					},
+					"response": []
+				},
+				{
+					"name": "Run Unit Communications Status Summary PDF Report",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"report_mode\": \"pdf\",\n  \"partner_id\": null,\n  \"agency_id\": null,\n  \"client_id\": 1,\n  \"filters\": {\n    \"comms_status_code\": [],\n    \"unit_type_code\": [],\n    \"unit_model_code\": [],\n    \"unit_status_code\": []\n  }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{http}}://{{domain}}/api/v1/reports/status_units_summary",
+							"protocol": "{{http}}",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"reports",
+								"status_units_summary"
+							]
+						},
+						"description": "Run a Unit Communication Status Summary report job and generate a PDF file.\n\n**Important**: This starts a background job which will run asynchronously, and as such the results of the report is not returned immediately. Instead, the front-end can use an SSE connection to get feedback on the report or alternatively poll the report status using the `Get Report by Id` request.\n\nIf no `partner_id`, `agency_id` or `client_id` is provided or these three fields are `null`, then the report will return with all the accessable units available to the user.\n\nIf only a `partner_id` is provided, then all the units of that partner is returned.\n\nIf an `agency_id` is provided and no `client_id`, then all the units of that agency will be returned.\n\nIf only a `client_id` is provided, then all the units of that client will be returned.\n\nThe `comms_status_code` filter can be any one or combination of the following:\n\n```\n\"comms_status_code\": [\"active\"]\n\"comms_status_code\": [\"inactive\"]\n\"comms_status_code\": [\"offline\"]\n\"comms_status_code\": [\"never\"]\n\n ```\n\nFor example:\n\n```\n\"comms_status_code\": [\"active\", \"offline\"]\n\n ```\n\nPlease contact us for a list of `unit_type_code`, `unit_model_code` and `unit_status_code` codes:"
 					},
 					"response": []
 				},
@@ -15238,6 +15636,247 @@
 						}
 					},
 					"response": []
+				}
+			]
+		},
+		{
+			"name": "Scheduled Reports",
+			"item": [
+				{
+					"name": "Vehicle Debrief (Detailed) Report Scheduling",
+					"item": [
+						{
+							"name": "Schedule Vehicle Debrief PDF Report (Detailed)",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"report_mode\": \"pdf\",\n  \"client_id\": 2,\n  \"enabled\": true,\n  \"vehicles\": [\n    {\n      \"id\": 527,\n      \"assigned_as\": \"primary\"\n    },\n    {\n      \"id\": 662,\n      \"assigned_as\": \"primary\"\n    }\n  ],\n  \"run_interval\": \"weekly\",\n  \"run_time\": \"17:00:00\",\n  \"days_of_week\": [\"monday\", \"wednesday\", \"sunday\"],\n  \"days_of_month\": [],\n  \"period\": \"past_24_hours\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{http}}://{{domain}}/api/v1/reports/schedule/debrief_detailed?XDEBUG_SESSION_START=PHPSTORM",
+									"protocol": "{{http}}",
+									"host": [
+										"{{domain}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"reports",
+										"schedule",
+										"debrief_detailed"
+									],
+									"query": [
+										{
+											"key": "XDEBUG_SESSION_START",
+											"value": "PHPSTORM"
+										}
+									]
+								},
+								"description": "Run a detailed debrief/trip report job on a specific vehicle and generate a PDF file.\n\n**Important**: This starts a background job which will run asynchronously, and as such the results of the report is not returned immediately. Instead, the front-end can use an SSE connection to get feedback on the report or alternatively poll the report status using the `Get Report by Id` request.\n\nDate range example 1:\n\n```\n\"date_range_type\": \"day\"\n\"date_range_day\": \"2023-12-06\"\n\n ```\n\nDate range example 2:\n\n```\n\"date_range_type\": \"month\"\n\"date_range_month\": \"2023-12\"\n\n ```\n\nDate range example 3:\n\n```\n\"date_range_type\": \"date_range\"\n\"date_range_from\": \"2023-12-01\"\n\"date_range_to\": \"2023-12-06\"\n\n ```"
+							},
+							"response": []
+						},
+						{
+							"name": "Update Schedule Vehicle Debrief PDF Report (Detailed)",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"report_mode\": \"pdf\",\n  \"client_id\": 2,\n  \"enabled\": true,\n  \"vehicles\": [\n    {\n      \"id\": 527,\n      \"assigned_as\": \"primary\"\n    },\n    {\n      \"id\": 662,\n      \"assigned_as\": \"primary\"\n    },\n    {\n      \"id\": 664,\n      \"assigned_as\": \"primary\"\n    }\n  ],\n  \"run_interval\": \"monthly\",\n  \"run_time\": \"17:00:00\",\n  \"days_of_week\": [],\n  \"days_of_month\": [1, 17, 28],\n  \"period\": \"past_24_hours\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{http}}://{{domain}}/api/v1/reports/schedule/debrief_detailed/1?XDEBUG_SESSION_START=PHPSTORM",
+									"protocol": "{{http}}",
+									"host": [
+										"{{domain}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"reports",
+										"schedule",
+										"debrief_detailed",
+										"1"
+									],
+									"query": [
+										{
+											"key": "XDEBUG_SESSION_START",
+											"value": "PHPSTORM"
+										}
+									]
+								},
+								"description": "Run a detailed debrief/trip report job on a specific vehicle and generate a PDF file.\n\n**Important**: This starts a background job which will run asynchronously, and as such the results of the report is not returned immediately. Instead, the front-end can use an SSE connection to get feedback on the report or alternatively poll the report status using the `Get Report by Id` request.\n\nDate range example 1:\n\n```\n\"date_range_type\": \"day\"\n\"date_range_day\": \"2023-12-06\"\n\n ```\n\nDate range example 2:\n\n```\n\"date_range_type\": \"month\"\n\"date_range_month\": \"2023-12\"\n\n ```\n\nDate range example 3:\n\n```\n\"date_range_type\": \"date_range\"\n\"date_range_from\": \"2023-12-01\"\n\"date_range_to\": \"2023-12-06\"\n\n ```"
+							},
+							"response": []
+						},
+						{
+							"name": "Get Schedule States for Vehicle Debrief Report (Detailed)",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{http}}://{{domain}}/api/v1/reports/schedule/debrief_detailed/1/status",
+									"protocol": "{{http}}",
+									"host": [
+										"{{domain}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"reports",
+										"schedule",
+										"debrief_detailed",
+										"1",
+										"status"
+									]
+								},
+								"description": "Run a detailed debrief/trip report job on a specific vehicle and generate a PDF file.\n\n**Important**: This starts a background job which will run asynchronously, and as such the results of the report is not returned immediately. Instead, the front-end can use an SSE connection to get feedback on the report or alternatively poll the report status using the `Get Report by Id` request.\n\nDate range example 1:\n\n```\n\"date_range_type\": \"day\"\n\"date_range_day\": \"2023-12-06\"\n\n ```\n\nDate range example 2:\n\n```\n\"date_range_type\": \"month\"\n\"date_range_month\": \"2023-12\"\n\n ```\n\nDate range example 3:\n\n```\n\"date_range_type\": \"date_range\"\n\"date_range_from\": \"2023-12-01\"\n\"date_range_to\": \"2023-12-06\"\n\n ```"
+							},
+							"response": []
+						},
+						{
+							"name": "Find Vehicle Debrief Report (Detailed) Schedule",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"report_mode\": \"pdf\",\n  \"client_id\": 2,\n  \"vehicles\": [\n    {\n      \"id\": 527,\n      \"assigned_as\": \"primary\"\n    },\n    {\n      \"id\": 662,\n      \"assigned_as\": \"primary\"\n    }\n  ],\n  \"run_interval\": \"daily\",\n  \"run_time\": \"17:00:00\",\n  \"days_of_week\": [],\n  \"days_of_month\": [],\n  \"period\": \"past_24_hours\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{http}}://{{domain}}/api/v1/reports/schedule/debrief_detailed",
+									"protocol": "{{http}}",
+									"host": [
+										"{{domain}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"reports",
+										"schedule",
+										"debrief_detailed"
+									]
+								},
+								"description": "Run a detailed debrief/trip report job on a specific vehicle and generate a PDF file.\n\n**Important**: This starts a background job which will run asynchronously, and as such the results of the report is not returned immediately. Instead, the front-end can use an SSE connection to get feedback on the report or alternatively poll the report status using the `Get Report by Id` request.\n\nDate range example 1:\n\n```\n\"date_range_type\": \"day\"\n\"date_range_day\": \"2023-12-06\"\n\n ```\n\nDate range example 2:\n\n```\n\"date_range_type\": \"month\"\n\"date_range_month\": \"2023-12\"\n\n ```\n\nDate range example 3:\n\n```\n\"date_range_type\": \"date_range\"\n\"date_range_from\": \"2023-12-01\"\n\"date_range_to\": \"2023-12-06\"\n\n ```"
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Vehicle Debrief (Summary) Report Scheduling",
+					"item": [
+						{
+							"name": "Schedule Vehicle Debrief PDF Report (Summary)",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"report_mode\": \"pdf\",\n  \"client_id\": 2,\n  \"enabled\": true,\n  \"vehicle_groups\": [2, 3, 4],\n  \"run_interval\": \"weekly\",\n  \"run_time\": \"17:00:00\",\n  \"days_of_week\": [\"monday\", \"wednesday\", \"sunday\"],\n  \"days_of_month\": [],\n  \"period\": \"past_24_hours\",\n  \"pdf_options\": \"show_veh_sub\",\n  \"order_by\": \"reg_date\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{http}}://{{domain}}/api/v1/reports/schedule/debrief_summary?XDEBUG_SESSION_START=PHPSTORM",
+									"protocol": "{{http}}",
+									"host": [
+										"{{domain}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"reports",
+										"schedule",
+										"debrief_summary"
+									],
+									"query": [
+										{
+											"key": "XDEBUG_SESSION_START",
+											"value": "PHPSTORM"
+										}
+									]
+								},
+								"description": "Run a detailed debrief/trip report job on a specific vehicle and generate a PDF file.\n\n**Important**: This starts a background job which will run asynchronously, and as such the results of the report is not returned immediately. Instead, the front-end can use an SSE connection to get feedback on the report or alternatively poll the report status using the `Get Report by Id` request.\n\nDate range example 1:\n\n```\n\"date_range_type\": \"day\"\n\"date_range_day\": \"2023-12-06\"\n\n ```\n\nDate range example 2:\n\n```\n\"date_range_type\": \"month\"\n\"date_range_month\": \"2023-12\"\n\n ```\n\nDate range example 3:\n\n```\n\"date_range_type\": \"date_range\"\n\"date_range_from\": \"2023-12-01\"\n\"date_range_to\": \"2023-12-06\"\n\n ```"
+							},
+							"response": []
+						},
+						{
+							"name": "Update Schedule Vehicle Debrief PDF Report (Summary)",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"report_mode\": \"pdf\",\n  \"client_id\": 2,\n  \"enabled\": true,\n  \"vehicle_groups\": [2, 3, 5],\n  \"run_interval\": \"weekly\",\n  \"run_time\": \"17:00:00\",\n  \"days_of_week\": [\"monday\", \"wednesday\"],\n  \"days_of_month\": [],\n  \"period\": \"past_24_hours\",\n  \"pdf_options\": \"show_veh_sub\",\n  \"order_by\": \"reg_date\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{http}}://{{domain}}/api/v1/reports/schedule/debrief_summary/1?XDEBUG_SESSION_START=PHPSTORM",
+									"protocol": "{{http}}",
+									"host": [
+										"{{domain}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"reports",
+										"schedule",
+										"debrief_summary",
+										"1"
+									],
+									"query": [
+										{
+											"key": "XDEBUG_SESSION_START",
+											"value": "PHPSTORM"
+										}
+									]
+								},
+								"description": "Run a detailed debrief/trip report job on a specific vehicle and generate a PDF file.\n\n**Important**: This starts a background job which will run asynchronously, and as such the results of the report is not returned immediately. Instead, the front-end can use an SSE connection to get feedback on the report or alternatively poll the report status using the `Get Report by Id` request.\n\nDate range example 1:\n\n```\n\"date_range_type\": \"day\"\n\"date_range_day\": \"2023-12-06\"\n\n ```\n\nDate range example 2:\n\n```\n\"date_range_type\": \"month\"\n\"date_range_month\": \"2023-12\"\n\n ```\n\nDate range example 3:\n\n```\n\"date_range_type\": \"date_range\"\n\"date_range_from\": \"2023-12-01\"\n\"date_range_to\": \"2023-12-06\"\n\n ```"
+							},
+							"response": []
+						}
+					]
 				}
 			]
 		},
