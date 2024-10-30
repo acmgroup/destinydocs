@@ -50,23 +50,22 @@ to look at one of our Message Queuing solutions.
    Stage 1 converts the raw data from various types of devices and 
    protocols to our own [Universal GPS JSON Message Data Structure](Telemetry/Universal%20JSON%20Message%20Data%20Structures%20v1.md).
    
-2. **LDPS:** LDPS, or Live Date Processing Services is our **Stage 2** system, 
-   here we further process the newly received data and add additional information 
-   to the message such as active drivers, reverse geolocation, zone detection
-   and more. Stage 2 adds additional data to the Universal GPS JSON Messages,
-   which we call 
+2. **LDBS:** LDBS, or Live Data Bridging Service is our **Stage 2** system, 
+   here we've further processed the newly received data and have added additional 
+   information to the message such as vehicle details, active drivers, reverse 
+   geolocation, zone detection and more. Stage 2 adds additional data to the 
+   Universal GPS JSON Messages, which we call 
    [Extended Universal JSON GPS Messages](Telemetry/Universal%20JSON%20GPS%20Message%20Extended.md).
 
-Both the GWS and LDPS services can pass messages to third party clients 
-live via message queues.
+Both the GWS and LDBS services can pass messages to third party clients 
+live via message queues or other integration options.
 
 Our Message Queueing solution typically run through the popular
 [RabbitMQ Message Broker](https://www.rabbitmq.com/) service using
 the AMQP 0-9-1 protocol. This allows for the distribution of 
-[telemetry](Telemetry/Universal%20JSON%20Message%20Data%20Structures%20v1.md),
+[gps](Telemetry/Universal%20JSON%20Message%20Data%20Structures%20v1.md),
 [trip](Telemetry/Trip%20Telemetry%20Data%20Structures.md) and 
-[event](Telemetry/Event%20Message%20JSON%20Structure%20v1.md) data to multiple client 
-applications concurrently. 
+[event](Telemetry/Event%20Message%20JSON%20Structure%20v1.md) data to multiple client applications concurrently. 
 
 We do provide source code examples which can be used to develop your own
 client application from. Our [C# based RabbitMQ client](https://github.com/acmgroup/GPSReceiverExample)
