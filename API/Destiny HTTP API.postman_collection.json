@@ -294,6 +294,820 @@
 			"description": "Administratiion related requests."
 		},
 		{
+			"name": "API Bridges - Webfleet",
+			"item": [
+				{
+					"name": "Find API Bridge",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{http}}://{{domain}}/api/v1/api-bridges/webfleet",
+							"protocol": "{{http}}",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"api-bridges",
+								"webfleet"
+							]
+						},
+						"description": "Creates a new unit group."
+					},
+					"response": [
+						{
+							"name": "200 OK",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{http}}://{{domain}}/api/v1/api-bridges",
+									"protocol": "{{http}}",
+									"host": [
+										"{{domain}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"api-bridges"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.18.0 (Ubuntu)"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 16 May 2025 15:26:18 GMT"
+								},
+								{
+									"key": "Authorization",
+									"value": "bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJ3d3cuZGVzdGlueS50ZXN0IiwiaWF0IjoxNzQ3NDA5MTc4LCJuYmYiOjE3NDc0MDkxNzgsImV4cCI6MTc0NzQwOTc3OCwic3ViIjoiNCIsImVtbCI6InRhLm1heGltdXMrZG9uLmFkbWluQGdtYWlsLmNvbSIsIm9hdCI6MTc0NzQwOTE3OH0.w61kHTmX5YjSkUvmLtsAPGPMRVKzXWCjL5a6_6BDI68"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": [\n        {\n            \"id\": 1,\n            \"name\": \"Test Bridge\",\n            \"type\": \"webfleet\",\n            \"partner\": {\n                \"id\": 1,\n                \"name\": \"Demo Partner\"\n            },\n            \"agency\": {\n                \"id\": null,\n                \"name\": null\n            },\n            \"client\": {\n                \"id\": 278,\n                \"name\": \"Demo Client\"\n            },\n            \"settings\": \"[]\",\n            \"created_at\": \"2025-05-16T17:25:13+02:00\",\n            \"updated_at\": null\n        }\n    ],\n    \"pagination\": {\n        \"current_page\": 1,\n        \"per_page\": 30,\n        \"prev_page_url\": null,\n        \"next_page_url\": null,\n        \"first_item\": 1,\n        \"last_item\": 1\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "API Bridge Listing",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{http}}://{{domain}}/api/v1/api-bridges/webfleet/listing",
+							"protocol": "{{http}}",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"api-bridges",
+								"webfleet",
+								"listing"
+							]
+						},
+						"description": "Creates a new unit group."
+					},
+					"response": [
+						{
+							"name": "200 OK",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{http}}://{{domain}}/api/v1/api-bridges/listing",
+									"protocol": "{{http}}",
+									"host": [
+										"{{domain}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"api-bridges",
+										"listing"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.18.0 (Ubuntu)"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 16 May 2025 15:28:28 GMT"
+								},
+								{
+									"key": "Authorization",
+									"value": "bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJ3d3cuZGVzdGlueS50ZXN0IiwiaWF0IjoxNzQ3NDA5MzA4LCJuYmYiOjE3NDc0MDkzMDgsImV4cCI6MTc0NzQwOTkwOCwic3ViIjoiNCIsImVtbCI6InRhLm1heGltdXMrZG9uLmFkbWluQGdtYWlsLmNvbSIsIm9hdCI6MTc0NzQwOTMwOH0.c8ch8l_vUEYLYdchWYpZqAAN9Mar3FKL10qP8O8S5vE"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": [\n        {\n            \"id\": 1,\n            \"name\": \"Test Bridge\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Get an API Bridge",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{http}}://{{domain}}/api/v1/api-bridges/webfleet/1",
+							"protocol": "{{http}}",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"api-bridges",
+								"webfleet",
+								"1"
+							]
+						},
+						"description": "Creates a new unit group."
+					},
+					"response": [
+						{
+							"name": "200 OK",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{http}}://{{domain}}/api/v1/api-bridges/1",
+									"protocol": "{{http}}",
+									"host": [
+										"{{domain}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"api-bridges",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.18.0 (Ubuntu)"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 16 May 2025 15:30:10 GMT"
+								},
+								{
+									"key": "Authorization",
+									"value": "bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJ3d3cuZGVzdGlueS50ZXN0IiwiaWF0IjoxNzQ3NDA5NDEwLCJuYmYiOjE3NDc0MDk0MTAsImV4cCI6MTc0NzQxMDAxMCwic3ViIjoiNCIsImVtbCI6InRhLm1heGltdXMrZG9uLmFkbWluQGdtYWlsLmNvbSIsIm9hdCI6MTc0NzQwOTQxMH0.MNangpAyJ3Gy63eCM0RXukMPfJS4SnZZe6tp0RZ068I"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"id\": 1,\n        \"name\": \"Test Bridge\",\n        \"type\": \"webfleet\",\n        \"partner\": {\n            \"id\": 1,\n            \"name\": \"Demo Partner\"\n        },\n        \"agency\": {\n            \"id\": null,\n            \"name\": null\n        },\n        \"client\": {\n            \"id\": 278,\n            \"name\": \"Demo Partner\"\n        },\n        \"settings\": \"[]\",\n        \"created_at\": \"2025-05-16T17:25:13+02:00\",\n        \"updated_at\": null\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Get API Bridge Create Form",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{http}}://{{domain}}/api/v1/api-bridges/webfleet/create",
+							"protocol": "{{http}}",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"api-bridges",
+								"webfleet",
+								"create"
+							]
+						},
+						"description": "Creates a new unit group."
+					},
+					"response": [
+						{
+							"name": "200 OK",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{http}}://{{domain}}/api/v1/api-bridges/create",
+									"protocol": "{{http}}",
+									"host": [
+										"{{domain}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"api-bridges",
+										"create"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.18.0 (Ubuntu)"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 16 May 2025 15:31:39 GMT"
+								},
+								{
+									"key": "Authorization",
+									"value": "bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJ3d3cuZGVzdGlueS50ZXN0IiwiaWF0IjoxNzQ3NDA5NDk5LCJuYmYiOjE3NDc0MDk0OTksImV4cCI6MTc0NzQxMDA5OSwic3ViIjoiNCIsImVtbCI6InRhLm1heGltdXMrZG9uLmFkbWluQGdtYWlsLmNvbSIsIm9hdCI6MTc0NzQwOTQ5OX0.JB5PQL5Qhw3u4FFPtr_eqnaIZKbp0v36V4iZJ3gGQEM"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"partners\": [\n            {\n                \"id\": 1,\n                \"name\": \"Demo Partner\"\n            }        \n        ]\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Get API Bridge Edit Form",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{http}}://{{domain}}/api/v1/api-bridges/webfleet/1/edit",
+							"protocol": "{{http}}",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"api-bridges",
+								"webfleet",
+								"1",
+								"edit"
+							]
+						},
+						"description": "Creates a new unit group."
+					},
+					"response": [
+						{
+							"name": "200 OK",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{http}}://{{domain}}/api/v1/api-bridges/1/edit",
+									"protocol": "{{http}}",
+									"host": [
+										"{{domain}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"api-bridges",
+										"1",
+										"edit"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.18.0 (Ubuntu)"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 16 May 2025 15:33:54 GMT"
+								},
+								{
+									"key": "Authorization",
+									"value": "bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJ3d3cuZGVzdGlueS50ZXN0IiwiaWF0IjoxNzQ3NDA5NjM0LCJuYmYiOjE3NDc0MDk2MzQsImV4cCI6MTc0NzQxMDIzNCwic3ViIjoiNCIsImVtbCI6InRhLm1heGltdXMrZG9uLmFkbWluQGdtYWlsLmNvbSIsIm9hdCI6MTc0NzQwOTYzNH0.DrUlisQU1FsMF2-uksLR28JGknZ9G-UBsCR_5hPySq4"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"id\": 1,\n        \"name\": \"Test Bridge\",\n        \"type\": \"webfleet\",\n        \"partner\": {\n            \"id\": 1,\n            \"name\": \"Demo Partner\"\n        },\n        \"agency\": {\n            \"id\": null,\n            \"name\": null\n        },\n        \"client\": {\n            \"id\": 278,\n            \"name\": \"Demo Client\"\n        },\n        \"settings\": \"[]\",\n        \"created_at\": \"2025-05-16T17:25:13+02:00\",\n        \"updated_at\": null,\n        \"partners\": [\n            {\n                \"id\": 1,\n                \"name\": \"Demo Partner\"\n            }\n        ]\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Create API Bridge",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Demo Bridge\",\n    \"partner_id\": 1,\n    \"agency_id\": null,\n    \"client_ids\": [3],\n    \"enabled\": true,\n    \"account_name\": \"demo.account\",\n    \"username\": \"demo\",\n    \"password\": \"demo\",\n    \"id_vehicles_by\": \"reg_no\",\n    \"selection_mode\": \"selected\",\n    \"vehicle_ids\": [1]\n}"
+						},
+						"url": {
+							"raw": "{{http}}://{{domain}}/api/v1/api-bridges/webfleet",
+							"protocol": "{{http}}",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"api-bridges",
+								"webfleet"
+							]
+						},
+						"description": "Creates a new unit group."
+					},
+					"response": [
+						{
+							"name": "200 OK",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"Test Bridge\",\n    \"partner_id\": 1,\n    \"agency_id\": null,\n    \"type\": \"webfleet\",\n    \"client_id\": 278,\n    \"settings\": {}\n}"
+								},
+								"url": {
+									"raw": "{{http}}://{{domain}}/api/v1/api-bridges",
+									"protocol": "{{http}}",
+									"host": [
+										"{{domain}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"api-bridges"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.18.0 (Ubuntu)"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 16 May 2025 15:17:46 GMT"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"notices\": [\n        \"Created API Bridge: Demo Bridge\"\n    ],\n    \"data\": {\n        \"id\": 1,\n        \"name\": \"Demo Bridge\",\n        \"type\": \"webfleet\",\n        \"enabled\": 1,\n        \"account_name\": \"demo.account\",\n        \"id_vehicles_by\": \"reg_no\",\n        \"created_at\": \"2025-06-04T10:19:44+02:00\",\n        \"updated_at\": null,\n        \"partner\": {\n            \"id\": 1,\n            \"name\": \"Demo Partner\"\n        },\n        \"agency\": {\n            \"id\": 1,\n            \"name\": \"Demo Agency\"\n        },\n        \"clients\": [\n            {\n                \"id\": 1,\n                \"name\": \"Demo Client A\",\n                \"reference_no\": null,\n                \"fin_account_no\": null,\n                \"description\": \"This is a demo client\",\n                \"partner\": {\n                    \"id\": 1,\n                    \"name\": \"Demo Partner\"\n                },\n                \"agency\": {\n                    \"id\": 1,\n                    \"name\": \"Demo Agency\"\n                },\n                \"created_at\": \"2020-02-12T19:44:56+02:00\",\n                \"updated_at\": \"2025-01-30T10:14:37+02:00\"\n            },\n            {\n                \"id\": 2,\n                \"name\": \"Demo Client B\",\n                \"reference_no\": null,\n                \"fin_account_no\": null,\n                \"description\": \"This is a demo client\",\n                \"partner\": {\n                    \"id\": 1,\n                    \"name\": \"Demo Partner\"\n                },\n                \"agency\": {\n                    \"id\": 1,\n                    \"name\": \"Demo Agency\"\n                },\n                \"created_at\": \"2020-02-17T16:34:13+02:00\",\n                \"updated_at\": \"2025-02-06T14:57:58+02:00\"\n            }\n        ]\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Update Existing API Bridge Copy",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Demo Bridge\",\n    \"partner_id\": 1,\n    \"agency_id\": null,\n    \"client_ids\": [1, 2],\n    \"enabled\": true,\n    \"account_name\": \"demo.account\",\n    \"id_vehicles_by\": \"reg_no\"\n}"
+						},
+						"url": {
+							"raw": "{{http}}://{{domain}}/api/v1/api-bridges/webfleet/1",
+							"protocol": "{{http}}",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"api-bridges",
+								"webfleet",
+								"1"
+							]
+						},
+						"description": "Creates a new unit group."
+					},
+					"response": [
+						{
+							"name": "200 OK",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"Test Bridge 2\",\n    \"partner_id\": 1,\n    \"agency_id\": null,\n    \"type\": \"webfleet\",\n    \"client_id\": 278,\n    \"settings\": {}\n}"
+								},
+								"url": {
+									"raw": "{{http}}://{{domain}}/api/v1/api-bridges/1",
+									"protocol": "{{http}}",
+									"host": [
+										"{{domain}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"api-bridges",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.18.0 (Ubuntu)"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 16 May 2025 15:20:55 GMT"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"notices\": [\n        \"Updated API Bridge: Demo Bridge\"\n    ],\n    \"data\": {\n        \"id\": 1,\n        \"name\": \"Demo Bridge\",\n        \"type\": \"webfleet\",\n        \"enabled\": 1,\n        \"account_name\": \"demo.account\",\n        \"id_vehicles_by\": \"reg_no\",\n        \"created_at\": \"2025-06-04T10:19:44+02:00\",\n        \"updated_at\": null,\n        \"partner\": {\n            \"id\": 1,\n            \"name\": \"Demo Partner\"\n        },\n        \"agency\": {\n            \"id\": 1,\n            \"name\": \"Demo Agency\"\n        },\n        \"clients\": [\n            {\n                \"id\": 1,\n                \"name\": \"Demo Client A\",\n                \"reference_no\": null,\n                \"fin_account_no\": null,\n                \"description\": \"This is a demo client\",\n                \"partner\": {\n                    \"id\": 1,\n                    \"name\": \"Demo Partner\"\n                },\n                \"agency\": {\n                    \"id\": 1,\n                    \"name\": \"Demo Agency\"\n                },\n                \"created_at\": \"2020-02-12T19:44:56+02:00\",\n                \"updated_at\": \"2025-01-30T10:14:37+02:00\"\n            },\n            {\n                \"id\": 2,\n                \"name\": \"Demo Client B\",\n                \"reference_no\": null,\n                \"fin_account_no\": null,\n                \"description\": \"This is a demo client\",\n                \"partner\": {\n                    \"id\": 1,\n                    \"name\": \"Demo Partner\"\n                },\n                \"agency\": {\n                    \"id\": 1,\n                    \"name\": \"Demo Agency\"\n                },\n                \"created_at\": \"2020-02-17T16:34:13+02:00\",\n                \"updated_at\": \"2025-02-06T14:57:58+02:00\"\n            }\n        ]\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete an API Bridge",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{http}}://{{domain}}/api/v1/api-bridges/webfleet/1",
+							"protocol": "{{http}}",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"api-bridges",
+								"webfleet",
+								"1"
+							]
+						},
+						"description": "Creates a new unit group."
+					},
+					"response": [
+						{
+							"name": "200 OK",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{http}}://{{domain}}/api/v1/api-bridges/1",
+									"protocol": "{{http}}",
+									"host": [
+										"{{domain}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"api-bridges",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.18.0 (Ubuntu)"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 16 May 2025 15:22:37 GMT"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"notices\": [\n        \"Deleted API Bridge: Demo Bridge\"\n    ],\n    \"data\": {\n        \"id\": 1,\n        \"name\": \"Demo Bridge\",\n        \"type\": \"webfleet\",\n        \"enabled\": 1,\n        \"account_name\": \"demo.account\",\n        \"id_vehicles_by\": \"reg_no\",\n        \"created_at\": \"2025-06-04T10:19:44+02:00\",\n        \"updated_at\": null,\n        \"partner\": {\n            \"id\": 1,\n            \"name\": \"Demo Partner\"\n        },\n        \"agency\": {\n            \"id\": 1,\n            \"name\": \"Demo Agency\"\n        },\n        \"clients\": [\n            {\n                \"id\": 1,\n                \"name\": \"Demo Client A\",\n                \"reference_no\": null,\n                \"fin_account_no\": null,\n                \"description\": \"This is a demo client\",\n                \"partner\": {\n                    \"id\": 1,\n                    \"name\": \"Demo Partner\"\n                },\n                \"agency\": {\n                    \"id\": 1,\n                    \"name\": \"Demo Agency\"\n                },\n                \"created_at\": \"2020-02-12T19:44:56+02:00\",\n                \"updated_at\": \"2025-01-30T10:14:37+02:00\"\n            },\n            {\n                \"id\": 2,\n                \"name\": \"Demo Client B\",\n                \"reference_no\": null,\n                \"fin_account_no\": null,\n                \"description\": \"This is a demo client\",\n                \"partner\": {\n                    \"id\": 1,\n                    \"name\": \"Demo Partner\"\n                },\n                \"agency\": {\n                    \"id\": 1,\n                    \"name\": \"Demo Agency\"\n                },\n                \"created_at\": \"2020-02-17T16:34:13+02:00\",\n                \"updated_at\": \"2025-02-06T14:57:58+02:00\"\n            }\n        ]\n    }\n}"
+						}
+					]
+				}
+			]
+		},
+		{
 			"name": "Authentication",
 			"item": [
 				{
@@ -420,7 +1234,9 @@
 									"    return el.key === 'Authorization'",
 									"})",
 									"",
-									"pm.environment.set(\"bearer\", authorizationHeader.value.replace(new RegExp('bearer ', 'gi'), ''))",
+									"if (authorizationHeader && authorizationHeader.value) {",
+									"    pm.environment.set(\"bearer\", authorizationHeader.value.replace(new RegExp('bearer ', 'gi'), ''))",
+									"}",
 									""
 								],
 								"type": "text/javascript"
@@ -7301,6 +8117,908 @@
 			]
 		},
 		{
+			"name": "Unit Commands",
+			"item": [
+				{
+					"name": "Unit Commands Listing",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{http}}://{{domain}}/api/v1/unit/commands/listing",
+							"protocol": "{{http}}",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"unit",
+								"commands",
+								"listing"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200 OK",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{http}}://{{domain}}/api/v1/unit/commands/listing",
+									"protocol": "{{http}}",
+									"host": [
+										"{{domain}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"unit",
+										"commands",
+										"listing"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.18.0 (Ubuntu)"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 13 Feb 2025 08:38:12 GMT"
+								},
+								{
+									"key": "Authorization",
+									"value": "bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJ3d3cuZGVzdGlueS50ZXN0IiwiaWF0IjoxNzM5NDM1ODkyLCJuYmYiOjE3Mzk0MzU4OTIsImV4cCI6MTczOTQzNjQ5Miwic3ViIjoiNiIsImVtbCI6InRhLm1heGltdXMrcnViZW4uYWRtaW5AZ21haWwuY29tIiwib2F0IjoxNzM5NDM1ODkyfQ.V3fRiQRyAQcGQnfI9XjlxqbQbAnVADGNFljui9JJ2Go"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": [\n        {\n            \"id\": 1,\n            \"description\": \"Reset Unit\",\n            \"unit_type_name\": \"ACMTech\",\n            \"unit_model_name\": \"ACMTrack v1\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Get Unit Commands Create Form Data",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{http}}://{{domain}}/api/v1/unit/commands/create",
+							"protocol": "{{http}}",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"unit",
+								"commands",
+								"create"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200 OK",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{http}}://{{domain}}/api/v1/unit/commands/create",
+									"protocol": "{{http}}",
+									"host": [
+										"{{domain}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"unit",
+										"commands",
+										"create"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.18.0 (Ubuntu)"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 13 Feb 2025 07:56:46 GMT"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"unit_types\": [\n            {\n                \"code\": \"acmtech\",\n                \"name\": \"ACMTech\"\n            },\n            {\n                \"code\": \"calamp\",\n                \"name\": \"Calamp\"\n            },\n            {\n                \"code\": \"gosafe\",\n                \"name\": \"Gosafe\"\n            },\n            {\n                \"code\": \"queclink\",\n                \"name\": \"Queclink\"\n            },\n            {\n                \"code\": \"teltonika\",\n                \"name\": \"Teltonika\"\n            },\n            {\n                \"code\": \"gt06\",\n                \"name\": \"GT06\"\n            },\n            {\n                \"code\": \"wist\",\n                \"name\": \"Wist\"\n            },\n            {\n                \"code\": \"cobd\",\n                \"name\": \"CObd\"\n            },\n            {\n                \"code\": \"sigfox\",\n                \"name\": \"SigFox\"\n            },\n            {\n                \"code\": \"dmt\",\n                \"name\": \"Digital Matter\"\n            }\n        ]\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Get Unit Command Edit Form Data",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{http}}://{{domain}}/api/v1/unit/commands/3/edit",
+							"protocol": "{{http}}",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"unit",
+								"commands",
+								"3",
+								"edit"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200 OK",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{http}}://{{domain}}/api/v1/unit/commands/3/edit",
+									"protocol": "{{http}}",
+									"host": [
+										"{{domain}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"unit",
+										"commands",
+										"3",
+										"edit"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.18.0 (Ubuntu)"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 13 Feb 2025 09:52:25 GMT"
+								},
+								{
+									"key": "Authorization",
+									"value": "bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJ3d3cuZGVzdGlueS50ZXN0IiwiaWF0IjoxNzM5NDQwMzQ1LCJuYmYiOjE3Mzk0NDAzNDUsImV4cCI6MTczOTQ0MDk0NSwic3ViIjoiNiIsImVtbCI6InRhLm1heGltdXMrcnViZW4uYWRtaW5AZ21haWwuY29tIiwib2F0IjoxNzM5NDQwMzQ1fQ.LHI_1a-eIO2iiBut44gHGj88WCEE9UuWqltwaS6qdfU"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"id\": 3,\n        \"description\": \"Dissan;e Unit\",\n        \"unit_type_id\": 1,\n        \"unit_type_name\": \"ACMTech\",\n        \"unit_type_code\": \"acmtech\",\n        \"unit_model_id\": 1,\n        \"unit_model_name\": \"ACMTrack v1\",\n        \"unit_model_code\": \"acmtrack_1\",\n        \"command_data\": {\n            \"text\": \"dissable_unit\",\n            \"editable\": [\n                \"service_provider\",\n                \"text\"\n            ],\n            \"service_provider\": \"gdspo\"\n        },\n        \"unit_types\": [\n            {\n                \"code\": \"acmtech\",\n                \"name\": \"ACMTech\"\n            },\n            {\n                \"code\": \"calamp\",\n                \"name\": \"Calamp\"\n            },\n            {\n                \"code\": \"gosafe\",\n                \"name\": \"Gosafe\"\n            },\n            {\n                \"code\": \"queclink\",\n                \"name\": \"Queclink\"\n            },\n            {\n                \"code\": \"teltonika\",\n                \"name\": \"Teltonika\"\n            },\n            {\n                \"code\": \"gt06\",\n                \"name\": \"GT06\"\n            },\n            {\n                \"code\": \"wist\",\n                \"name\": \"Wist\"\n            },\n            {\n                \"code\": \"cobd\",\n                \"name\": \"CObd\"\n            },\n            {\n                \"code\": \"sigfox\",\n                \"name\": \"SigFox\"\n            },\n            {\n                \"code\": \"dmt\",\n                \"name\": \"Digital Matter\"\n            }\n        ],\n        \"unit_models\": [\n            {\n                \"code\": \"acmtrack_1\",\n                \"name\": \"ACMTrack v1\"\n            },\n            {\n                \"code\": \"acmtrack_2\",\n                \"name\": \"ACMTrack v2\"\n            }\n        ]\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Get Unit Command Sending Methods",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{http}}://{{domain}}/api/v1/unit/commands/sending_methods",
+							"protocol": "{{http}}",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"unit",
+								"commands",
+								"sending_methods"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200 OK",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{http}}://{{domain}}/api/v1/unit/commands/sending_methods",
+									"protocol": "{{http}}",
+									"host": [
+										"{{domain}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"unit",
+										"commands",
+										"sending_methods"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.18.0 (Ubuntu)"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 07 Apr 2025 07:08:10 GMT"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": [\n        {\n            \"id\": \"gdspo_sms\",\n            \"value\": \"GDSPO (SMS)\",\n            \"hourly_limit\": 10,\n            \"daily_limit\": 100\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Update Existing Unit Command",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"description\": \"Test Unit 2 (Edit)\",\n    \"unit_type_id\": 1,\n    \"unit_model_id\": 2,\n    \"data\": {\"service_provider\": \"sms\", \"text\": \"dissable_unit\", \"editable\": [\"service_provider\", \"text\"]}\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{http}}://{{domain}}/api/v1/unit/commands/6",
+							"protocol": "{{http}}",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"unit",
+								"commands",
+								"6"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200 OK",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"description\": \"Test Unit 2 (Edit)\",\n    \"unit_type_id\": 1,\n    \"unit_model_id\": 2,\n    \"data\": {\"service_provider\": \"sms\", \"text\": \"dissable_unit\", \"editable\": [\"service_provider\", \"text\"]}\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{http}}://{{domain}}/api/v1/unit/commands/6",
+									"protocol": "{{http}}",
+									"host": [
+										"{{domain}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"unit",
+										"commands",
+										"6"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.18.0 (Ubuntu)"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 13 Feb 2025 11:32:08 GMT"
+								},
+								{
+									"key": "Authorization",
+									"value": "bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJ3d3cuZGVzdGlueS50ZXN0IiwiaWF0IjoxNzM5NDQ2MzI4LCJuYmYiOjE3Mzk0NDYzMjgsImV4cCI6MTczOTQ0NjkyOCwic3ViIjoiNiIsImVtbCI6InRhLm1heGltdXMrcnViZW4uYWRtaW5AZ21haWwuY29tIiwib2F0IjoxNzM5NDQ2MzI4fQ.N9NzeQ95Y6foXQRKTbqAjWf2_cgOIHmox6ghIIqIKBg"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"notices\": [\n        \"Updated  Unit Command: Test Unit 2 (Edit)\"\n    ],\n    \"command_data\": {\n        \"id\": 6,\n        \"description\": \"Test Unit 2 (Edit)\",\n        \"unit_type_id\": 1,\n        \"unit_type_name\": \"ACMTech\",\n        \"unit_type_code\": \"acmtech\",\n        \"unit_model_id\": 2,\n        \"unit_model_name\": \"ACMTrack v2\",\n        \"unit_model_code\": \"acmtrack_2\",\n        \"data\": {\n            \"text\": \"dissable_unit\",\n            \"editable\": [\n                \"service_provider\",\n                \"text\"\n            ],\n            \"service_provider\": \"sms\"\n        }\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Add Unit Command",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"description\": \"Test Unit 2\",\n    \"unit_type_id\": null,\n    \"unit_model_id\": null,\n    \"command_data\": {\"service_provider\": \"gdspo\", \"text\": \"dissable_unit\", \"editable\": [\"service_provider\", \"text\"]}\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{http}}://{{domain}}/api/v1/unit/commands",
+							"protocol": "{{http}}",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"unit",
+								"commands"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200 OK",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"description\": \"Test Unit 2\",\n    \"unit_type_id\": null,\n    \"unit_model_id\": null,\n    \"command_data\": {\"service_provider\": \"gdspo\", \"text\": \"dissable_unit\", \"editable\": [\"service_provider\", \"text\"]}\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{http}}://{{domain}}/api/v1/unit/commands",
+									"protocol": "{{http}}",
+									"host": [
+										"{{domain}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"unit",
+										"commands"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.18.0 (Ubuntu)"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 18 Feb 2025 06:33:37 GMT"
+								},
+								{
+									"key": "Authorization",
+									"value": "bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJ3d3cuZGVzdGlueS50ZXN0IiwiaWF0IjoxNzM5ODYwNDE3LCJuYmYiOjE3Mzk4NjA0MTcsImV4cCI6MTczOTg2MTAxNywic3ViIjoiNiIsImVtbCI6InRhLm1heGltdXMrcnViZW4uYWRtaW5AZ21haWwuY29tIiwib2F0IjoxNzM5ODYwNDE3fQ.Bc3__NW2COK6ddRuYjeZx8rFKnV3eTN-3EvD6bJCDd0"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"notices\": [\n        \"Created Unit Command: Test Unit 2\"\n    ],\n    \"data\": {\n        \"id\": 1,\n        \"description\": \"Test Unit 2\",\n        \"unit_type_id\": null,\n        \"unit_type_name\": null,\n        \"unit_type_code\": null,\n        \"unit_model_id\": null,\n        \"unit_model_name\": null,\n        \"unit_model_code\": null,\n        \"command_data\": {\n            \"text\": \"dissable_unit\",\n            \"editable\": [\n                \"service_provider\",\n                \"text\"\n            ],\n            \"service_provider\": \"gdspo\"\n        }\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Send Unit Command",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"command_id\":1,\n    \"sending_method\":\"gdspo_sms\",\n    \"variables\":[],\n    \"vehicle_ids\":[],\n    \"unit_ids\":[1]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{http}}://{{domain}}/api/v1/unit/commands/send/{{command_id}}",
+							"protocol": "{{http}}",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"unit",
+								"commands",
+								"send",
+								"{{command_id}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200 OK",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"description\": \"Test Unit 2\",\n    \"unit_type_id\": null,\n    \"unit_model_id\": null,\n    \"command_data\": {\"service_provider\": \"gdspo\", \"text\": \"dissable_unit\", \"editable\": [\"service_provider\", \"text\"]}\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{http}}://{{domain}}/api/v1/unit/commands",
+									"protocol": "{{http}}",
+									"host": [
+										"{{domain}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"unit",
+										"commands"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.18.0 (Ubuntu)"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 18 Feb 2025 06:33:37 GMT"
+								},
+								{
+									"key": "Authorization",
+									"value": "bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJ3d3cuZGVzdGlueS50ZXN0IiwiaWF0IjoxNzM5ODYwNDE3LCJuYmYiOjE3Mzk4NjA0MTcsImV4cCI6MTczOTg2MTAxNywic3ViIjoiNiIsImVtbCI6InRhLm1heGltdXMrcnViZW4uYWRtaW5AZ21haWwuY29tIiwib2F0IjoxNzM5ODYwNDE3fQ.Bc3__NW2COK6ddRuYjeZx8rFKnV3eTN-3EvD6bJCDd0"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"notices\": [\n        \"1 Command(s) have been queued and will be sent shortly\"\n    ],\n    \"data\": []\n}"
+						}
+					]
+				},
+				{
+					"name": "Get Available Commands To Send",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{http}}://{{domain}}/api/v1/unit/commands/send/find",
+							"protocol": "{{http}}",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"unit",
+								"commands",
+								"send",
+								"find"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200 OK",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{http}}://{{domain}}/api/v1/unit/commands/listing",
+									"protocol": "{{http}}",
+									"host": [
+										"{{domain}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"unit",
+										"commands",
+										"listing"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.18.0 (Ubuntu)"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 13 Feb 2025 08:38:12 GMT"
+								},
+								{
+									"key": "Authorization",
+									"value": "bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJ3d3cuZGVzdGlueS50ZXN0IiwiaWF0IjoxNzM5NDM1ODkyLCJuYmYiOjE3Mzk0MzU4OTIsImV4cCI6MTczOTQzNjQ5Miwic3ViIjoiNiIsImVtbCI6InRhLm1heGltdXMrcnViZW4uYWRtaW5AZ21haWwuY29tIiwib2F0IjoxNzM5NDM1ODkyfQ.V3fRiQRyAQcGQnfI9XjlxqbQbAnVADGNFljui9JJ2Go"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": [\n        {\n            \"id\": 1,\n            \"description\": \"Teltonika Reset\",\n            \"unit_type_id\": 5,\n            \"unit_type_name\": \"Teltonika\",\n            \"unit_type_code\": \"teltonika\",\n            \"unit_model_id\": null,\n            \"unit_model_name\": null,\n            \"unit_model_code\": null,\n            \"command_data\": [\n                {\n                    \"data\": {\n                        \"text\": \"reset-example\",\n                        \"variables\": []\n                    },\n                    \"sending_method\": \"gdspo_sms\"\n                }\n            ]\n        },\n        {\n            \"id\": 2,\n            \"description\": \"Teltonika Web Connect\",\n            \"unit_type_id\": 5,\n            \"unit_type_name\": \"Teltonika\",\n            \"unit_type_code\": \"teltonika\",\n            \"unit_model_id\": null,\n            \"unit_model_name\": null,\n            \"unit_model_code\": null,\n            \"command_data\": [\n                {\n                    \"data\": {\n                        \"text\": \"connect-example\",\n                        \"variables\": []\n                    },\n                    \"sending_method\": \"gdspo_sms\"\n                }\n            ]\n        }\n    ],\n    \"pagination\": {\n        \"current_page\": 1,\n        \"per_page\": 30,\n        \"prev_page_url\": null,\n        \"next_page_url\": null,\n        \"first_item\": 1,\n        \"last_item\": 2\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Get Unit Command Logs",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{http}}://{{domain}}/api/v1/unit/commands/send/logs?date={{from_date}}",
+							"protocol": "{{http}}",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"unit",
+								"commands",
+								"send",
+								"logs"
+							],
+							"query": [
+								{
+									"key": "date",
+									"value": "{{from_date}}"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200 OK",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{http}}://{{domain}}/api/v1/unit/commands/3/edit",
+									"protocol": "{{http}}",
+									"host": [
+										"{{domain}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"unit",
+										"commands",
+										"3",
+										"edit"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.18.0 (Ubuntu)"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 13 Feb 2025 09:52:25 GMT"
+								},
+								{
+									"key": "Authorization",
+									"value": "bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJ3d3cuZGVzdGlueS50ZXN0IiwiaWF0IjoxNzM5NDQwMzQ1LCJuYmYiOjE3Mzk0NDAzNDUsImV4cCI6MTczOTQ0MDk0NSwic3ViIjoiNiIsImVtbCI6InRhLm1heGltdXMrcnViZW4uYWRtaW5AZ21haWwuY29tIiwib2F0IjoxNzM5NDQwMzQ1fQ.LHI_1a-eIO2iiBut44gHGj88WCEE9UuWqltwaS6qdfU"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"id\": 3,\n        \"description\": \"Dissan;e Unit\",\n        \"unit_type_id\": 1,\n        \"unit_type_name\": \"ACMTech\",\n        \"unit_type_code\": \"acmtech\",\n        \"unit_model_id\": 1,\n        \"unit_model_name\": \"ACMTrack v1\",\n        \"unit_model_code\": \"acmtrack_1\",\n        \"command_data\": {\n            \"text\": \"dissable_unit\",\n            \"editable\": [\n                \"service_provider\",\n                \"text\"\n            ],\n            \"service_provider\": \"gdspo\"\n        },\n        \"unit_types\": [\n            {\n                \"code\": \"acmtech\",\n                \"name\": \"ACMTech\"\n            },\n            {\n                \"code\": \"calamp\",\n                \"name\": \"Calamp\"\n            },\n            {\n                \"code\": \"gosafe\",\n                \"name\": \"Gosafe\"\n            },\n            {\n                \"code\": \"queclink\",\n                \"name\": \"Queclink\"\n            },\n            {\n                \"code\": \"teltonika\",\n                \"name\": \"Teltonika\"\n            },\n            {\n                \"code\": \"gt06\",\n                \"name\": \"GT06\"\n            },\n            {\n                \"code\": \"wist\",\n                \"name\": \"Wist\"\n            },\n            {\n                \"code\": \"cobd\",\n                \"name\": \"CObd\"\n            },\n            {\n                \"code\": \"sigfox\",\n                \"name\": \"SigFox\"\n            },\n            {\n                \"code\": \"dmt\",\n                \"name\": \"Digital Matter\"\n            }\n        ],\n        \"unit_models\": [\n            {\n                \"code\": \"acmtrack_1\",\n                \"name\": \"ACMTrack v1\"\n            },\n            {\n                \"code\": \"acmtrack_2\",\n                \"name\": \"ACMTrack v2\"\n            }\n        ]\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete Unit Command",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{http}}://{{domain}}/api/v1/unit/commands/6",
+							"protocol": "{{http}}",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"unit",
+								"commands",
+								"6"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200 OK",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{http}}://{{domain}}/api/v1/unit/commands/6",
+									"protocol": "{{http}}",
+									"host": [
+										"{{domain}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"unit",
+										"commands",
+										"6"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.18.0 (Ubuntu)"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 13 Feb 2025 11:45:23 GMT"
+								},
+								{
+									"key": "Authorization",
+									"value": "bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJ3d3cuZGVzdGlueS50ZXN0IiwiaWF0IjoxNzM5NDQ3MTIzLCJuYmYiOjE3Mzk0NDcxMjMsImV4cCI6MTczOTQ0NzcyMywic3ViIjoiNiIsImVtbCI6InRhLm1heGltdXMrcnViZW4uYWRtaW5AZ21haWwuY29tIiwib2F0IjoxNzM5NDQ3MTIzfQ.zeX0tO010QkihwEWhMmGCsJ3r46KkvUlZIB1OVNZrTA"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"notices\": [\n        \"Deleted  Unit Command: Test Unit 2 (Edit)\"\n    ],\n    \"command_data\": {\n        \"id\": 6,\n        \"description\": \"Test Unit 2 (Edit)\",\n        \"unit_type_id\": 1,\n        \"unit_type_name\": null,\n        \"unit_type_code\": null,\n        \"unit_model_id\": 2,\n        \"unit_model_name\": null,\n        \"unit_model_code\": null,\n        \"data\": {\n            \"text\": \"dissable_unit\",\n            \"editable\": [\n                \"service_provider\",\n                \"text\"\n            ],\n            \"service_provider\": \"sms\"\n        }\n    }\n}"
+						}
+					]
+				}
+			]
+		},
+		{
 			"name": "Clients",
 			"item": [
 				{
@@ -9712,15 +11430,22 @@
 									"    response: pm.response.json()",
 									"});"
 								],
-								"type": "text/javascript"
+								"type": "text/javascript",
+								"packages": {}
 							}
 						}
 					],
 					"request": {
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "Origin",
+								"value": "https://io.acmdestiny.net/",
+								"type": "text"
+							}
+						],
 						"url": {
-							"raw": "{{http}}://{{domain}}/api/v1/vehicles",
+							"raw": "{{http}}://{{domain}}/api/v1/vehicles?XDEBUG_SESSION_START=PHPSTORM",
 							"protocol": "{{http}}",
 							"host": [
 								"{{domain}}"
@@ -9729,6 +11454,12 @@
 								"api",
 								"v1",
 								"vehicles"
+							],
+							"query": [
+								{
+									"key": "XDEBUG_SESSION_START",
+									"value": "PHPSTORM"
+								}
 							]
 						}
 					},
@@ -10005,6 +11736,214 @@
 								"listing",
 								"by-client",
 								"1"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200 OK",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{http}}://{{domain}}/api/v1/vehicles/listing/by-client/1",
+									"protocol": "{{http}}",
+									"host": [
+										"{{domain}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"vehicles",
+										"listing",
+										"by-client",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.17.8"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 21 Apr 2021 10:32:02 GMT"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "59"
+								},
+								{
+									"key": "X-RateLimit-Reset",
+									"value": "60"
+								},
+								{
+									"key": "Authorization",
+									"value": "token"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "gzip"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": [\n        {\n            \"id\": 1,\n            \"reg_no\": \"ABC 123 GP\",\n            \"fleet_no\": \"5551234\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Vehicles Maintenance By Client",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{http}}://{{domain}}/api/v1/vehicles/maintenance/by-client/{{client_id}}?id=1381",
+							"protocol": "{{http}}",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"vehicles",
+								"maintenance",
+								"by-client",
+								"{{client_id}}"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1381"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200 OK",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{http}}://{{domain}}/api/v1/vehicles/listing/by-client/1",
+									"protocol": "{{http}}",
+									"host": [
+										"{{domain}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"vehicles",
+										"listing",
+										"by-client",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.17.8"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 21 Apr 2021 10:32:02 GMT"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "59"
+								},
+								{
+									"key": "X-RateLimit-Reset",
+									"value": "60"
+								},
+								{
+									"key": "Authorization",
+									"value": "token"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "gzip"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": [\n        {\n            \"id\": 1,\n            \"reg_no\": \"ABC 123 GP\",\n            \"fleet_no\": \"5551234\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Vehicles Maintenance By Group",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{http}}://{{domain}}/api/v1/vehicles/maintenance/by-group/{{vehicle_group_id}}",
+							"protocol": "{{http}}",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"vehicles",
+								"maintenance",
+								"by-group",
+								"{{vehicle_group_id}}"
 							]
 						}
 					},
@@ -21911,6 +23850,323 @@
 							],
 							"cookie": [],
 							"body": "{\n    \"notices\": [\n        \"Deleted Point of Interest: Main Depot\"\n    ],\n    \"data\": {\n        \"id\": 1,\n        \"name\": \"Main Depot\",\n        \"latitude\": -34.178292,\n        \"longitude\": 19.351919,\n        \"zoom_level\": 13,\n        \"icon\": \"icon.png\",\n        \"color\": null,\n        \"client\": {\n            \"id\": 1,\n            \"name\": \"MERC CARRIERS\"\n        },\n        \"by_user_id\": 4,\n        \"by_full_name\": \"Don Schoeman [Admin]\",\n        \"created_at\": \"2023-08-22T14:19:28+02:00\",\n        \"updated_at\": \"2023-08-22T14:21:59+02:00\"\n    }\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "SIM Cards",
+			"item": [
+				{
+					"name": "SIM Card Listing",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{http}}://{{domain}}/api/v1/sim-cards/listing",
+							"protocol": "{{http}}",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"sim-cards",
+								"listing"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "SIM Card Listing By Client",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{http}}://{{domain}}/api/v1/sim-cards/listing/by-client/{{client_id}}",
+							"protocol": "{{http}}",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"sim-cards",
+								"listing",
+								"by-client",
+								"{{client_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get SIM Card Create Form Data",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{http}}://{{domain}}/api/v1/sim-cards/create",
+							"protocol": "{{http}}",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"sim-cards",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get SIM Card Edit Form Data",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{http}}://{{domain}}/api/v1/sim-cards/1/edit",
+							"protocol": "{{http}}",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"sim-cards",
+								"1",
+								"edit"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get A SIM Card",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "Find SIM Cards",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{http}}://{{domain}}/api/v1/sim-cards",
+							"protocol": "{{http}}",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"sim-cards"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add a SIM Card",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"partner_id\": 1,\n    \"agency_id\": 1,\n    \"client_id\": 2,\n    \"cell_no\": \"+27836708665678\",\n    \"iccid\": \"22987634556884567890\",\n    \"sim_card_provider_id\": 1,\n    \"sim_card_network_id\": 2,\n    \"unit_id\": 530,\n    \"note\": \"This is a test SIM card\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{http}}://{{domain}}/api/v1/sim-cards",
+							"protocol": "{{http}}",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"sim-cards"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update a SIM Card",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"partner_id\": 1,\n    \"agency_id\": 1,\n    \"client_id\": 2,\n    \"cell_no\": \"+278212345678\",\n    \"iccid\": \"22345678901234567890\",\n    \"sim_card_provider_id\": 1,\n    \"sim_card_network_id\": 2,\n    \"unit_id\": 128,\n    \"note\": \"This is a test SIM card\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{http}}://{{domain}}/api/v1/sim-cards/1",
+							"protocol": "{{http}}",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"sim-cards",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Un-assign SIM Card From Unit",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{http}}://{{domain}}/api/v1/sim-cards/1/unassign",
+							"protocol": "{{http}}",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"sim-cards",
+								"1",
+								"unassign"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "GDSPO",
+			"item": [
+				{
+					"name": "SIM Cards",
+					"item": [
+						{
+							"name": "Find GDSPO SIM Cards",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{http}}://{{domain}}/api/v1/gdspo/sim-cards",
+									"protocol": "{{http}}",
+									"host": [
+										"{{domain}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"gdspo",
+										"sim-cards"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get a GDSPO SIM Card",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{http}}://{{domain}}/api/v1/gdspo/sim-cards/{{gdspo_id}}",
+									"protocol": "{{http}}",
+									"host": [
+										"{{domain}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"gdspo",
+										"sim-cards",
+										"{{gdspo_id}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get GDSPO SIM Card Edit Form Data",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{http}}://{{domain}}/api/v1/gdspo/sim-cards/{{gdspo_id}}/edit",
+									"protocol": "{{http}}",
+									"host": [
+										"{{domain}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"gdspo",
+										"sim-cards",
+										"{{gdspo_id}}",
+										"edit"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update a GDSPO SIM Card",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"partner_id\": 1,\n    \"agency_id\": 1,\n    \"client_id\": 1,\n    \"unit_id\": 1,\n    \"label\": \"Sample SIM Card\",\n    \"note\": \"This is a test SIM card\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{http}}://{{domain}}/api/v1/gdspo/sim-cards/{{gdspo_id}}",
+									"protocol": "{{http}}",
+									"host": [
+										"{{domain}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"gdspo",
+										"sim-cards",
+										"{{gdspo_id}}"
+									]
+								}
+							},
+							"response": []
 						}
 					]
 				}
