@@ -6985,7 +6985,7 @@
 					]
 				},
 				{
-					"name": "Update an Units Attachment",
+					"name": "Update a Units Attachment",
 					"request": {
 						"method": "PUT",
 						"header": [],
@@ -9019,6 +9019,775 @@
 			]
 		},
 		{
+			"name": "Unit Swapping",
+			"item": [
+				{
+					"name": "De-allocate Unit from Vehicle",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"unit_id\": 1,\n  \"note\": \"De-allocated the unit from its current vehicle.\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{http}}://{{domain}}/api/v1/units/swap/deallocate/unit",
+							"protocol": "{{http}}",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"units",
+								"swap",
+								"deallocate",
+								"unit"
+							]
+						},
+						"description": "De-allocates a unit from its currently assigned vehicle. Nothing else changes on the unit.\n\n- `unit_id` The ID of the unit to be de-allocated.\n    \n- `note` A note to be added to the effected unit."
+					},
+					"response": [
+						{
+							"name": "200 OK",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"unit_id\": 12616,\n  \"note\": \"De-allocated the unit from its current vehicle.\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{http}}://{{domain}}/api/v1/units/swap/deallocate/unit",
+									"protocol": "{{http}}",
+									"host": [
+										"{{domain}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"units",
+										"swap",
+										"deallocate",
+										"unit"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.18.0 (Ubuntu)"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 12 Aug 2025 12:40:18 GMT"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"notices\": [\n        \"Unit de-allocation successful\"\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Swap and Scrap Old Unit",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"replaced_unit_id\": 1,\n  \"replacement_unit_id\": 2,\n  \"note\": \"Swapping broken unit with new unit for the same client and vehicle. The old unit will be archived but all telemetry/trip history will be carried over to the new unit.\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{http}}://{{domain}}/api/v1/units/swap/archive",
+							"protocol": "{{http}}",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"units",
+								"swap",
+								"archive"
+							]
+						},
+						"description": "A new unit is fitted to a vehicle replacing an existing faulty unit - which will be archived. All telemetry and trip history are transferred over to the new unit. The old unit is archived to the unit archives.\n\n- `replaced_unit_id` The ID of the unit that is being replaced - i.e. removed from the vehicle.\n    \n- `replacement_unit_id` The ID of the replacement unit that is being fitted into the vehicle.\n    \n- `note` A note that will be added to the effected units."
+					},
+					"response": [
+						{
+							"name": "200 OK",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"replaced_unit_id\": 12616,\n  \"replacement_unit_id\": 7256,\n  \"note\": \"Swapping broken unit with new unit for the same client and vehicle. The old unit will be archived but all telemetry/trip history will be carried over to the new unit.\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{http}}://{{domain}}/api/v1/units/swap/archive",
+									"protocol": "{{http}}",
+									"host": [
+										"{{domain}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"units",
+										"swap",
+										"archive"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.18.0 (Ubuntu)"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 12 Aug 2025 12:50:17 GMT"
+								},
+								{
+									"key": "Authorization",
+									"value": "bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJ3d3cuZGVzdGlueS50ZXN0IiwiaWF0IjoxNzU1MDAzMDE3LCJuYmYiOjE3NTUwMDMwMTcsImV4cCI6MTc1NTAwMzYxNywic3ViIjoiNCIsImVtbCI6InRhLm1heGltdXMrZG9uLmFkbWluQGdtYWlsLmNvbSIsIm9hdCI6MTc1NTAwMzAxN30.gEY4-yXm6ygUe5egx0eb1D1_jck3RUvTca4XpVyYceE"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"notices\": [\n        \"Unit swapping successful\"\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Swap and Repair Old Unit",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"replaced_unit_id\": 1,\n  \"replacement_unit_id\": 2,\n  \"note\": \"Swapping faulty unit with new unit for the same client and vehicle. All telemetry/trip history will be carried over to the new unit. The old unit requires repair and will remain under the same client.\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{http}}://{{domain}}/api/v1/units/swap/repair",
+							"protocol": "{{http}}",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"units",
+								"swap",
+								"repair"
+							]
+						},
+						"description": "A new unit is fitted to a vehicle replacing an existing faulty unit - which will requires repairing. All telemetry and trip history are transferred over to the new unit. The old unit remains under the same client but is no longer allocated to the vehicle.\n\n- `replaced_unit_id` The ID of the unit that is being replaced - i.e. removed from the vehicle.\n    \n- `replacement_unit_id` The ID of the replacement unit that is being fitted to the vehicle.\n    \n- `note` A note that will be added to the effected units."
+					},
+					"response": [
+						{
+							"name": "200 OK",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"replaced_unit_id\": 12616,\n  \"replacement_unit_id\": 7256,\n  \"note\": \"Swapping faulty unit with new unit for the same client and vehicle. All telemetry/trip history will be carried over to the new unit. The old unit requires repair and will remain under the same client.\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{http}}://{{domain}}/api/v1/units/swap/repair",
+									"protocol": "{{http}}",
+									"host": [
+										"{{domain}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"units",
+										"swap",
+										"repair"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.18.0 (Ubuntu)"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 12 Aug 2025 12:57:17 GMT"
+								},
+								{
+									"key": "Authorization",
+									"value": "bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJ3d3cuZGVzdGlueS50ZXN0IiwiaWF0IjoxNzU1MDAzNDM3LCJuYmYiOjE3NTUwMDM0MzcsImV4cCI6MTc1NTAwNDAzNywic3ViIjoiNCIsImVtbCI6InRhLm1heGltdXMrZG9uLmFkbWluQGdtYWlsLmNvbSIsIm9hdCI6MTc1NTAwMzQzN30.R21q0UgWzXwC4mZB2sKl78uIPJGE5VQOGHAiDJ7GI4A"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"notices\": [\n        \"Unit swapping successful\"\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Transfer to New Vehicle (Same Client)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"replaced_unit_id\": 1,\n  \"vehicle_id\": 2,\n  \"assigned_as\": \"primary\",\n  \"note\": \"Transferring the unit to a vehicle (under the same client) as primary unit.\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{http}}://{{domain}}/api/v1/units/swap/transfer/vehicle",
+							"protocol": "{{http}}",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"units",
+								"swap",
+								"transfer",
+								"vehicle"
+							]
+						},
+						"description": "Transfer an un-allocated unit to a vehicle's \"primary\", \"backup_1\" or \"backup_2\" slot under the same client. The slot can not be already allocated by another unit. The unit's telemetry and trip data is kept.\n\n- `replaced_unit_id` The ID of the unit that is being transferred to the vehicle.\n    \n- `vehicle_id` The ID of the vehicle that the unit is being transferred to.\n    \n- `assigned_as` The assignment slot to which the unit should be allocated to, can be \"primary\", \"backup_1\" or \"backup_2\".\n    \n- `note` A note that will be added to the effected unit."
+					},
+					"response": [
+						{
+							"name": "200 OK",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"replaced_unit_id\": 12616,\n  \"vehicle_id\": 7292,\n  \"assigned_as\": \"primary\",\n  \"note\": \"Transferring the unit to a vehicle (under the same client) as primary unit.\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{http}}://{{domain}}/api/v1/units/swap/transfer/vehicle",
+									"protocol": "{{http}}",
+									"host": [
+										"{{domain}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"units",
+										"swap",
+										"transfer",
+										"vehicle"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.18.0 (Ubuntu)"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 12 Aug 2025 13:06:46 GMT"
+								},
+								{
+									"key": "Authorization",
+									"value": "bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJ3d3cuZGVzdGlueS50ZXN0IiwiaWF0IjoxNzU1MDA0MDA2LCJuYmYiOjE3NTUwMDQwMDYsImV4cCI6MTc1NTAwNDYwNiwic3ViIjoiNCIsImVtbCI6InRhLm1heGltdXMrZG9uLmFkbWluQGdtYWlsLmNvbSIsIm9hdCI6MTc1NTAwNDAwNn0.2geIlY2Goxw8MlovXwUzj5Rx0Bd8wIPg8qQgWtO07Jc"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"notices\": [\n        \"Unit swapping successful\"\n    ]\n}"
+						},
+						{
+							"name": "422 Unprocessable Content",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"replaced_unit_id\": 12616,\n  \"vehicle_id\": 7203,\n  \"assigned_as\": \"primary\",\n  \"note\": \"Transferring the unit to a vehicle (under the same client) as primary unit.\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{http}}://{{domain}}/api/v1/units/swap/transfer/vehicle",
+									"protocol": "{{http}}",
+									"host": [
+										"{{domain}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"units",
+										"swap",
+										"transfer",
+										"vehicle"
+									]
+								}
+							},
+							"status": "Unprocessable Content",
+							"code": 422,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.18.0 (Ubuntu)"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 12 Aug 2025 13:08:26 GMT"
+								},
+								{
+									"key": "Authorization",
+									"value": "bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJ3d3cuZGVzdGlueS50ZXN0IiwiaWF0IjoxNzU1MDA0MTA2LCJuYmYiOjE3NTUwMDQxMDYsImV4cCI6MTc1NTAwNDcwNiwic3ViIjoiNCIsImVtbCI6InRhLm1heGltdXMrZG9uLmFkbWluQGdtYWlsLmNvbSIsIm9hdCI6MTc1NTAwNDEwNn0.zU0I88sfM6GBodLONPNkHofIE24KJNdWEALJl_2jFrE"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"warnings\": [\n        \"Cannot assign unit as primary, a unit is already allocated in that slot.\"\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Transfer to New Client and Vehicle",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"replaced_unit_id\": 1,\n  \"replacement_client_id\": 5,\n  \"vehicle_id\": 1,\n  \"assigned_as\": \"primary\",\n  \"note\": \"Transferring unit to new client and vehicle as the primary unit. Telemetry and trip history will not be transferred with the unit.\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{http}}://{{domain}}/api/v1/units/swap/transfer/client",
+							"protocol": "{{http}}",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"units",
+								"swap",
+								"transfer",
+								"client"
+							]
+						},
+						"description": "Transfer a unit to another client and vehicle. The assigned_as allocation slot, i.e. \"primary\", \"backup_1\" or \"backup_2\" must be provided. The slot can not be already allocated by another unit. The unit's telemetry and trip data is NOT TRANSFERRED.\n\nThis API call is usefull for when transferring units from stock or between clients.\n\n- `replaced_unit_id` The ID of the unit that is being transferred to the new client and vehicle.\n    \n- `replacement_client_id` The ID of the client to which the unit is being transferred to.\n    \n- `vehicle_id` The ID of the vehicle the unit is being transferred to.\n    \n- `assigned_as` The assignment slot to which the the vehicle will be allocated to. Can be \"primary\", \"backup_1\" or \"backup_2\".\n    \n- `note` A note that will be added to the effected unit."
+					},
+					"response": [
+						{
+							"name": "200 OK",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"replaced_unit_id\": 12616,\n  \"replacement_client_id\": 596,\n  \"vehicle_id\": 3578,\n  \"assigned_as\": \"primary\",\n  \"note\": \"Transferring unit to new client and vehicle as the primary unit. Telemetry and trip history will not be transferred with the unit.\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{http}}://{{domain}}/api/v1/units/swap/transfer/client",
+									"protocol": "{{http}}",
+									"host": [
+										"{{domain}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"units",
+										"swap",
+										"transfer",
+										"client"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.18.0 (Ubuntu)"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 12 Aug 2025 13:17:27 GMT"
+								},
+								{
+									"key": "Authorization",
+									"value": "bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJ3d3cuZGVzdGlueS50ZXN0IiwiaWF0IjoxNzU1MDA0NjQ3LCJuYmYiOjE3NTUwMDQ2NDcsImV4cCI6MTc1NTAwNTI0Nywic3ViIjoiNCIsImVtbCI6InRhLm1heGltdXMrZG9uLmFkbWluQGdtYWlsLmNvbSIsIm9hdCI6MTc1NTAwNDY0N30.57Rr2LV6Ab6DN3KJaenfMqNwQDHS-MfrDAqy8cDCUY0"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"notices\": [\n        \"Unit swapping successful\"\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Transfer to New Client (No Vehicle Allocation)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"replaced_unit_id\": 1,\n  \"replacement_client_id\": 5,\n  \"vehicle_id\": null,\n  \"assigned_as\": null,\n  \"note\": \"Transferring unit to a new client without allocating it to another vehicle. The new client might be a stock bin for example.\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{http}}://{{domain}}/api/v1/units/swap/transfer/client",
+							"protocol": "{{http}}",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"units",
+								"swap",
+								"transfer",
+								"client"
+							]
+						},
+						"description": "Transfer a unit to another client without allocating it to a vehicle. This API call is usefull for when transferring units back to stock or between clients.\n\n- `replaced_unit_id` The ID of the unit that is being transferred to the new client.\n    \n- `replacement_client_id` The ID of the client to which the unit is being transferred to.\n- `vehicle_id` `null` Indicates that the unit must not be assigned/allocated to a vehicle.\n    \n- `assigned_as` `null` Indicates that the unit must not be assigned/allocated to a vehicle.\n    \n- `note` A note that will be added to the effected unit."
+					},
+					"response": [
+						{
+							"name": "200 OK",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"replaced_unit_id\": 7256,\n  \"replacement_client_id\": 596,\n  \"vehicle_id\": null,\n  \"assigned_as\": null,\n  \"note\": \"Transferring unit to a new client without allocating it to another vehicle. The new client might be a stock bin.\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{http}}://{{domain}}/api/v1/units/swap/transfer/client",
+									"protocol": "{{http}}",
+									"host": [
+										"{{domain}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"units",
+										"swap",
+										"transfer",
+										"client"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.18.0 (Ubuntu)"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 12 Aug 2025 13:33:15 GMT"
+								},
+								{
+									"key": "Authorization",
+									"value": "bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJ3d3cuZGVzdGlueS50ZXN0IiwiaWF0IjoxNzU1MDA1NTk1LCJuYmYiOjE3NTUwMDU1OTUsImV4cCI6MTc1NTAwNjE5NSwic3ViIjoiNCIsImVtbCI6InRhLm1heGltdXMrZG9uLmFkbWluQGdtYWlsLmNvbSIsIm9hdCI6MTc1NTAwNTU5NX0.ds2JWTORe23PkQBo8_Ctbiaa-WHMEfB7DVW7q8djJGw"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"notices\": [\n        \"Unit swapping successful\"\n    ]\n}"
+						}
+					]
+				}
+			]
+		},
+		{
 			"name": "Clients",
 			"item": [
 				{
@@ -9033,7 +9802,7 @@
 							}
 						],
 						"url": {
-							"raw": "{{http}}://{{domain}}/api/v1/clients",
+							"raw": "{{http}}://{{domain}}/api/v1/clients?XDEBUG_SESSION_START=PHPSTORM",
 							"protocol": "{{http}}",
 							"host": [
 								"{{domain}}"
@@ -9042,6 +9811,12 @@
 								"api",
 								"v1",
 								"clients"
+							],
+							"query": [
+								{
+									"key": "XDEBUG_SESSION_START",
+									"value": "PHPSTORM"
+								}
 							]
 						}
 					},
@@ -9121,7 +9896,7 @@
 								}
 							],
 							"cookie": [],
-							"body": "{\n    \"data\": [\n        {\n            \"id\": 3,\n            \"name\": \"Client Name\",\n            \"reference_no\": null,\n            \"fin_account_no\": null,\n            \"description\": null,\n            \"partner\": {\n                \"id\": 2,\n                \"name\": \"Partner Name\"\n            },\n            \"agency\": null,\n            \"created_at\": \"2021-04-22T09:49:19+02:00\",\n            \"updated_at\": null\n        }\n    ],\n    \"pagination\": {\n        \"current_page\": 1,\n        \"per_page\": 30,\n        \"prev_page_url\": null,\n        \"next_page_url\": null,\n        \"first_item\": 1,\n        \"last_item\": 1\n    }\n}"
+							"body": "{\n    \"data\": [\n        {\n            \"id\": 3,\n            \"name\": \"Client Name\",\n            \"reference_no\": null,\n            \"fin_account_no\": null,\n            \"fin_sub_account_no\": null,\n            \"description\": null,\n            \"partner\": {\n                \"id\": 2,\n                \"name\": \"Partner Name\"\n            },\n            \"agency\": null,\n            \"created_at\": \"2021-04-22T09:49:19+02:00\",\n            \"updated_at\": null\n        }\n    ],\n    \"pagination\": {\n        \"current_page\": 1,\n        \"per_page\": 30,\n        \"prev_page_url\": null,\n        \"next_page_url\": null,\n        \"first_item\": 1,\n        \"last_item\": 1\n    }\n}"
 						}
 					]
 				},
@@ -9869,7 +10644,7 @@
 								}
 							],
 							"cookie": [],
-							"body": "{\n    \"data\": {\n        \"id\": 1,\n        \"name\": \"Client Name\",\n        \"reference_no\": null,\n        \"fin_account_no\": null,\n        \"description\": null,\n        \"partner\": {\n            \"id\": 1,\n            \"name\": \"Partner Name\"\n        },\n        \"agency\": null,\n        \"created_at\": \"2021-01-25T12:33:14+02:00\",\n        \"updated_at\": null,\n        \"contacts\": [\n            {\n                \"id\": 2,\n                \"contact_type_id\": 1,\n                \"contact_type_name\": \"Primary Contact\",\n                \"contact_name\": \"Client Contact\",\n                \"cellphone\": \"555 123 4567\",\n                \"phone_office\": null,\n                \"phone_home\": null,\n                \"email\": \"client.contact@email.com\",\n                \"fax\": null,\n                \"note\": null,\n                \"created_at\": \"2021-04-22T10:46:09+02:00\",\n                \"updated_at\": null\n            },\n            {\n                \"id\": 3,\n                \"contact_type_id\": 1,\n                \"contact_type_name\": \"Primary Contact\",\n                \"contact_name\": \"Contact Name\",\n                \"cellphone\": \"082 5552222\",\n                \"phone_office\": \"011 222 2222\",\n                \"phone_home\": \"012 222 2222\",\n                \"email\": \"contact@email.com\",\n                \"fax\": \"011 222 2223\",\n                \"note\": \"This is an example note\",\n                \"created_at\": \"2021-04-22T11:32:26+02:00\",\n                \"updated_at\": null\n            }\n        ],\n        \"locations\": [],\n        \"notes\": [\n            {\n                \"id\": 1,\n                \"user_id\": 6,\n                \"user_full_name\": \"User Name\",\n                \"created_at\": \"2021-04-22T11:27:01+02:00\",\n                \"note\": \"This is an example note.\"\n            }\n        ],\n        \"attachments\": [],\n        \"partners\": [\n            {\n                \"id\": 1,\n                \"name\": \"Partner Name\"\n            }\n        ],\n        \"agencies\": [\n            {\n                \"id\": 1,\n                \"name\": \"Agency Name\"\n            }\n        ],\n        \"contact_types\": [\n            {\n                \"id\": 1,\n                \"name\": \"Primary Contact\"\n            },\n            {\n                \"id\": 2,\n                \"name\": \"Alternative Contact\"\n            },\n            {\n                \"id\": 3,\n                \"name\": \"Emergency Contact\"\n            },\n            {\n                \"id\": 4,\n                \"name\": \"Financial Contact\"\n            },\n            {\n                \"id\": 5,\n                \"name\": \"Installation Contact\"\n            },\n            {\n                \"id\": 6,\n                \"name\": \"Technical Contact\"\n            },\n            {\n                \"id\": 7,\n                \"name\": \"Service Center Contact\"\n            },\n            {\n                \"id\": 8,\n                \"name\": \"Delivery Contact\"\n            },\n            {\n                \"id\": 9,\n                \"name\": \"Control Room Contact\"\n            }\n        ],\n        \"location_types\": {\n            \"office\": \"Office Address\",\n            \"branch\": \"Branch Address\",\n            \"depo\": \"Depo Address\",\n            \"home\": \"Home Address\",\n            \"service_center\": \"Service Center Address\",\n            \"delivery\": \"Delivery Address\",\n            \"installation\": \"Installation Address\",\n            \"control_room\": \"Control Room Address\"\n        }\n    }\n}"
+							"body": "{\n    \"data\": {\n        \"id\": 1,\n        \"name\": \"Client Name\",\n        \"reference_no\": null,\n        \"fin_account_no\": null,\n        \"fin_sub_account_no\": null,\n        \"description\": null,\n        \"partner\": {\n            \"id\": 1,\n            \"name\": \"Partner Name\"\n        },\n        \"agency\": null,\n        \"created_at\": \"2021-01-25T12:33:14+02:00\",\n        \"updated_at\": null,\n        \"contacts\": [\n            {\n                \"id\": 2,\n                \"contact_type_id\": 1,\n                \"contact_type_name\": \"Primary Contact\",\n                \"contact_name\": \"Client Contact\",\n                \"cellphone\": \"555 123 4567\",\n                \"phone_office\": null,\n                \"phone_home\": null,\n                \"email\": \"client.contact@email.com\",\n                \"fax\": null,\n                \"note\": null,\n                \"created_at\": \"2021-04-22T10:46:09+02:00\",\n                \"updated_at\": null\n            },\n            {\n                \"id\": 3,\n                \"contact_type_id\": 1,\n                \"contact_type_name\": \"Primary Contact\",\n                \"contact_name\": \"Contact Name\",\n                \"cellphone\": \"082 5552222\",\n                \"phone_office\": \"011 222 2222\",\n                \"phone_home\": \"012 222 2222\",\n                \"email\": \"contact@email.com\",\n                \"fax\": \"011 222 2223\",\n                \"note\": \"This is an example note\",\n                \"created_at\": \"2021-04-22T11:32:26+02:00\",\n                \"updated_at\": null\n            }\n        ],\n        \"locations\": [],\n        \"notes\": [\n            {\n                \"id\": 1,\n                \"user_id\": 6,\n                \"user_full_name\": \"User Name\",\n                \"created_at\": \"2021-04-22T11:27:01+02:00\",\n                \"note\": \"This is an example note.\"\n            }\n        ],\n        \"attachments\": [],\n        \"partners\": [\n            {\n                \"id\": 1,\n                \"name\": \"Partner Name\"\n            }\n        ],\n        \"agencies\": [\n            {\n                \"id\": 1,\n                \"name\": \"Agency Name\"\n            }\n        ],\n        \"contact_types\": [\n            {\n                \"id\": 1,\n                \"name\": \"Primary Contact\"\n            },\n            {\n                \"id\": 2,\n                \"name\": \"Alternative Contact\"\n            },\n            {\n                \"id\": 3,\n                \"name\": \"Emergency Contact\"\n            },\n            {\n                \"id\": 4,\n                \"name\": \"Financial Contact\"\n            },\n            {\n                \"id\": 5,\n                \"name\": \"Installation Contact\"\n            },\n            {\n                \"id\": 6,\n                \"name\": \"Technical Contact\"\n            },\n            {\n                \"id\": 7,\n                \"name\": \"Service Center Contact\"\n            },\n            {\n                \"id\": 8,\n                \"name\": \"Delivery Contact\"\n            },\n            {\n                \"id\": 9,\n                \"name\": \"Control Room Contact\"\n            }\n        ],\n        \"location_types\": {\n            \"office\": \"Office Address\",\n            \"branch\": \"Branch Address\",\n            \"depo\": \"Depo Address\",\n            \"home\": \"Home Address\",\n            \"service_center\": \"Service Center Address\",\n            \"delivery\": \"Delivery Address\",\n            \"installation\": \"Installation Address\",\n            \"control_room\": \"Control Room Address\"\n        }\n    }\n}"
 						}
 					]
 				},
@@ -9958,7 +10733,7 @@
 								}
 							],
 							"cookie": [],
-							"body": "{\n    \"data\": {\n        \"id\": 1,\n        \"name\": \"Client Name\",\n        \"reference_no\": null,\n        \"fin_account_no\": null,\n        \"description\": null,\n        \"partner\": {\n            \"id\": 1,\n            \"name\": \"Partner Name\"\n        },\n        \"agency\": null,\n        \"created_at\": \"2021-01-25T12:33:14+02:00\",\n        \"updated_at\": null,\n        \"contacts\": [\n            {\n                \"id\": 2,\n                \"contact_type_id\": 1,\n                \"contact_type_name\": \"Primary Contact\",\n                \"contact_name\": \"Client Contact\",\n                \"cellphone\": \"555 123 4567\",\n                \"phone_office\": null,\n                \"phone_home\": null,\n                \"email\": \"client.contact@email.com\",\n                \"fax\": null,\n                \"note\": null,\n                \"created_at\": \"2021-04-22T10:46:09+02:00\",\n                \"updated_at\": null\n            },\n            {\n                \"id\": 3,\n                \"contact_type_id\": 1,\n                \"contact_type_name\": \"Primary Contact\",\n                \"contact_name\": \"Contact Name\",\n                \"cellphone\": \"082 5552222\",\n                \"phone_office\": \"011 222 2222\",\n                \"phone_home\": \"012 222 2222\",\n                \"email\": \"contact@email.com\",\n                \"fax\": \"011 222 2223\",\n                \"note\": \"This is an example note\",\n                \"created_at\": \"2021-04-22T11:32:26+02:00\",\n                \"updated_at\": null\n            }\n        ],\n        \"locations\": [],\n        \"notes\": [\n            {\n                \"id\": 1,\n                \"user_id\": 6,\n                \"user_full_name\": \"User Name\",\n                \"created_at\": \"2021-04-22T11:27:01+02:00\",\n                \"note\": \"This is an example note.\"\n            }\n        ],\n        \"attachments\": []\n    }\n}"
+							"body": "{\n    \"data\": {\n        \"id\": 1,\n        \"name\": \"Client Name\",\n        \"reference_no\": null,\n        \"fin_account_no\": null,\n        \"fin_sub_account_no\": null,\n        \"description\": null,\n        \"partner\": {\n            \"id\": 1,\n            \"name\": \"Partner Name\"\n        },\n        \"agency\": null,\n        \"created_at\": \"2021-01-25T12:33:14+02:00\",\n        \"updated_at\": null,\n        \"contacts\": [\n            {\n                \"id\": 2,\n                \"contact_type_id\": 1,\n                \"contact_type_name\": \"Primary Contact\",\n                \"contact_name\": \"Client Contact\",\n                \"cellphone\": \"555 123 4567\",\n                \"phone_office\": null,\n                \"phone_home\": null,\n                \"email\": \"client.contact@email.com\",\n                \"fax\": null,\n                \"note\": null,\n                \"created_at\": \"2021-04-22T10:46:09+02:00\",\n                \"updated_at\": null\n            },\n            {\n                \"id\": 3,\n                \"contact_type_id\": 1,\n                \"contact_type_name\": \"Primary Contact\",\n                \"contact_name\": \"Contact Name\",\n                \"cellphone\": \"082 5552222\",\n                \"phone_office\": \"011 222 2222\",\n                \"phone_home\": \"012 222 2222\",\n                \"email\": \"contact@email.com\",\n                \"fax\": \"011 222 2223\",\n                \"note\": \"This is an example note\",\n                \"created_at\": \"2021-04-22T11:32:26+02:00\",\n                \"updated_at\": null\n            }\n        ],\n        \"locations\": [],\n        \"notes\": [\n            {\n                \"id\": 1,\n                \"user_id\": 6,\n                \"user_full_name\": \"User Name\",\n                \"created_at\": \"2021-04-22T11:27:01+02:00\",\n                \"note\": \"This is an example note.\"\n            }\n        ],\n        \"attachments\": []\n    }\n}"
 						}
 					]
 				},
@@ -11220,7 +11995,112 @@
 								}
 							],
 							"cookie": [],
-							"body": "{\n    \"notices\": [\n        \"Updated Client: Client Name\"\n    ],\n    \"data\": {\n        \"id\": 1,\n        \"name\": \"Client New Name\",\n        \"reference_no\": null,\n        \"fin_account_no\": \"1234567\",\n        \"description\": \"An example description\",\n        \"partner\": {\n            \"id\": 1,\n            \"name\": \"Partner Name\"\n        },\n        \"agency\": null,\n        \"created_at\": \"2021-01-25T12:33:14+02:00\",\n        \"updated_at\": \"2021-04-22T12:03:49+02:00\",\n        \"contacts\": [\n            {\n                \"id\": 2,\n                \"contact_type_id\": 1,\n                \"contact_type_name\": \"Primary Contact\",\n                \"contact_name\": \"Client Contact\",\n                \"cellphone\": \"555 123 4567\",\n                \"phone_office\": null,\n                \"phone_home\": null,\n                \"email\": \"client.contact@email.com\",\n                \"fax\": null,\n                \"note\": null,\n                \"created_at\": \"2021-04-22T10:46:09+02:00\",\n                \"updated_at\": null\n            }\n        ],\n        \"locations\": [],\n        \"notes\": [\n            {\n                \"id\": 1,\n                \"user_id\": 6,\n                \"user_full_name\": \"User Name\",\n                \"created_at\": \"2021-04-22T11:27:01+02:00\",\n                \"note\": \"This is an example note.\"\n            }\n        ],\n        \"attachments\": []\n    }\n}"
+							"body": "{\n    \"notices\": [\n        \"Updated Client: Client Name\"\n    ],\n    \"data\": {\n        \"id\": 1,\n        \"name\": \"Client New Name\",\n        \"reference_no\": null,\n        \"fin_account_no\": \"A1234567\",\n        \"fin_sub_account_no\": \"ABC123\",\n        \"description\": \"An example description\",\n        \"partner\": {\n            \"id\": 1,\n            \"name\": \"Partner Name\"\n        },\n        \"agency\": null,\n        \"created_at\": \"2021-01-25T12:33:14+02:00\",\n        \"updated_at\": \"2021-04-22T12:03:49+02:00\",\n        \"contacts\": [\n            {\n                \"id\": 2,\n                \"contact_type_id\": 1,\n                \"contact_type_name\": \"Primary Contact\",\n                \"contact_name\": \"Client Contact\",\n                \"cellphone\": \"555 123 4567\",\n                \"phone_office\": null,\n                \"phone_home\": null,\n                \"email\": \"client.contact@email.com\",\n                \"fax\": null,\n                \"note\": null,\n                \"created_at\": \"2021-04-22T10:46:09+02:00\",\n                \"updated_at\": null\n            }\n        ],\n        \"locations\": [],\n        \"notes\": [\n            {\n                \"id\": 1,\n                \"user_id\": 6,\n                \"user_full_name\": \"User Name\",\n                \"created_at\": \"2021-04-22T11:27:01+02:00\",\n                \"note\": \"This is an example note.\"\n            }\n        ],\n        \"attachments\": []\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Add a New Client",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Client Name\",\n    \"fin_account_no\": \"A1234567\",\n    \"fin_sub_account_no\": \"ABC123\",\n    \"description\": \"An example description\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{http}}://{{domain}}/api/v1/clients",
+							"protocol": "{{http}}",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"clients"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200 OK",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"Client Name\",\n    \"partner_id\": 1,\n    \"agency_id\": null,\n    \"fin_account_no\": \"A1234567\",\n    \"fin_sub_account_no\": \"ABC123\",\n    \"description\": \"An example description\",\n    \"notes\": [\"This is an example note.\"],\n    \"attachments\": [],\n    \"contacts\": [\n        {\n            \"contact_type_id\": 1,\n            \"contact_type_name\": \"Primary Contact\",\n            \"contact_name\": \"Client Contact\",\n            \"cellphone\": \"555 123 4567\",\n            \"phone_office\": null,\n            \"phone_home\": null,\n            \"email\": \"client.contact@email.com\",\n            \"fax\": null,\n            \"note\": null\n        }\n    ],\n    \"locations\": []\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{http}}://{{domain}}/api/v1/clients",
+									"protocol": "{{http}}",
+									"host": [
+										"{{domain}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"clients"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.15.8"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 22 Apr 2021 10:03:49 GMT"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "59"
+								},
+								{
+									"key": "X-RateLimit-Reset",
+									"value": "60"
+								},
+								{
+									"key": "Authorization",
+									"value": "token"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"notices\": [\n        \"Added Client: Client Name\"\n    ],\n    \"data\": {\n        \"id\": 1,\n        \"name\": \"Client Name\",\n        \"reference_no\": null,\n        \"fin_account_no\": \"A1234567\",\n        \"fin_sub_account_no\": \"ABC123\",\n        \"description\": \"An example description\",\n        \"partner\": {\n            \"id\": 1,\n            \"name\": \"Partner Name\"\n        },\n        \"agency\": null,\n        \"created_at\": \"2021-01-25T12:33:14+02:00\",\n        \"updated_at\": \"2021-04-22T12:03:49+02:00\",\n        \"contacts\": [\n            {\n                \"id\": 2,\n                \"contact_type_id\": 1,\n                \"contact_type_name\": \"Primary Contact\",\n                \"contact_name\": \"Client Contact\",\n                \"cellphone\": \"555 123 4567\",\n                \"phone_office\": null,\n                \"phone_home\": null,\n                \"email\": \"client.contact@email.com\",\n                \"fax\": null,\n                \"note\": null,\n                \"created_at\": \"2021-04-22T10:46:09+02:00\",\n                \"updated_at\": null\n            }\n        ],\n        \"locations\": [],\n        \"notes\": [\n            {\n                \"id\": 1,\n                \"user_id\": 6,\n                \"user_full_name\": \"User Name\",\n                \"created_at\": \"2021-04-22T11:27:01+02:00\",\n                \"note\": \"This is an example note.\"\n            }\n        ],\n        \"attachments\": []\n    }\n}"
 						}
 					]
 				},
