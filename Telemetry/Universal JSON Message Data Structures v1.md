@@ -348,7 +348,7 @@ In the example above the fuel_level sensor returned with an error code of
 `18000` and hence the value was set to `null`.
 
 Some sensors consists of "banks" of sensors, i.e. multiple sensors. For
-example, Teltonika can have multiple Bluetooth (BLE)sensors of the same 
+example, Teltonika can have multiple Bluetooth (BLE) sensors of the same 
 type. In the example above there are 4 BLE sensors supplying 4 different
 temperature values in degrees Celsius. However, one of the sensors has
 an error code of `25000` which means the sensor is not found or the sensor
