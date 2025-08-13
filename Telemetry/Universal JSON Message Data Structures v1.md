@@ -179,7 +179,9 @@ are generated:
         ["ibutton", "0A34C4D4AB33A2B3"],
         ["oil_temp", 55.75],
         ["oil_press", 0.9],
-        ["fuel_level", null, 18000]
+        ["fuel_level", null, 18000],
+        ["eye_temp", [25.3, 18.75, 0, 12.63]],
+        ["eye_temp_errors", [null, null, 25000, null]]
     ],
     "inputs": "1000000",
     "outputs": "001",
@@ -339,10 +341,43 @@ a third element is provided that the sensor may be faulty and have
 submitted an error code.
 
 **Example Sensor Error:**
-["fuel_level", null, 18000]
+
+`["fuel_level", null, 18000]`
 
 In the example above the fuel_level sensor returned with an error code of
 `18000` and hence the value was set to `null`.
+
+Some sensors consists of "banks" of sensors, i.e. multiple sensors. For
+example, Teltonika can have multiple Bluetooth (BLE)sensors of the same 
+type. In the example above there are 4 BLE sensors supplying 4 different
+temperature values in degrees Celsius. However, one of the sensors has
+an error code of `25000` which means the sensor is not found or the sensor
+data is not received by the tracking device:
+
+`["eye_temp", [25.3, 18.75, 0, 12.63]]`
+
+Notice that the third value is 0, in this case the errors are provided
+as a separate array:
+
+`["eye_temp_errors", [null, null, 25000, null]]`
+
+Error array's typically contains the sensor name, i.e. `eye_temp` in this 
+case, followed by the string "_errors". Some examples are:
+
+```
+dallas_temp_errors: []
+ble_temp_errors: []
+eye_temp_errors: []
+eye_humidity_errors: []
+eye_magnet_errors: []
+eye_magnet_count_errors: []
+eye_movement_errors: []
+eye_movement_count_errors: []
+eye_pitch_errors: []
+eye_roll_errors: []
+eye_low_battery_errors: []
+eye_battery_volts_errors: []
+```
 
 **Sensor Names, Types and Descriptions:**
 
@@ -490,3 +525,60 @@ supplied by the device.
 Please see the [OBD-II](https://en.wikipedia.org/wiki/On-board_diagnostics#OBD-II)
 and [OBD-II PID](https://en.wikipedia.org/wiki/OBD-II_PIDs)
 specifications for more details.
+
+## Sensor Bank Error Codes:
+
+As described in the [Sensors](#sensors) section, some sensor banks may have
+error codes associated with them that are sent as their own array in the
+`sensors: []` array, some examples are:
+
+```
+dallas_temp_errors: []
+ble_temp_errors: []
+eye_temp_errors: []
+eye_humidity_errors: []
+eye_magnet_errors: []
+eye_magnet_count_errors: []
+eye_movement_errors: []
+eye_movement_count_errors: []
+eye_pitch_errors: []
+eye_roll_errors: []
+eye_low_battery_errors: []
+eye_battery_volts_errors: []
+```
+
+Here are some error codes that can be looked for:
+
+| Sensor Field Example                      | Error Code | Description                      |
+|-------------------------------------------|------------|----------------------------------|
+| `dallas_temp_errors: [850, ...]`          | `850`      | Sensor not ready                 |
+| `dallas_temp_errors: [2000, ...]`         | `2000`     | Value read error                 |
+| `dallas_temp_errors: [3000, ...]`         | `3000`     | Not connected                    |
+| `dallas_temp_errors: [4000, ...]`         | `4000`     | ID failed                        |
+| `dallas_temp_errors: [5000, ...]`         | `5000`     | Sensor not ready                 |
+| `ble_temp_errors: [2000, ...]`            | `2000`     | Failed sensor data parsing       |
+| `ble_temp_errors: [3000, ...]`            | `3000`     | Sensor not found / Not Connected |
+| `ble_temp_errors: [4000, ...]`            | `4000`     | Abnormal sensor state            |
+| `ble_temp_errors: [32765, ...]`           | `32765`    | Abnormal sensor state            |
+| `ble_temp_errors: [32766, ...]`           | `32766`    | Failed sensor data parsing       |
+| `ble_temp_errors: [32767, ...]`           | `32767`    | Sensor not found                 |
+| `eye_temp_errors: [25000, ...]`           | `25000`    | No data from sensor              |
+| `eye_temp_errors: [25001, ...]`           | `25001`    | Sensor error                     |
+| `eye_humidity_errors: [250, ...]`         | `250`      | No data from sensor              |
+| `eye_humidity_errors: [251, ...]`         | `251`      | Sensor error                     |
+| `eye_magnet_errors: [250, ...]`           | `250`      | No data from sensor              |
+| `eye_magnet_errors: [251, ...]`           | `251`      | Sensor error                     |
+| `eye_magnet_count_errors: [65000, ...]`   | `65000`    | No data from sensor              |
+| `eye_magnet_count_errors: [65001, ...]`   | `65001`    | Sensor error                     |
+| `eye_movement_errors: [250, ...]`         | `250`      | No data from sensor              |
+| `eye_movement_errors: [251, ...]`         | `251`      | Sensor error                     |
+| `eye_movement_count_errors: [65000, ...]` | `65000`    | No data from sensor              |
+| `eye_movement_count_errors: [65001, ...]` | `65001`    | Sensor error                     |
+| `eye_pitch_errors: [120, ...]`            | `120`      | No data from sensor              |
+| `eye_pitch_errors: [121, ...]`            | `121`      | Sensor error                     |
+| `eye_roll_errors: [250, ...]`             | `250`      | No data from sensor              |
+| `eye_roll_errors: [251, ...]`             | `251`      | Sensor error                     |
+| `eye_low_battery_errors: [250, ...]`      | `250`      | No data from sensor              |
+| `eye_low_battery_errors: [251, ...]`      | `251`      | Sensor error                     |
+| `eye_battery_volts_errors: [250, ...]`    | `250`      | No data from sensor              |
+| `eye_battery_volts_errors: [251, ...]`    | `251`      | Sensor error                     |
