@@ -209,7 +209,7 @@ are generated:
 ## Primary Fields
 
 * message_ver (int): The JSON message structure version
-* message_type (string): This will always be `"telemetry"` for telemetry messages.
+* message_type (string): This will always be `"gps"` for telemetry messages.
 * gateway (string): The domain which received the message from the unit
 * port (int): The server TCP/UDP the unit connected to.
 * transmission (string): Transmission type: tcp, udp, http, https, sms
