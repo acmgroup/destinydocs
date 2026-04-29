@@ -255,7 +255,6 @@ fields:
 * rcpi (array of int's): Received channel power indicators
 * ta (array of int's): GSM Timing Advance (usually 0 to 63)
 * bs_count (array of int's): GSM Basestation/cell site/tower count.
-* registration (int|null): Registration status: 0 - 5
 * signal_lvl (int|null): Signal strength raw value, unit dependant and is often
   a number ranging from 0 to 5.
 * signal_str (int|null): Signal strength percentage
